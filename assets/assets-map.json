@@ -1,0 +1,16 @@
+{
+  "lib": {
+    "js": "lib-ffd574fd30fb23cbbbdf.js",
+    "css": "css/lib-ffd574fd30fb23cbbbdf.css"
+  },
+  "commons": {
+    "js": "commons.js"
+  },
+  "index.entry": {
+    "js": "index.entry-10a75fb35b4d9501f05c.js",
+    "css": "css/index.entry-10a75fb35b4d9501f05c.css"
+  },
+  "other.entry": {
+    "js": "other.entry-eebf4b40a1841adcebb7.js"
+  }
+}
