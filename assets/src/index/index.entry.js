@@ -14,7 +14,7 @@ ReactDom.render(
     (
         <LeftBarElement />
     ),
-    document.getElementById('mount-dom')
+    document.getElementById('container')
 )
 
 // setTimeout(function(){

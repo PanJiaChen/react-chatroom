@@ -1,4 +1,5 @@
 import getApiUrl from './getApiUrl.js'
+import ajax from './ajax.js'
 
 const Utils = {}
 
@@ -41,31 +42,34 @@ Utils.Url={
 function _d(i) {
     return i < 10 ? '0' + i : i
 }
-Utils.Time={
-    getTimeObj(d){
-        var year= d.getFullYear(),
-            month = d.getMonth()+1,
-            date = d.getDate(),
-            hour = d.getHours(),
-            minute = d.getMinutes(),
-            second = d.getSeconds();
-        return {
-            year:year,
-            month : _d(month),
-            date : _d(date),
-            hour : _d(hour),
-            minute : _d(minute),
-            second:_d(second)
-        }
-    }
-}
+
 
 Utils.getApiUrl=getApiUrl
+Utils.ajax=ajax
 
 
 
 Utils.Scroll= createScrollMgr()
 
+
+Utils.formatTime=function(time){
+    var time = +time * 1000;
+    var d =new Date(time);
+    var now = Date.now();
+
+    var diff = (now-d)/1000;
+
+    if(diff < 30) {
+        return '刚刚'
+    } else if(diff < 3600){ //less 1 hour
+        return Math.ceil(diff /60)+'分钟前'
+    } else if(diff < 3600*24){
+        return Math.ceil(diff/3600)+'小时前'
+    } else if(diff < 3600*24*2){
+        return '1天前'
+    }
+    return `${d.getMonth()+1}月${d.getDate()}日${d.getHours()}时`
+}
 
 function createScrollMgr(){
     var scrollMap={}

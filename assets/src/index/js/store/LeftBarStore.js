@@ -1,58 +1,49 @@
-import 'isomorphic-fetch';
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
+var Api = require('../WebApi/api.js');
 
+var getRelativeArticles=Api.getRelativeArticles();
+console.log(getRelativeArticles)
 
 const ActionTypes={
-    LOAD_POST_DETAIL:'LOAD_POST_DETAIL',
-    LOAD_POST_DETAIL_S:'LOAD_POST_DETAIL_S',
-    LOAD_POST_DETAIL_E:'LOAD_POST_DETAIL_E'
+    LOAD:'LOAD',
+    LOAD_S:'LOAD_S',
+    LOAD_E:'LOAD_E'
 }
 
 export default class PostDetailStore extends BaseStore{
-
 
     __className ='PostDetailStore'
 
     state = {
         isLoading:false,
-        postObj:null,
-        errMsg:null,
-        postId:''
+        detail:[]
     }
 
 
-    loadPostDetail(payLoad) {
-        this.dispatch({type:ActionTypes.LOAD_POST_DETAIL,payLoad});
-
-        var postId = this.state.postId;
-        let apiUrl = utils.getApiUrl("/api/posts/:postId",{postId:postId})
-        console.log(apiUrl)
-        fetch(
-            utils.Url.generate(apiUrl),
-            {
-                headers: {'Accept': 'application/json'}
-            }
-        ).then(res=> res.json())
-            .then(res=>{
-                this.dispatch({type:ActionTypes.LOAD_POST_DETAIL_S,payLoad:res})
+    loadRelativeArticles(payLoad) {
+        this.dispatch({type:ActionTypes.LOAD});
+        var that=this
+        utils.ajax({
+                url: getRelativeArticles
+              , dataType: 'jsonp'
+              , success: function (resp) {
+                  console.log(resp)
+                  that.dispatch({type:ActionTypes.LOAD_S,payLoad:resp.results})
+                }
             })
-            .catch(res=>{
-            //TODO error msg
-            this.dispatch({type:ActionTypes.LOAD_POST_DETAIL_E,payLoad:{errMsg:res.stack}})
-        })
     }
 
     reduce(action){
-        const type = action.type,
-            payLoad = action.payLoad;
+        const type = action.type;
+        const payLoad = action.payLoad;
         switch(type) {
-            case ActionTypes.LOAD_POST_DETAIL:
-                return actionMethods.loadPostDetail(this.state,payLoad)
-            case ActionTypes.LOAD_POST_DETAIL_S:
-                return actionMethods.loadPostDetail_s(this.state, payLoad)
-            case ActionTypes.LOAD_POST_DETAIL_E:
-                return actionMethods.loadPostDetail_e(this.state, payLoad)
+            case ActionTypes.LOAD:
+                return actionMethods.loadRelativeArticles(this.state,payLoad)
+            case ActionTypes.LOAD_S:
+                return actionMethods.loadRelativeArticles_s(this.state, payLoad)
+            case ActionTypes.LOAD_E:
+                return actionMethods.loadRelativeArticles_e(this.state, payLoad)
 
             default:
                 console.warn(`type:${type} not found: use default`)
@@ -62,36 +53,30 @@ export default class PostDetailStore extends BaseStore{
 }
 
 const actionMethods={
-    loadPostDetail(state,payLoad){
-        var postId = payLoad.postId;
-        //console.log(postId)
-        if(!postId){
-            this.loadPostDetail_e(state,{errMsg:`postId:${postId} is invalid`});
-        }
-        if(postId == state.postId){return state;}
+    loadRelativeArticles(state,payLoad){
 
         if(state.isLoading){
             return state;
         }else{
             return utils.State.setShallow(state,{
                 isLoading:true,
-                postId:postId,
-                postObj:null
+               
             })
         }
     },
-    loadPostDetail_s(state,payLoad){
-        var postObj = payLoad;
+    loadRelativeArticles_s(state,payLoad){
+        payLoad.forEach(item=>{
+            state.detail.push(item)
+        })
         return utils.State.setShallow(state,{
             isLoading:false,
-            postObj:postObj,
-            errMsg:null
+            detail:state.detail
         })
     },
-    loadPostDetail_e(state,payLoad){
+    loadRelativeArticles_e(state,payLoad){
         return utils.State.setShallow(state,{
             isLoading:false,
-            errMsg:payLoad.errMsg
+            detail:'fail'
         })
     }
 }
