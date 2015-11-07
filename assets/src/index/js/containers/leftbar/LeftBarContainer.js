@@ -24,13 +24,17 @@ class LeftBarContainer extends Component{
         return (
             <div className='leftbar-container'>
                 <div className='tab'>
-                    <div className='tab-list active'>资讯区</div>
+                    <div className='tab-list active' data-selected='true' data-ref='relativeArticle'  onClick={this.handleClick}>资讯区</div>
                     <div className='tab-list'>话题区</div>
                 </div>
                 <LeftbarList listDetail={state.detail}></LeftbarList>
             </div>
         )
+    }
 
+    handleClick(event){
+        console.log(event.target.getAttribute('data-ref'));
+        console.log(event.target);
     }
 }
 
