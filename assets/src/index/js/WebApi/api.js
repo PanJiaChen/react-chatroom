@@ -1,19 +1,27 @@
 'use strict';
-var HOST_URI = 'http://api.wscn.com/v2/'
+var HOST_URI = 'http://api.wscn.com/v2/';
 // 获取节点
 
 
+var ChatroomId='63';
+
+var Chatroom="/chatrooms/"+ChatroomId;
+
 // 直播区
-var Relative_Articles = 'chatrooms/63/articles';
+var Relative_Articles = 'chatrooms/'+ChatroomId+'/articles';
 
 //话题区
-var Relative_Topics = 'chatrooms/63/topics?'
+var Relative_Topics = 'chatrooms/'+ChatroomId+'/topics?';
 
 //评论
-var Get_Comments = 'comments?channel=chat&id=63'
+var Get_Comments = 'comments?channel=chat&id='+ChatroomId;
 
 //参与人数
-var Get_Count = 'chatrooms/63/count'
+var Get_Count = 'chatrooms/'+ChatroomId+'/count';
+
+function _getChatroom(){
+    return HOST_URI + Chatroom;
+}
 
 function _getRelativeArticles() {
     return HOST_URI + Relative_Articles;
@@ -33,8 +41,9 @@ function _getCount() {
 }
 
 module.exports = {
+    getChatroom:_getChatroom,
     getRelativeArticles: _getRelativeArticles,
     getRelaticeTopics: _getRelaticeTopics,
     getComments: _getComments,
-    getCount: _getCount()
+    getCount: _getCount
 };

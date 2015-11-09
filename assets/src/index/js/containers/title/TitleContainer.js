@@ -7,26 +7,20 @@ class TitleContainer extends Component{
         super(props,context)
     }
 
-    static contextTypes={
-
-    }
-
-    state = {
-
-    }
-
     componentDidMount(){
+        console.log('b')
         const store = this.props.store;
-        store.loadRelativeAjax('false','articles')
+
+        store.loadRelativeAjax('false','title')
     }
 
     render(){
         const store = this.props.store;
         const state = store.getState();
-        const firstTitle=state.detail[0];
+
         return (
             <div className='title'>
-                {firstTitle}
+                {state.detail.title}
             </div>
         )
     }
