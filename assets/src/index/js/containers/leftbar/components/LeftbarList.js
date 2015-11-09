@@ -2,37 +2,36 @@ import {Component} from 'react'
 import utils from '../../../../../common/utils/utils.js'
 
 
-export default class LeftbarList extends Component{
+export default class LeftbarList extends Component {
 
-    static defaultProps={
-        list:[]
+    static defaultProps = {
+        list: []
     }
 
 
-    constructor(props,context){
-        super(props,context)
+    constructor(props, context) {
+        super(props, context)
     }
 
-    render(){
+    render() {
         var list = this.props.listDetail;
-        console.log(list)
-        var repeatLi = list.map(item=>{
-            var publishTime=utils.formatTime(item.createdAt)
+        var repeatLi = list.map(item=> {
+            var publishTime = utils.formatTime(item.createdAt);
+            var content = item.title ? item.title : item.text;
             return (
 
                 <li key={item.id} className="list-item-container">
                     <div className="list-item">
                         <div className="timer-circle"></div>
-                        <div className="list-content">{item.title}</div>
+                        <div className="list-content">{content}</div>
                         <div className="timer">{publishTime}</div>
-
                     </div>
                 </li>
             )
         })
 
         return (
-            <ul className='artivle-list'>
+            <ul className='article-list'>
                 {repeatLi}
             </ul>
         )

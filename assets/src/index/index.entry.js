@@ -1,18 +1,22 @@
 import ReactDom from 'react-dom'
 import LeftbarContainer from './js/containers/leftbar/LeftBarContainer.js'
+import TContainer from './js/containers/title/TitleContainer'
 import LeftBarStore from './js/store/LeftBarStore.js'
-import {enhanceWithStore} from 'zlux'
+import {enhanceWithStore} from 'react-zlux'
 import './less/index.less'
 
 
 const leftBarStore = new LeftBarStore()
 
-const LeftBarElement = enhanceWithStore(LeftbarContainer,leftBarStore)
-
+const LeftBarElement = enhanceWithStore(LeftbarContainer, leftBarStore)
+const TitleElement = enhanceWithStore(TContainer, leftBarStore)
 
 ReactDom.render(
     (
-        <LeftBarElement />
+        <div className="react-container">
+            <LeftBarElement />
+            <TitleElement />
+        </div>
     ),
     document.getElementById('container')
 )

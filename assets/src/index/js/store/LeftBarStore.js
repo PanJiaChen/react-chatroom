@@ -2,33 +2,34 @@ import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
 
-var getRelativeArticles=Api.getRelativeArticles();
-console.log(getRelativeArticles)
 
 const ActionTypes={
     LOAD:'LOAD',
     LOAD_S:'LOAD_S',
     LOAD_E:'LOAD_E'
+};
+const urlMap={
+    articles:Api.getRelativeArticles(),
+    topics:Api.getRelaticeTopics()
 }
 
 export default class PostDetailStore extends BaseStore{
 
-    __className ='PostDetailStore'
+    __className ='PostDetailStore';
 
     state = {
         isLoading:false,
         detail:[]
-    }
+    };
 
 
-    loadRelativeArticles(payLoad) {
+    loadRelativeAjax(payLoad,url) {
         this.dispatch({type:ActionTypes.LOAD});
         var that=this
         utils.ajax({
-                url: getRelativeArticles
+                url: urlMap[url]
               , dataType: 'jsonp'
               , success: function (resp) {
-                  console.log(resp)
                   that.dispatch({type:ActionTypes.LOAD_S,payLoad:resp.results})
                 }
             })
@@ -65,6 +66,7 @@ const actionMethods={
         }
     },
     loadRelativeArticles_s(state,payLoad){
+        state.detail=[];
         payLoad.forEach(item=>{
             state.detail.push(item)
         })

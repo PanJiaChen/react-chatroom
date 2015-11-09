@@ -28,10 +28,11 @@
     "react-dom": "^0.14.0",
     "react-mixin": "^3.0.0",
     "react-router": "1.0.0-rc1",
+    "react-zlux": "0.0.2",
     "redux": "^2.0.0",
     "reqwest-without-xhr2": "^2.0.2",
     "yargs": "^3.29.0",
-    "zlux": "^0.4.0"
+    "zlux": "^0.8.8"
   },
   "devDependencies": {
     "url-loader": "^0.5.6",

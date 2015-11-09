@@ -9,12 +9,16 @@ class LeftBarContainer extends Component{
     }
 
     static contextTypes={
+
     }
 
+    state = {
+        tabSelect:'articles',
+    }
 
     componentDidMount(){
         const store = this.props.store;
-        store.loadRelativeArticles()
+        store.loadRelativeAjax('fasle',this.state.tabSelect)
     }
 
     render(){
@@ -24,8 +28,8 @@ class LeftBarContainer extends Component{
         return (
             <div className='leftbar-container'>
                 <div className='tab'>
-                    <div className='tab-list active' data-selected='true' data-ref='relativeArticle'  onClick={this.handleClick}>资讯区</div>
-                    <div className='tab-list'>话题区</div>
+                    <div className={this.judgeTabClass("articles")} data-selected='true' data-ref='articles'  onClick={this.handleClick.bind(this)}>资讯区</div>
+                    <div className={this.judgeTabClass("topics")} data-ref='topics'  onClick={this.handleClick.bind(this)}>话题区</div>
                 </div>
                 <LeftbarList listDetail={state.detail}></LeftbarList>
             </div>
@@ -33,8 +37,18 @@ class LeftBarContainer extends Component{
     }
 
     handleClick(event){
-        console.log(event.target.getAttribute('data-ref'));
-        console.log(event.target);
+        var tabUrl=event.target.getAttribute('data-ref');
+        const store = this.props.store;
+        this.setState({tabSelect: tabUrl});
+        store .loadRelativeAjax('fasle',tabUrl)
+    }
+
+    judgeTabClass(tab){
+        if(tab!=this.state.tabSelect){
+            return "tab-list"
+        }else{
+            return "tab-list active"
+        }
     }
 }
 
