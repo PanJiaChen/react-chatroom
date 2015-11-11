@@ -13,27 +13,48 @@ export default class TitleDetailStore extends BaseStore {
     __className = 'TitleDetailStore';
 
     static ActionTypes = {
-        LOAD: 'LOAD',
-        LOAD_S: 'LOAD_S',
-        LOAD_E: 'LOAD_E'
+        TITLE_LOAD: 'TITLE_LOAD',
+        TITLE_LOAD_S: 'TITLE_LOAD_S',
+        TITLE_LOAD_E: 'TITLE_LOAD_E',
+
+        COUNT_LOAD: 'COUNT_LOAD',
+        COUNT_LOAD_S: 'COUNT_LOAD_S',
+        COUNT_LOAD_E: 'COUNT_LOAD_E'
     };
 
     state = {
-        detail: []
+        title:'',
+        count:''
     };
 
 
-    loadRelativeAjax(payLoad, url) {
+
+
+    loadTitleAjax(payLoad) {
         const ats = TitleDetailStore.ActionTypes;
-        this.dispatch({type: ats.LOAD});
+        this.dispatch({type: ats.TITLE_LOAD});
         var that = this;
-        console.log('a')
         utils.ajax({
-            url: urlMap[url]
+            url: urlMap["title"]
             , dataType: 'jsonp'
             , success: function (resp) {
                 console.log(resp)
-                that.dispatch({type: ats.LOAD_S, payLoad: resp})
+                that.dispatch({type: ats.TITLE_LOAD_S, payLoad: resp})
+            }
+        })
+    }
+
+    loadCountAjax(payLoad) {
+        const ats = TitleDetailStore.ActionTypes;
+        this.dispatch({type: ats.COUNT_LOAD});
+        var that = this;
+        console.log('c')
+        utils.ajax({
+            url: urlMap["count"]
+            , dataType: 'jsonp'
+            , success: function (resp) {
+                console.log(resp)
+                that.dispatch({type: ats.COUNT_LOAD_S, payLoad: resp})
             }
         })
     }
@@ -43,12 +64,18 @@ export default class TitleDetailStore extends BaseStore {
         const payLoad = action.payLoad;
         const ats = TitleDetailStore.ActionTypes;
         switch (type) {
-            case ats.LOAD:
+            case ats.TITLE_LOAD:
                 return actionMethods.loadTitle(this.state, payLoad)
-            case ats.LOAD_S:
+            case ats.TITLE_LOAD_S:
                 return actionMethods.loadTitle_s(this.state, payLoad)
-            case ats.LOAD_E:
+            case ats.TITLE_LOAD_E:
                 return actionMethods.loadTitle_e(this.state, payLoad)
+            case ats.COUNT_LOAD:
+                return actionMethods.loadCount(this.state, payLoad)
+            case ats.COUNT_LOAD_S:
+                return actionMethods.loadCount_s(this.state, payLoad)
+            case ats.COUNT_LOAD_E:
+                return actionMethods.loadCount_e(this.state, payLoad)
 
             default:
                 console.warn(`type:${type} not found: use default`)
@@ -70,10 +97,33 @@ const actionMethods = {
     loadTitle_s(state, payLoad){
         return utils.State.setShallow(state, {
             isLoading: false,
-            detail: payLoad
+            title: payLoad
         })
     },
     loadTitle_e(state, payLoad){
+        return utils.State.setShallow(state, {
+            isLoading: false,
+            detail: 'fail'
+        })
+    },
+
+    loadCount(state, payLoad){
+        if (state.isLoading) {
+            return state;
+        } else {
+            return utils.State.setShallow(state, {
+                isLoading: true,
+            })
+        }
+    },
+    loadCount_s(state, payLoad){
+        return utils.State.setShallow(state, {
+            isLoading: false,
+            title:state.title,
+            count: payLoad
+        })
+    },
+    loadCount_e(state, payLoad){
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: 'fail'

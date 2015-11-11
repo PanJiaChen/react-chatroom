@@ -23,7 +23,9 @@ function getDevelopWebpack(){
                 root:'Zepto',
                 commonjs:'zepto',
                 commonjs2:'zepto'
-            }
+            },
+            react:'React',
+            'react-dom':'ReactDOM'
         },
         module: {
             loaders: [
