@@ -9,6 +9,9 @@ import TitleStore from './js/store/TitleStore.js'
 import TopicContainer from './js/containers/topic/topicContainer'
 import TopicStore from './js/store/TopicStore.js'
 
+import CommentContainer from './js/containers/comment/CommentContainer.js'
+import CommentStore from './js/store/CommentStore.js'
+
 import {enhanceWithStore} from 'react-zlux'
 import './less/index.less'
 
@@ -16,10 +19,12 @@ import './less/index.less'
 const leftBarStore = new LeftBarStore();
 const titleStore = new TitleStore();
 const topicStore = new TopicStore();
+const commentStore = new CommentStore();
 
 const LeftBarElement = enhanceWithStore(LeftbarContainer, leftBarStore);
 const TitleElement = enhanceWithStore(TitleContainer, titleStore);
 const TopicElement = enhanceWithStore(TopicContainer, topicStore);
+const CommentElement = enhanceWithStore(CommentContainer, commentStore);
 
 
 ReactDom.render(
@@ -29,6 +34,7 @@ ReactDom.render(
             <div className="main-container">
                 <TitleElement />
                 <TopicElement />
+                <CommentElement />
             </div>
         </div>
     ),

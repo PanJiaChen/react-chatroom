@@ -38,7 +38,6 @@ export default class TitleDetailStore extends BaseStore {
             url: urlMap["title"]
             , dataType: 'jsonp'
             , success: function (resp) {
-                console.log(resp)
                 that.dispatch({type: ats.TITLE_LOAD_S, payLoad: resp})
             }
         })
@@ -48,12 +47,10 @@ export default class TitleDetailStore extends BaseStore {
         const ats = TitleDetailStore.ActionTypes;
         this.dispatch({type: ats.COUNT_LOAD});
         var that = this;
-        console.log('c')
         utils.ajax({
             url: urlMap["count"]
             , dataType: 'jsonp'
             , success: function (resp) {
-                console.log(resp)
                 that.dispatch({type: ats.COUNT_LOAD_S, payLoad: resp})
             }
         })

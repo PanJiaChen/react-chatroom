@@ -39,7 +39,6 @@ class TopicContainer extends Component {
                         {state.detail[0].text}
                     </div>
                 </div>
-
             </div>
         )
     }

@@ -33,44 +33,48 @@
 }
 
 //LeftbarList component
-.list-item-container{
-	border-left: 1px solid #d8d8d8;
-	list-style: none;
-	position: relative;
-	&:first-child{
+.article-list{
+	.list-item-container{
+		border-left: 1px solid #d8d8d8;
+		list-style: none;
+		position: relative;
+		&:first-child{
+			.list-item{
+				.timer:before{
+					content: '';
+					width: 9px;
+					height: 9px;
+					background: #fff;
+					display: inline-block;
+					position: absolute;
+					left: -5px;
+					top: -5px
+				}
+			}
+		}
 		.list-item{
-			.timer:before{
-				content: '';
+			padding: 0 15px 30px;
+			.list-content{
+
+			}
+			.timer-circle{
 				width: 9px;
 				height: 9px;
-				background: #fff;
-				display: inline-block;
+				background: #8bceff;
+				border-radius: 50%;
 				position: absolute;
 				left: -5px;
-				top: -5px				
+				top: 4px;
+			}
+			.timer{
+				font-size: 12px;
+				color: #aaa;
+				line-height: 16px;
+				padding-top: 6px;
 			}
 		}
 	}
-	.list-item{
-		padding: 0 15px 30px;
-		.list-content{
-			
-		}
-		.timer-circle{
-			width: 9px;
-			height: 9px;
-			background: #8bceff;
-		    border-radius: 50%;
-		    position: absolute;
-		    left: -5px;
-		    top: 4px;
-		}
-		.timer{
-			font-size: 12px;
-			color: #aaa;
-			line-height: 16px;
-			padding-top: 6px;
-		}
-	}
 }
+
+
 

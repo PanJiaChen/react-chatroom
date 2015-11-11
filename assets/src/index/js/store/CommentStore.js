@@ -4,36 +4,41 @@ var Api = require('../WebApi/api.js');
 
 
 const urlMap = {
-    title: Api.getChatroom(),
-    count: Api.getCount()
+    comment: Api.getComment()
 }
 
-export default class TitleDetailStore extends BaseStore {
+export default class GetCommentStore extends BaseStore {
 
     __className = 'TitleDetailStore';
 
     static ActionTypes = {
-        LOAD: 'LOAD',
-        LOAD_S: 'LOAD_S',
-        LOAD_E: 'LOAD_E'
+        COMMENT_LOAD: 'COMMENT_LOAD',
+        COMMENT_LOAD_S: 'COMMENT_LOAD_S',
+        COMMENT_LOAD_E: 'COMMENT_LOAD_E'
     };
 
     state = {
-        detail: []
+        comments: [{
+            text: "正在努力加载中!",
+            createdAt: "",
+            user: {
+                username: "用户",
+                avatar: "http://avatar.cdn.wallstcn.com/60/6c/b4/loading8.gif!wscn.avatar.xs"
+            }
+        }]
     };
 
 
-    loadRelativeAjax(payLoad, url) {
-        const ats = TitleDetailStore.ActionTypes;
-        this.dispatch({type: ats.LOAD});
+    loadCommentAjax(payLoad) {
+        const ats = GetCommentStore.ActionTypes;
+        this.dispatch({type: ats.COMMENT_LOAD});
         var that = this;
-        console.log('a')
         utils.ajax({
-            url: urlMap[url]
+            url: urlMap['comment']
             , dataType: 'jsonp'
             , success: function (resp) {
                 console.log(resp)
-                that.dispatch({type: ats.LOAD_S, payLoad: resp})
+                that.dispatch({type: ats.COMMENT_LOAD_S, payLoad: resp})
             }
         })
     }
@@ -41,15 +46,14 @@ export default class TitleDetailStore extends BaseStore {
     reduce(action) {
         const type = action.type;
         const payLoad = action.payLoad;
-        const ats = TitleDetailStore.ActionTypes;
+        const ats = GetCommentStore.ActionTypes;
         switch (type) {
-            case ats.LOAD:
-                return actionMethods.loadTitle(this.state, payLoad)
-            case ats.LOAD_S:
-                return actionMethods.loadTitle_s(this.state, payLoad)
-            case ats.LOAD_E:
-                return actionMethods.loadTitle_e(this.state, payLoad)
-
+            case ats.COMMENT_LOAD:
+                return actionMethods.loadComment(this.state, payLoad)
+            case ats.COMMENT_LOAD_S:
+                return actionMethods.loadComment_s(this.state, payLoad)
+            case ats.COMMENT_LOAD_E:
+                return actionMethods.loadComment_e(this.state, payLoad)
             default:
                 console.warn(`type:${type} not found: use default`)
                 return this.state
@@ -58,7 +62,7 @@ export default class TitleDetailStore extends BaseStore {
 }
 
 const actionMethods = {
-    loadTitle(state, payLoad){
+    loadComment(state, payLoad){
         if (state.isLoading) {
             return state;
         } else {
@@ -67,13 +71,17 @@ const actionMethods = {
             })
         }
     },
-    loadTitle_s(state, payLoad){
-        return utils.State.setShallow(state, {
-            isLoading: false,
-            detail: payLoad
+    loadComment_s(state, payLoad){
+        state.comments=[];
+        payLoad.comments.forEach(item=>{
+            state.comments.push(item)
+        })
+        return utils.State.setShallow(state,{
+            isLoading:false,
+            comments:state.comments
         })
     },
-    loadTitle_e(state, payLoad){
+    loadComment_e(state, payLoad){
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: 'fail'

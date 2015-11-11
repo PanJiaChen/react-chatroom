@@ -36,7 +36,6 @@ export default class TopicStore extends BaseStore {
             url: urlMap["topic"]
             , dataType: 'jsonp'
             , success: function (resp) {
-                console.log(resp)
                 that.dispatch({type: ats.TOPIC_LOAD_S, payLoad: resp})
             }
         })

@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
 import './leftbar.less'
-import LeftbarList from './components/LeftbarList.js'
+import LeftbarList from './components/LeftbarList'
 
 class LeftBarContainer extends Component{
     constructor(props,context){

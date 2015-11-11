@@ -1,0 +1,60 @@
+.comment-container {
+  background-color: #fff;
+  padding: 15px;
+  margin-top: 20px;
+  position: relative;
+  .comment-topic {
+    font-size: 16px;
+    line-height: 24px;
+    color: #333;
+    &:before {
+      content: ' ';
+      border-right: 6px solid #0a96ff;
+      display: inline-block;
+      height: 20px;
+      vertical-align: -3px;
+      position: absolute;
+      left: 0px;
+    }
+  }
+}
+
+.comment-list {
+  padding: 0;
+  .list-item-container {
+    list-style: none;
+    padding: 10px 0;
+    .user-avatar {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .user-content {
+      display: inline-block;
+      .user-detail {
+        display: inline-block;
+        font-size: 12px;
+        line-height: 16px;
+        color: #0a96ff;
+      }
+      .user-time {
+        display: inline-block;
+        font-style: 12px;
+        color: #aaa;
+      }
+      .user-word {
+        font-size: 16px;
+        line-height: 20px;
+        color: #333;
+        font-weight: bold;
+      }
+    }
+
+  }
+
+}

@@ -8,7 +8,6 @@ class TitleContainer extends Component{
     }
 
     componentDidMount(){
-        console.log('b')
         const store = this.props.store;
 
         store.loadTitleAjax('false')
@@ -20,7 +19,6 @@ class TitleContainer extends Component{
         const state = store.getState();
 
         var status=this.judgeStatus(state.title.status)
-        console.log(status)
         return (
             <div className='title-continer'>
                 <div className='title'>
