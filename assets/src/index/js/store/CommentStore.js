@@ -5,7 +5,8 @@ var Api = require('../WebApi/api.js');
 
 const urlMap = {
     getComment: Api.getComment(),
-    getLoginDetail:Api.getLoginDetail()
+    getLoginDetail:Api.getLoginDetail(),
+    replyComment:Api.replyComment()
 }
 
 export default class CommentStore extends BaseStore {
@@ -56,13 +57,17 @@ export default class CommentStore extends BaseStore {
         })
     }
 
-    replyCommentAjax(payLoad) {
+    replyCommentAjax(payLoad,val) {
         const ats = CommentStore.ActionTypes;
         this.dispatch({type: ats.COMMENT_REPLY});
         var that = this;
         utils.ajax({
-            url: urlMap['comment']
-            , dataType: 'jsonp'
+            url: urlMap['replyComment']
+            , dataType: 'json'
+            , method:'post'
+            , data:{content:val}
+            , withCredentials: true
+            , crossOrigin: true
             , success: function (resp) {
                 console.log(resp)
                 that.dispatch({type: ats.COMMENT_REPLY_S, payLoad: resp})
@@ -133,6 +138,15 @@ const actionMethods = {
             isLoading: false,
             userDetail:payLoad
         })
+    },
+    replyComment(state, payLoad){
+        return utils.State.setShallow(state,{
+            isLoading:false,
+            
+        })
+    },
+    replyComment_s(state, payLoad){
+       console.log(payLoad)
     }
 
 }

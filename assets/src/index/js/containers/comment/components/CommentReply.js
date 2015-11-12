@@ -12,13 +12,12 @@ export default class CommentReplay extends Component {
     }
 
     render() {
-        console.log(this.props.userDetail)
         var userDetail=this.props.userDetail;
 
         if(!userDetail.id){
-            var userAvatar=(<div className='user-avatar'><img src='' /></div>)
+            var userAvatar=(<div ref='userAvatar' className='user-avatar'><img src='' /></div>)
         }else{
-            var userAvatar=(<div className='user-avatar'><img src={userDetail.avatar} /></div>)
+            var userAvatar=(<div ref='userAvatar' className='user-avatar has-login'><img src={userDetail.avatar} /></div>)
         }
        
         return (
@@ -32,8 +31,12 @@ export default class CommentReplay extends Component {
 
     handleClick(event){
         const store = this.props.store;
-        var input = this.refs.commentReplyTextarea;
-        var inputVal=input.value;
-        store.userValidateAjax('fasle')
+        if(this.refs.userAvatar.getAttribute('class')=='user-avatar has-login'){
+            var input = this.refs.commentReplyTextarea;
+            var inputVal=input.value;
+            store.replyCommentAjax('fasle',inputVal)
+        }else{
+            store.userValidateAjax('fasle')
+        } 
     }
 }
