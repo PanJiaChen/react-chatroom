@@ -19,7 +19,6 @@ export default class LeftbarList extends Component {
             var publishTime = utils.formatTime(item.createdAt);
             var content = item.title ? item.title : item.text;
             return (
-
                 <li key={item.id} className="list-item-container">
                     <div className="list-item">
                         <div className="timer-circle"></div>

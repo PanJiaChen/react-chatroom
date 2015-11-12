@@ -45,7 +45,7 @@ function getDevelopWebpack(){
             ]
         },
         debug:true,
-        devtool:'eval-source-map',
+        devtool:'source-map',
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
             //new webpack.OldWatchingPlugin()//新版的不知道为啥不watch，用这个可以临时解决。

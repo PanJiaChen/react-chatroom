@@ -1,7 +1,8 @@
 import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
 import './comment.less'
-import CommentList from './components/CommetList.js'
+import CommentList from './components/CommentList.js'
+import CommentReply from './components/CommentReply'
 
 class CommentContainer extends Component {
     constructor(props, context) {
@@ -22,12 +23,12 @@ class CommentContainer extends Component {
     render() {
         const store = this.props.store;
         const state = store.getState();
-        console.log(state)
 
         return (
             <div className='comment-container'>
                 <div className="comment-topic">讨论区</div>
                 <CommentList listDetail={state.comments} />
+                <CommentReply store={store} userDetail={state.userDetail} />
             </div>
         )
     }

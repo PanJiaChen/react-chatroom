@@ -1,7 +1,7 @@
 'use strict';
-var HOST_URI = 'http://api.wscn.com/v2/';
+var HOST_URL = 'http://api.wscn.com/v2/';
 // 获取节点
-
+var WSCN_URL = 'http://wscn.com/';
 
 var ChatroomId='63';
 
@@ -22,29 +22,43 @@ var Get_Count = 'chatrooms/'+ChatroomId+'/count';
 //评论列表
 var Get_Comment = 'comments?channel=chat&id='+ChatroomId;
 
+//评论
+var Reply_Comment='thread/chat_'+ChatroomId+'/comments/save';
+
+//登录信息
+var User_Login='me';
+
 function _getChatroom(){
-    return HOST_URI + Chatroom;
+    return HOST_URL + Chatroom;
 }
 
 function _getRelativeArticles() {
-    return HOST_URI + Relative_Articles;
+    return HOST_URL + Relative_Articles;
 }
 
 function _getRelaticeTopics() {
-    return HOST_URI + Relative_Topics;
+    return HOST_URL + Relative_Topics;
 }
 
 function _getComments() {
-    return HOST_URI + Get_Comments;
+    return HOST_URL + Get_Comments;
 }
 
 
 function _getCount() {
-    return HOST_URI + Get_Count;
+    return HOST_URL + Get_Count;
 }
 
 function _getComment() {
-    return HOST_URI + Get_Comment;
+    return HOST_URL + Get_Comment;
+}
+
+function _replyComment() {
+    return WSCN_URL + Reply_Comment;
+}
+
+function _getLoginDetail() {
+    return WSCN_URL + User_Login;
 }
 
 module.exports = {
@@ -53,5 +67,8 @@ module.exports = {
     getRelaticeTopics: _getRelaticeTopics,
     getComments: _getComments,
     getCount: _getCount,
-    getComment: _getComment
+    getComment: _getComment,
+    replyComment: _replyComment,
+    getLoginDetail:_getLoginDetail
+
 };
