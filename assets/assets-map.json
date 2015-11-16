@@ -5,11 +5,14 @@
   "commons": {
     "js": "commons.js"
   },
-  "index.entry": {
-    "js": "index.entry-a4dba0600c09183e3f8f.js",
-    "css": "css/index.entry-a4dba0600c09183e3f8f.css"
+  "mobile.entry": {
+    "js": "mobile.entry-e6aa11dd06081c9596f2.js"
   },
   "other.entry": {
-    "js": "other.entry-0504ef41cf0fe41dbf5d.js"
+    "js": "other.entry-13132157da3ca948eb21.js"
+  },
+  "pc.entry": {
+    "js": "pc.entry-039d1d92de6a0500ec91.js",
+    "css": "css/pc.entry-039d1d92de6a0500ec91.css"
   }
 }

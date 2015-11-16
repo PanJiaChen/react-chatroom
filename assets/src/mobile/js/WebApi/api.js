@@ -3,9 +3,8 @@ var HOST_URL = 'http://api.wscn.com/v2/';
 // 获取节点
 var WSCN_URL = 'http://wscn.com/';
 
-var ChatroomId='63';
+var ChatroomId;
 
-var Chatroom="/chatrooms/"+ChatroomId;
 
 // 直播区
 var Relative_Articles = 'chatrooms/'+ChatroomId+'/articles';
@@ -28,8 +27,15 @@ var Reply_Comment='thread/chat_'+ChatroomId+'/comments/save';
 //登录信息
 var User_Login='me';
 
+function _setBaseUrl(url){
+    HOST_URL=url;
+}
+
+function _setChatroomId(id){
+    ChatroomId=id;
+}
 function _getChatroom(){
-    return HOST_URL + Chatroom;
+    return HOST_URL + "chatrooms/"+ChatroomId;;
 }
 
 function _getRelativeArticles() {
@@ -61,7 +67,10 @@ function _getLoginDetail() {
     return WSCN_URL + User_Login;
 }
 
+
 module.exports = {
+    setBaseUrl:_setBaseUrl,
+    setChatroomId:_setChatroomId,
     getChatroom:_getChatroom,
     getRelativeArticles: _getRelativeArticles,
     getRelaticeTopics: _getRelaticeTopics,

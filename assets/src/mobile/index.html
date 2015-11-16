@@ -2,20 +2,31 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=screen-width,user-scalable=no,initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
     <script src="http://cdn.bootcss.com/react/0.14.2/react.js"></script>
     <script src="http://cdn.bootcss.com/react/0.14.2/react-dom.js"></script>
     <script src="http://localhost:9527/lib.js"></script>
 </head>
 <style>
-	#container{
-		width: 1170px;
-		margin: 90px auto 0;
-        position: relative;
+	body{
+		    font-family: 'Heiti SC','华文黑体','黑体',"Helvetica Neue";
+            font-size: 14px;
+            padding: 44px 0 49px;
+            max-width: 540px;
+            margin: 0 auto;
 	}
 </style>
 <body>
-    <div id="container"></div>
-    <script src="http://localhost:9527/index.entry.js"></script>
+    <div id="mountDom"></div>
+    <script src="http://localhost:9527/mobile.entry.js"></script>
+    <script>
+        var broadcast = new BroadcastApp({
+            apiBaseUrl:'http://api.wallstcn.com/v2/',
+            parentDom:document.getElementById('mountDom'),
+            chatId: 35
+        }).init();
+    </script>
 </body>
 </html>
