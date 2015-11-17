@@ -1,7 +1,13 @@
 import ReactDom from 'react-dom'
 import {Component} from 'react'
-import ChatroomContainer from './App.js'
+import ChatroomContainer from './ChatroomContainer.js'
 var Api = require('./js/WebApi/api.js');
+
+import ChatroomDetailStore from './js/store/ChatroomDetail.js'
+import {enhanceWithStore} from 'react-zlux'
+
+const chatroomDetailStore = new ChatroomDetailStore();
+const ChatroomElement = enhanceWithStore(ChatroomContainer, chatroomDetailStore);
 
 export default class BroadcastApp{
     constructor(options={}){
@@ -14,8 +20,8 @@ export default class BroadcastApp{
     init(){
         Api.setChatroomId(this.chatId);
         Api.setBaseUrl(this.apiBaseUrl)
-        this.pageElem = <ChatroomContainer chatId={this.chatId} minInterval={this.minInterval}/>
-        this.ChatroomContainer = ReactDom.render(this.pageElem,this.parentDom)
+        this.pageElem = <ChatroomElement chatId={this.chatId} minInterval={this.minInterval}/>
+        this.ChatroomElement = ReactDom.render(this.pageElem,this.parentDom)
         return this;
     }
 }
