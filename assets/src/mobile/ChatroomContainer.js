@@ -8,18 +8,16 @@ import TabContainer from './js/containers/tab/tabContainer.js';
 
 import './less/index.less'
 
-const transformsMap={
-    audio:<AudioContainer />,
-    vedio:<VedioContainer />,
-    commentandarticle:<TabContainer />,
-    article:<ArticleContainer />
+const transformsMap = {
+    audio: <AudioContainer />,
+    vedio: <VedioContainer />,
+    commentandarticle: <TabContainer />,
+    article: <ArticleContainer />
 }
 
-class ChatroomContainer extends Component{
+class ChatroomContainer extends Component {
 
-    static defaultProps = {
-        
-    }
+    static defaultProps = {}
 
     constructor(props, context) {
         super(props, context)
@@ -27,39 +25,39 @@ class ChatroomContainer extends Component{
     }
 
     componentDidMount() {
-        const store=this.props.store
+        const store = this.props.store
         store.loadChatroomAjax('fasle')
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
 
     }
 
     render() {
-        const store = this.props.store;
-        const state = store.getState();
-        const detail = state.detail
-        if(detail.id){
-            var includeArr=[];
-            var include=detail.include;
-            for(let pop in transformsMap){
-                this.judgeInclude(include,pop,includeArr)
-            }
-        }else{
-            return <div></div>
-        }
-        
+        // const store = this.props.store;
+        // const state = store.getState();
+        // const detail = state.detail
+        // if (detail.id) {
+        //     var includeArr = [];
+        //     var include = detail.include;
+        //     for (let pop in transformsMap) {
+        //         this.judgeInclude(include, pop, includeArr)
+        //     }
+        // } else {
+        //     return <div></div>
+        // }
+
         return (
             <div className="react-container">
-             
-             {includeArr}
+                {/*{includeArr}*/}
+                <TabContainer />
             </div>
         )
     }
 
-    judgeInclude(arr,str,include){
-        if(arr.indexOf(str)>=0){
-        return include.push(transformsMap[str])
+    judgeInclude(arr, str, include) {
+        if (arr.indexOf(str) >= 0) {
+            return include.push(transformsMap[str])
         }
     }
 

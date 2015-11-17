@@ -12,17 +12,9 @@ var Relative_Articles = 'chatrooms/'+ChatroomId+'/articles';
 //话题区
 var Relative_Topics = 'chatrooms/'+ChatroomId+'/topics?';
 
-//评论
-var Get_Comments = 'comments?channel=chat&id='+ChatroomId;
-
 //参与人数
 var Get_Count = 'chatrooms/'+ChatroomId+'/count';
 
-//评论列表
-var Get_Comment = 'comments?channel=chat&id='+ChatroomId;
-
-//评论
-var Reply_Comment='thread/chat_'+ChatroomId+'/comments/save';
 
 //登录信息
 var User_Login='me';
@@ -32,11 +24,18 @@ function _setBaseUrl(url){
 }
 
 function _setChatroomId(id){
+    console.log('setId')
     ChatroomId=id;
 }
 function _getChatroom(){
     return HOST_URL + "chatrooms/"+ChatroomId;;
 }
+
+function _getComments() {
+    console.log("ChatroomId"+ChatroomId)
+    return HOST_URL + 'comments?channel=chat&id='+63;
+}
+
 
 function _getRelativeArticles() {
     return HOST_URL + Relative_Articles;
@@ -46,18 +45,13 @@ function _getRelaticeTopics() {
     return HOST_URL + Relative_Topics;
 }
 
-function _getComments() {
-    return HOST_URL + Get_Comments;
-}
+
 
 
 function _getCount() {
     return HOST_URL + Get_Count;
 }
 
-function _getComment() {
-    return HOST_URL + Get_Comment;
-}
 
 function _replyComment() {
     return WSCN_URL + Reply_Comment;
@@ -76,7 +70,6 @@ module.exports = {
     getRelaticeTopics: _getRelaticeTopics,
     getComments: _getComments,
     getCount: _getCount,
-    getComment: _getComment,
     replyComment: _replyComment,
     getLoginDetail:_getLoginDetail
 

@@ -1,0 +1,59 @@
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.comment-list {
+  background-color: #f6f6f6;
+  padding: 20px;
+  .list-item-container {
+    margin-top: 10px;
+    list-style: none;
+    position: relative;
+  }
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 80%;
+  float: left;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.user-content {
+  position: relative;
+  margin-left: 40px;
+  border-radius: 6px;
+  background: #fff;
+  padding: 8px;
+  &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px 10px 6px 0;
+      border-color: transparent #fff transparent transparent;
+      position: absolute;
+      left: -8px;
+      top: 8px;
+    }
+  .user-detail {
+    font-size: 12px;
+
+    color: #aaa;
+    float: left;
+  }
+  .user-time {
+    font-size: 11px;
+    color: #aaa;
+    float: right;
+  }
+}
+
+}

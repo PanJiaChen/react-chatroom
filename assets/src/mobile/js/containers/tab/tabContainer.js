@@ -1,7 +1,19 @@
 import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
 import './tab.less'
+import {enhanceWithStore} from 'react-zlux'
 
+import DiscussContainer from '../discuss/discussContainer.js'
+import DiscussStore from '../../store/DiscussStore.js'
+const discussStore = new DiscussStore();
+const DiscussElement = enhanceWithStore(DiscussContainer, discussStore);
+
+import ArticleContainer from '../article/articleContainer.js'
+
+const tabChoices={
+    discuss:<DiscussElement />,
+    articles:<ArticleContainer />
+}
 class TabContainer extends Component{
     constructor(props,context){
         super(props,context)
@@ -12,7 +24,7 @@ class TabContainer extends Component{
     }
 
     state = {
-        tabSelect:'articles',
+        tabSelect:'discuss',
     }
 
     componentDidMount(){
@@ -22,10 +34,13 @@ class TabContainer extends Component{
     render(){
         
         return (
-            <div className='Tab-container'>
+            <div className='tab-container'>
                 <div className='tab'>
-                    <div className={this.judgeTabClass("articles")} data-selected='true' data-ref='articles'  onClick={this.handleClick.bind(this)}>资讯区</div>
-                    <div className={this.judgeTabClass("topics")} data-ref='topics'  onClick={this.handleClick.bind(this)}>话题区</div>
+                    <div className={this.judgeTabClass("discuss")} data-selected='true' data-ref='discuss'  onClick={this.handleClick.bind(this)}>讨论</div>
+                    <div className={this.judgeTabClass("articles")} data-ref='articles'  onClick={this.handleClick.bind(this)}>最新消息</div>
+                </div>
+                <div className="tab-main">
+                    {tabChoices[this.state.tabSelect]}
                 </div>
             </div>
         )
@@ -33,9 +48,7 @@ class TabContainer extends Component{
 
     handleClick(event){
         var tabUrl=event.target.getAttribute('data-ref');
-        const store = this.props.store;
         this.setState({tabSelect: tabUrl});
-        store .loadRelativeAjax('fasle',tabUrl)
     }
 
     judgeTabClass(tab){

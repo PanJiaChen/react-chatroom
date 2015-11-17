@@ -22,10 +22,15 @@
     <div id="mountDom"></div>
     <script src="http://localhost:9527/mobile.entry.js"></script>
     <script>
-        var broadcast = new BroadcastApp({
-            apiBaseUrl:'http://api.wallstcn.com/v2/',
+        // var broadcast = new BroadcastApp({
+        //     apiBaseUrl:'http://api.wallstcn.com/v2/',
+        //     parentDom:document.getElementById('mountDom'),
+        //     chatId: 35
+        // }).init();
+         var broadcast = new BroadcastApp({
+            apiBaseUrl:'http://api.wscn.com/v2/',
             parentDom:document.getElementById('mountDom'),
-            chatId: 35
+            chatId: 63
         }).init();
     </script>
 </body>
