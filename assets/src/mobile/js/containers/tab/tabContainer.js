@@ -1,17 +1,13 @@
 import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
 import './tab.less'
-import {enhanceWithStore} from 'react-zlux'
 
 import DiscussContainer from '../discuss/discussContainer.js'
-import DiscussStore from '../../store/DiscussStore.js'
-const discussStore = new DiscussStore();
-const DiscussElement = enhanceWithStore(DiscussContainer, discussStore);
 
 import ArticleContainer from '../article/articleContainer.js'
 
 const tabChoices={
-    discuss:<DiscussElement />,
+    discuss:<DiscussContainer />,
     articles:<ArticleContainer />
 }
 class TabContainer extends Component{
@@ -36,8 +32,8 @@ class TabContainer extends Component{
         return (
             <div className='tab-container'>
                 <div className='tab'>
-                    <div className={this.judgeTabClass("discuss")} data-selected='true' data-ref='discuss'  onClick={this.handleClick.bind(this)}>讨论</div>
-                    <div className={this.judgeTabClass("articles")} data-ref='articles'  onClick={this.handleClick.bind(this)}>最新消息</div>
+                        <div className={this.judgeTabClass("discuss")} data-selected='true' data-ref='discuss'  onClick={this.handleClick.bind(this)}>讨论</div>
+                        <div className={this.judgeTabClass("articles")} data-ref='articles'  onClick={this.handleClick.bind(this)}>最新消息</div>
                 </div>
                 <div className="tab-main">
                     {tabChoices[this.state.tabSelect]}
