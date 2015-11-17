@@ -2,12 +2,8 @@
 var HOST_URL = 'http://api.wscn.com/v2/';
 // 获取节点
 var WSCN_URL = 'http://wscn.com/';
-
 var ChatroomId;
 
-
-// 直播区
-var Relative_Articles = 'chatrooms/'+ChatroomId+'/articles';
 
 //参与人数
 var Get_Count = 'chatrooms/'+ChatroomId+'/count';
@@ -38,7 +34,7 @@ function _getRelaticeTopics() {
 }
 
 function _getRelativeArticles() {
-    return HOST_URL + 'chatrooms/'+63+'/topics?';
+    return HOST_URL + 'chatrooms/'+63+'/articles';
 }
 
 

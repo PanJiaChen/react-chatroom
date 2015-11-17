@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
-import './article.less'
+import './information.less'
 
 class ArticleContainer extends Component {
     constructor(props, context) {

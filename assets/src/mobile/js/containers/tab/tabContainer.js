@@ -4,11 +4,11 @@ import './tab.less'
 
 import DiscussContainer from '../discuss/discussContainer.js'
 
-import ArticleContainer from '../article/articleContainer.js'
+import InformationContainer from '../information/informationContainer.js'
 
 const tabChoices={
     discuss:<DiscussContainer />,
-    articles:<ArticleContainer />
+    information:<InformationContainer />
 }
 class TabContainer extends Component{
     constructor(props,context){
@@ -33,7 +33,7 @@ class TabContainer extends Component{
             <div className='tab-container'>
                 <div className='tab'>
                         <div className={this.judgeTabClass("discuss")} data-selected='true' data-ref='discuss'  onClick={this.handleClick.bind(this)}>讨论</div>
-                        <div className={this.judgeTabClass("articles")} data-ref='articles'  onClick={this.handleClick.bind(this)}>最新消息</div>
+                        <div className={this.judgeTabClass("information")} data-ref='information'  onClick={this.handleClick.bind(this)}>资讯</div>
                 </div>
                 <div className="tab-main">
                     {tabChoices[this.state.tabSelect]}
