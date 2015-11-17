@@ -9,9 +9,6 @@ var ChatroomId;
 // 直播区
 var Relative_Articles = 'chatrooms/'+ChatroomId+'/articles';
 
-//话题区
-var Relative_Topics = 'chatrooms/'+ChatroomId+'/topics?';
-
 //参与人数
 var Get_Count = 'chatrooms/'+ChatroomId+'/count';
 
@@ -36,14 +33,14 @@ function _getComments() {
     return HOST_URL + 'comments?channel=chat&id='+63;
 }
 
+function _getRelaticeTopics() {
+    return HOST_URL + 'chatrooms/'+63+'/topics?';
+}
 
 function _getRelativeArticles() {
-    return HOST_URL + Relative_Articles;
+    return HOST_URL + 'chatrooms/'+63+'/topics?';
 }
 
-function _getRelaticeTopics() {
-    return HOST_URL + Relative_Topics;
-}
 
 
 

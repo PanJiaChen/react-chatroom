@@ -9,30 +9,33 @@
 .comment-list {
   background-color: #f6f6f6;
   padding: 20px;
+  margin: 0px;
+  padding-top: 5px;
+}
   .list-item-container {
     margin-top: 10px;
     list-style: none;
     position: relative;
   }
-.user-avatar {
-  width: 30px;
-  height: 30px;
-  overflow: hidden;
-  border-radius: 80%;
-  float: left;
-  img {
+  .user-avatar {
     width: 30px;
     height: 30px;
+    overflow: hidden;
+    border-radius: 80%;
+    float: left;
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
-}
 
-.user-content {
-  position: relative;
-  margin-left: 40px;
-  border-radius: 6px;
-  background: #fff;
-  padding: 8px;
-  &::after {
+  .user-content {
+    position: relative;
+    margin-left: 40px;
+    border-radius: 6px;
+    background: #fff;
+    padding: 8px;
+    &::after {
       content: '';
       width: 0;
       height: 0;
@@ -43,17 +46,20 @@
       left: -8px;
       top: 8px;
     }
-  .user-detail {
-    font-size: 12px;
+    .user-detail {
+      font-size: 12px;
 
-    color: #aaa;
-    float: left;
+      color: #aaa;
+      float: left;
+    }
+    .user-time {
+      font-size: 11px;
+      color: #aaa;
+      float: right;
+    }
   }
-  .user-time {
-    font-size: 11px;
-    color: #aaa;
-    float: right;
-  }
-}
 
+.topic-container{
+  padding: 20px;
+  background-color: #e6eefe;
 }

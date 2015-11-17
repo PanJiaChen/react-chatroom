@@ -5,9 +5,13 @@ import {enhanceWithStore} from 'react-zlux'
 
 import CommentList from './components/CommentList.js';
 import CommenStore from '../../store/CommentStore.js'
-
 const commenStore = new CommenStore();
 const CommenElement = enhanceWithStore(CommentList, commenStore);
+
+import Topic1Container from './components/topicSingalContainer.js'
+import TopicStore from '../../store/TopicStore.js'
+const topicStore = new TopicStore();
+const TopicElement=enhanceWithStore(Topic1Container, topicStore);
 
 class DiscussContainer extends Component {
     constructor(props, context) {
@@ -27,6 +31,7 @@ class DiscussContainer extends Component {
     render() {
         return (
             <div className='discuss-container'>
+                <TopicElement />
                 <CommenElement />
             </div>
         )
