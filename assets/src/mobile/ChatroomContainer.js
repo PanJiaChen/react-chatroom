@@ -23,7 +23,21 @@ const transformsMap = {
 
 class ChatroomContainer extends Component {
 
-    static defaultProps = {}
+    static childContextTypes={
+         editorChatMaxLines:React.PropTypes.number.isRequired,
+         editorChatLineHeight:React.PropTypes.number.isRequired,
+         topicLineHeight:React.PropTypes.number.isRequired,
+         topicMaxLines:React.PropTypes.number.isRequired
+    }
+
+    getChildContext() {
+         return {
+            editorChatMaxLines:2,
+            editorChatLineHeight:18,
+            topicLineHeight:18,
+            topicMaxLines:5
+         };
+    }
 
     constructor(props, context) {
         super(props, context)

@@ -26,15 +26,15 @@ function _getChatroom() {
 
 function _getComments() {
     console.log("ChatroomId" + ChatroomId)
-    return HOST_URL + 'comments?channel=chat&id=' + 64;
+    return HOST_URL + 'comments?channel=chat&id=' + 63;
 }
 
 function _getRelaticeTopics() {
-    return HOST_URL + 'chatrooms/' + 64 + '/topics?';
+    return HOST_URL + 'chatrooms/' + 63 + '/topics?';
 }
 
 function _getRelativeArticles() {
-    return HOST_URL + 'chatrooms/' + 64 + '/articles';
+    return HOST_URL + 'chatrooms/' + 63 + '/articles';
 }
 
 
