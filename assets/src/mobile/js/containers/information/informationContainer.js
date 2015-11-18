@@ -6,7 +6,7 @@ import {enhanceWithStore} from 'react-zlux'
 import InformationListContainer from './components/InformationList.js'
 import InformationStore from '../../store/ArticleStore.js'
 const informationStore = new InformationStore();
-const InformationListElement=enhanceWithStore(InformationListContainer, informationStore);
+const InformationListElement = enhanceWithStore(InformationListContainer, informationStore);
 
 // {
 //     store:informationStore,
@@ -21,17 +21,16 @@ class InformationContainer extends Component {
 
     static contextTypes = {}
 
-    state = {
-    }
+    state = {}
 
     componentDidMount() {
-        
+
     }
 
     render() {
         return (
             <div className='information-container'>
-              <InformationListElement />
+                <InformationListElement />
             </div>
         )
     }

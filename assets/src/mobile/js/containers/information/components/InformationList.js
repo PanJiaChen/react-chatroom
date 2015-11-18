@@ -5,14 +5,13 @@ import '../information.less'
 
 export default class InformationList extends Component {
 
-    static defaultProps = {
-        
-    }
+    static defaultProps = {}
 
 
     constructor(props, context) {
         super(props, context)
     }
+
     componentDidMount() {
         const store = this.props.store;
         store.loadRelativeAjax('fasle')
@@ -20,7 +19,7 @@ export default class InformationList extends Component {
 
 
     render() {
-         
+
         const store = this.props.store;
         const state = store.getState();
         var list = state.articles;

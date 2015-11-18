@@ -18,12 +18,12 @@ export default class TopicStore extends BaseStore {
     };
 
     state = {
-        detail:[{
-            text:"正在努力加载中!",
-            createdAt:"",
-            user:{
-                username:"小编",
-                avatar:"http://avatar.cdn.wallstcn.com/60/6c/b4/loading8.gif!wscn.avatar.xs"
+        detail: [{
+            text: "正在努力加载中!",
+            createdAt: "",
+            user: {
+                username: "小编",
+                avatar: "http://avatar.cdn.wallstcn.com/60/6c/b4/loading8.gif!wscn.avatar.xs"
             }
         }]
     };
@@ -71,7 +71,7 @@ const actionMethods = {
         }
     },
     loadTopic_s(state, payLoad){
-        state.detail=[];
+        state.detail = [];
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: payLoad.results

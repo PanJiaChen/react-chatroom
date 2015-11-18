@@ -10,28 +10,28 @@
     <script src="http://localhost:9527/lib.js"></script>
 </head>
 <style>
-	body{
-		    font-family: 'Heiti SC','华文黑体','黑体',"Helvetica Neue";
-            font-size: 14px;
-            padding: 44px 0 49px;
-            max-width: 540px;
-            margin: 0 auto;
-	}
+    body {
+        font-family: 'Heiti SC', '华文黑体', '黑体', "Helvetica Neue";
+        font-size: 14px;
+        padding: 44px 0 49px;
+        max-width: 540px;
+        margin: 0 auto;
+    }
 </style>
 <body>
-    <div id="mountDom"></div>
-    <script src="http://localhost:9527/mobile.entry.js"></script>
-    <script>
-        // var broadcast = new BroadcastApp({
-        //     apiBaseUrl:'http://api.wallstcn.com/v2/',
-        //     parentDom:document.getElementById('mountDom'),
-        //     chatId: 35
-        // }).init();
-         var broadcast = new BroadcastApp({
-            apiBaseUrl:'http://api.wscn.com/v2/',
-            parentDom:document.getElementById('mountDom'),
-            chatId: 63
-        }).init();
-    </script>
+<div id="mountDom"></div>
+<script src="http://localhost:9527/mobile.entry.js"></script>
+<script>
+    // var broadcast = new BroadcastApp({
+    //     apiBaseUrl:'http://api.wallstcn.com/v2/',
+    //     parentDom:document.getElementById('mountDom'),
+    //     chatId: 35
+    // }).init();
+    var broadcast = new BroadcastApp({
+        apiBaseUrl: 'http://api.wscn.com/v2/',
+        parentDom: document.getElementById('mountDom'),
+        chatId: 63
+    }).init();
+</script>
 </body>
 </html>

@@ -13,6 +13,7 @@ export default class CommentList extends Component {
     constructor(props, context) {
         super(props, context)
     }
+
     componentDidMount() {
         const store = this.props.store;
         store.loadCommentAjax('fasle')
@@ -24,7 +25,7 @@ export default class CommentList extends Component {
         const state = store.getState();
 
         var list = state.comments;
-        if(!list){
+        if (!list) {
             return <div></div>
         }
         var repeatLi = list.map(item=> {
@@ -32,7 +33,8 @@ export default class CommentList extends Component {
             return (
                 <li key={item.id} className="list-item-container">
                     <div className="user-avatar" key={"avatar"}>
-                        <img src={'http://cv.qiaobutang.com/uploads/social_avatars/2015/9/10/10/55f0e5880cf20c2d88d33a43/large.JPG?v1441850761756'}/>
+                        <img
+                            src={'http://cv.qiaobutang.com/uploads/social_avatars/2015/9/10/10/55f0e5880cf20c2d88d33a43/large.JPG?v1441850761756'}/>
                     </div>
                     <div className="user-content " key={"userContent"}>
                         <div className='chat-meta clearfix'>
@@ -43,7 +45,7 @@ export default class CommentList extends Component {
                                 {publishTime}
                             </div>
                         </div>
-                         <div className="user-word">
+                        <div className="user-word">
                             {item.content}
                         </div>
                     </div>

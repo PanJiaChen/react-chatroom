@@ -36,7 +36,6 @@ export default class DiscussStore extends BaseStore {
         })
     }
 
-    
 
     reduce(action) {
         const type = action.type;
@@ -67,13 +66,13 @@ const actionMethods = {
         }
     },
     loadComment_s(state, payLoad){
-        state.comments=[];
-        payLoad.comments.forEach(item=>{
+        state.comments = [];
+        payLoad.comments.forEach(item=> {
             state.comments.push(item)
         })
-        return utils.State.setShallow(state,{
-            isLoading:false,
-            comments:state.comments
+        return utils.State.setShallow(state, {
+            isLoading: false,
+            comments: state.comments
         })
     },
     loadComment_e(state, payLoad){

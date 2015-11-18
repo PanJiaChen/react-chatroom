@@ -9,7 +9,7 @@ import TabContainer from './js/containers/tab/tabContainer.js';
 import ArticleContainer from './js/containers/articleSingal/articleSingalContainer.js';
 import ArticleStore from './js/store/ArticleStore.js';
 const articleStore = global.informationStore;
-const ArticleElement=enhanceWithStore(ArticleContainer, articleStore);
+const ArticleElement = enhanceWithStore(ArticleContainer, articleStore);
 
 
 import './less/index.less'
@@ -40,9 +40,9 @@ class ChatroomContainer extends Component {
     }
 
     render() {
-        // const store = this.props.store;
-        // const state = store.getState();
-        // const detail = state.detail
+        const store = this.props.store;
+        const state = store.getState();
+        const detail = state.detail
         // if (detail.id) {
         //     var includeArr = [];
         //     var include = detail.include;
@@ -55,6 +55,10 @@ class ChatroomContainer extends Component {
 
         return (
             <div className="react-container">
+                <div className='broadcast-header'>
+                    <div className='wscn'></div>
+                    <div className="header-num">{detail.numOfUsers}人参与</div>
+                </div>
                 {/*{includeArr}*/}
                 <ArticleElement />
                 <TabContainer />

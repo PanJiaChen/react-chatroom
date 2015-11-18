@@ -17,11 +17,11 @@ export default class ChatroomDetailStore extends BaseStore {
     };
 
     state = {
-       detail:{},
+        detail: {},
     };
 
     loadChatroomAjax(payLoad) {
-        console.log('banan'+Api.getChatroom())
+        console.log('banan' + Api.getChatroom())
         const ats = ChatroomDetailStore.ActionTypes;
         this.dispatch({type: ats.CHATROOM_LOAD});
         var that = this;
@@ -66,7 +66,7 @@ const actionMethods = {
         console.log(payLoad)
         return utils.State.setShallow(state, {
             isLoading: false,
-            detail:payLoad
+            detail: payLoad
         })
     }
 }

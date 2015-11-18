@@ -6,39 +6,36 @@ var ChatroomId;
 
 
 //参与人数
-var Get_Count = 'chatrooms/'+ChatroomId+'/count';
+var Get_Count = 'chatrooms/' + ChatroomId + '/count';
 
 
 //登录信息
-var User_Login='me';
+var User_Login = 'me';
 
-function _setBaseUrl(url){
-    HOST_URL=url;
+function _setBaseUrl(url) {
+    HOST_URL = url;
 }
 
-function _setChatroomId(id){
+function _setChatroomId(id) {
     console.log('setId')
-    ChatroomId=id;
+    ChatroomId = id;
 }
-function _getChatroom(){
-    return HOST_URL + "chatrooms/"+ChatroomId;;
+function _getChatroom() {
+    return HOST_URL + "chatrooms/" + ChatroomId;
 }
 
 function _getComments() {
-    console.log("ChatroomId"+ChatroomId)
-    return HOST_URL + 'comments?channel=chat&id='+63;
+    console.log("ChatroomId" + ChatroomId)
+    return HOST_URL + 'comments?channel=chat&id=' + 63;
 }
 
 function _getRelaticeTopics() {
-    return HOST_URL + 'chatrooms/'+63+'/topics?';
+    return HOST_URL + 'chatrooms/' + 63 + '/topics?';
 }
 
 function _getRelativeArticles() {
-    return HOST_URL + 'chatrooms/'+63+'/articles';
+    return HOST_URL + 'chatrooms/' + 63 + '/articles';
 }
-
-
-
 
 
 function _getCount() {
@@ -56,14 +53,14 @@ function _getLoginDetail() {
 
 
 module.exports = {
-    setBaseUrl:_setBaseUrl,
-    setChatroomId:_setChatroomId,
-    getChatroom:_getChatroom,
+    setBaseUrl: _setBaseUrl,
+    setChatroomId: _setChatroomId,
+    getChatroom: _getChatroom,
     getRelativeArticles: _getRelativeArticles,
     getRelaticeTopics: _getRelaticeTopics,
     getComments: _getComments,
     getCount: _getCount,
     replyComment: _replyComment,
-    getLoginDetail:_getLoginDetail
+    getLoginDetail: _getLoginDetail
 
 };

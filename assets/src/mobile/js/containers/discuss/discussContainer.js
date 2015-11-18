@@ -11,7 +11,7 @@ const CommenElement = enhanceWithStore(CommentList, commenStore);
 import Topic1Container from './components/topicSingalContainer.js'
 import TopicStore from '../../store/TopicStore.js'
 const topicStore = new TopicStore();
-const TopicElement=enhanceWithStore(Topic1Container, topicStore);
+const TopicElement = enhanceWithStore(Topic1Container, topicStore);
 
 
 class DiscussContainer extends Component {
@@ -21,12 +21,10 @@ class DiscussContainer extends Component {
 
     static contextTypes = {}
 
-    state = {
-
-    }
+    state = {}
 
     componentDidMount() {
-       
+
     }
 
     render() {

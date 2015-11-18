@@ -3,7 +3,6 @@ import utils from '../../../../common/utils/utils.js'
 import './articleSingal.less'
 
 
-
 class ArticleContainer extends Component {
     constructor(props, context) {
         super(props, context)
@@ -11,20 +10,19 @@ class ArticleContainer extends Component {
 
     static contextTypes = {}
 
-    state = {
-    }
+    state = {}
 
     componentDidMount() {
-        
-        }
+
+    }
 
     render() {
         const store = this.props.store;
         const state = store.getState();
-        if(state.articles.length>0){
-            var article=state.articles[0];
+        if (state.articles.length > 0) {
+            var article = state.articles[0];
             var publishTime = utils.formatTime(article.createdAt);
-        }else{
+        } else {
             return <div></div>
         }
         return (
@@ -41,7 +39,7 @@ class ArticleContainer extends Component {
                 <div className='article-img'>
                     {article.image}
                 </div>
-               
+
             </div>
         )
     }
