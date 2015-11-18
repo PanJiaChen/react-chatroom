@@ -15,6 +15,7 @@ export default class CommentList extends Component {
     }
 
     componentDidMount() {
+        console.log('评论初始化')
         const store = this.props.store;
         store.loadCommentAjax('fasle')
     }
@@ -25,8 +26,13 @@ export default class CommentList extends Component {
         const state = store.getState();
 
         var list = state.comments;
-        if (!list) {
-            return <div></div>
+        if (list.length<=0) {
+            return (
+                <div className='commentList-empty'>
+                    <div className='commentList-empty-img'></div>
+                    暂无讨论
+                </div>
+            )
         }
         var repeatLi = list.map(item=> {
             var publishTime = utils.formatTime(item.createdAt);

@@ -15,14 +15,23 @@ class TopicContainer extends Component {
 
     componentDidMount() {
         const store = this.props.store;
-        console.log('a')
         store.loadTopicAjax('fasle', this.state.url)
     }
 
     render() {
         const store = this.props.store;
         const state = store.getState();
-        var publishTime = utils.formatTime(state.detail[0].createdAt);
+      
+
+        if(state.detail.length>0){
+              const detail= state.detail[0]
+              const publishTime = utils.formatTime(state.detail[0].createdAt);
+        }else{
+            return(
+                <div className='topic-enpty-container'>主持人正在来的路人</div>
+            )
+        }
+        
         return (
             <div className='topic-container'>
                 <div className='list-item-container '>

@@ -69,7 +69,6 @@ const actionMethods = {
         payLoad.forEach(item=> {
             state.articles.push(item)
         })
-        console.log('资讯:' + state.articles)
         return utils.State.setShallow(state, {
             isLoading: false,
             articles: state.articles

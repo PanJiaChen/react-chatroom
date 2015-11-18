@@ -24,13 +24,11 @@ export default class DiscussStore extends BaseStore {
     loadCommentAjax(payLoad) {
         const ats = DiscussStore.ActionTypes;
         this.dispatch({type: ats.COMMENT_LOAD});
-        console.log('get')
         var that = this;
         utils.ajax({
             url: urlMap['getComments']
             , dataType: 'jsonp'
             , success: function (resp) {
-                console.log(resp)
                 that.dispatch({type: ats.COMMENT_LOAD_S, payLoad: resp})
             }
         })

@@ -23,6 +23,14 @@ export default class InformationList extends Component {
         const store = this.props.store;
         const state = store.getState();
         var list = state.articles;
+        if (list.length<=0) {
+            return(
+                <div className='information-empty-container'>
+                    <div className='information-empty-img'></div>
+                    暂无最新资讯
+                </div>
+            )
+        };
         var repeatLi = list.map(item=> {
             var publishTime = utils.formatTime(item.createdAt);
             var content = item.title;

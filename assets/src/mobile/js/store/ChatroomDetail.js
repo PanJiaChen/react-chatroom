@@ -63,7 +63,6 @@ const actionMethods = {
         }
     },
     loadChatroom_s(state, payLoad){
-        console.log(payLoad)
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: payLoad

@@ -15,12 +15,8 @@ class TabContainer extends Component{
         super(props,context)
     }
 
-    static contextTypes={
-
-    }
-
     state = {
-        tabSelect:'information',
+        tabSelect:'discuss',
     }
 
     componentDidMount(){
@@ -32,11 +28,12 @@ class TabContainer extends Component{
         return (
             <div className='tab-container'>
                 <div className='tab'>
-                        <div className={this.judgeTabClass("discuss")} data-selected='true' data-ref='discuss'  onClick={this.handleClick.bind(this)}>讨论</div>
-                        <div className={this.judgeTabClass("information")} data-ref='information'  onClick={this.handleClick.bind(this)}>资讯</div>
+                        <div className={'tab-list '+this.judgeTabClass("discuss")} data-selected='true' data-ref='discuss'  onClick={this.handleClick.bind(this)}>讨论</div>
+                        <div className={'tab-list '+this.judgeTabClass("information")} data-ref='information'  onClick={this.handleClick.bind(this)}>资讯</div>
                 </div>
                 <div className="tab-main">
-                    {tabChoices[this.state.tabSelect]}
+                    <div className={'tab-main-tab '+this.judgeTabClass("discuss")}><DiscussContainer /></div>
+                    <div className={'tab-main-tab '+this.judgeTabClass("information")}><InformationContainer /></div>
                 </div>
             </div>
         )
@@ -49,9 +46,9 @@ class TabContainer extends Component{
 
     judgeTabClass(tab){
         if(tab!=this.state.tabSelect){
-            return "tab-list"
+            return ""
         }else{
-            return "tab-list active"
+            return "active"
         }
     }
 }
