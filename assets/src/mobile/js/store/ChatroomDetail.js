@@ -4,7 +4,7 @@ var Api = require('../WebApi/api.js');
 
 
 const urlMap = {
-    detail: Api.getChatroom(),
+    detail: Api.getChatroom
 }
 
 export default class ChatroomDetailStore extends BaseStore {

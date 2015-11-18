@@ -3,7 +3,7 @@ import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
 
 const urlMap = {
-    getComments: Api.getComments()
+    getComments: Api.getComments
 }
 
 export default class DiscussStore extends BaseStore {
@@ -26,7 +26,7 @@ export default class DiscussStore extends BaseStore {
         this.dispatch({type: ats.COMMENT_LOAD});
         var that = this;
         utils.ajax({
-            url: urlMap['getComments']
+            url: urlMap['getComments']()
             , dataType: 'jsonp'
             , success: function (resp) {
                 that.dispatch({type: ats.COMMENT_LOAD_S, payLoad: resp})

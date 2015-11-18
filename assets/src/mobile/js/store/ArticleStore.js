@@ -9,7 +9,7 @@ const ActionTypes = {
     ARTICLES_LOAD_E: 'ARTICLES_LOAD_E'
 };
 const urlMap = {
-    articles: Api.getRelativeArticles(),
+    articles: Api.getRelativeArticles,
 }
 
 export default class PostDetailStore extends BaseStore {
@@ -26,7 +26,7 @@ export default class PostDetailStore extends BaseStore {
         this.dispatch({type: ActionTypes.ARTICLES_LOAD});
         var that = this
         utils.ajax({
-            url: urlMap['articles']
+            url: urlMap['articles']()
             , dataType: 'jsonp'
             , success: function (resp) {
                 that.dispatch({type: ActionTypes.ARTICLES_LOAD_S, payLoad: resp.results})

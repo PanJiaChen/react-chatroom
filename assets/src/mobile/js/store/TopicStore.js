@@ -4,7 +4,7 @@ var Api = require('../WebApi/api.js');
 
 
 const urlMap = {
-    topic: Api.getRelaticeTopics(),
+    topic: Api.getRelaticeTopics,
 }
 
 export default class TopicStore extends BaseStore {
@@ -26,7 +26,7 @@ export default class TopicStore extends BaseStore {
         this.dispatch({type: ats.TOPIC_LOAD});
         var that = this;
         utils.ajax({
-            url: urlMap["topic"]
+            url: urlMap["topic"]()
             , dataType: 'jsonp'
             , success: function (resp) {
                 that.dispatch({type: ats.TOPIC_LOAD_S, payLoad: resp})
