@@ -1,8 +1,20 @@
 import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
 import './information.less'
+import {enhanceWithStore} from 'react-zlux'
 
-class ArticleContainer extends Component {
+import InformationListContainer from './components/InformationList.js'
+import InformationStore from '../../store/ArticleStore.js'
+const informationStore = new InformationStore();
+const InformationListElement=enhanceWithStore(InformationListContainer, informationStore);
+
+// {
+//     store:informationStore,
+//     getContainer:function(){
+//         return enhanceWithStore(container,this.store);
+//     }
+// }
+class InformationContainer extends Component {
     constructor(props, context) {
         super(props, context)
     }
@@ -14,16 +26,17 @@ class ArticleContainer extends Component {
 
     componentDidMount() {
         
-        }
+    }
 
     render() {
         return (
-            <div className='article-container'>
-              article
+            <div className='information-container'>
+              <InformationListElement />
             </div>
         )
     }
 
 }
 
-export default ArticleContainer;
+export default InformationContainer;
+global.informationStore = informationStore;

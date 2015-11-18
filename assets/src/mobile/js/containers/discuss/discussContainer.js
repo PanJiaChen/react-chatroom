@@ -13,6 +13,7 @@ import TopicStore from '../../store/TopicStore.js'
 const topicStore = new TopicStore();
 const TopicElement=enhanceWithStore(Topic1Container, topicStore);
 
+
 class DiscussContainer extends Component {
     constructor(props, context) {
         super(props, context)

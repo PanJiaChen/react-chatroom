@@ -20,7 +20,7 @@ class TabContainer extends Component{
     }
 
     state = {
-        tabSelect:'discuss',
+        tabSelect:'information',
     }
 
     componentDidMount(){

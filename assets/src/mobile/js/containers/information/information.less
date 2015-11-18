@@ -1,0 +1,52 @@
+//information component
+.information-container{
+	.informationlist-item-container{
+		border-left: 1px solid #ddd;
+		list-style: none;
+		position: relative;
+		&:first-child{
+			.list-item{
+				.timer:before{
+					content: '';
+					width: 9px;
+					height: 9px;
+					background: #f6f6f6;
+					display: inline-block;
+					position: absolute;
+					left: -5px;
+					top: -5px
+				}
+			}
+		}
+		.list-item{
+			padding: 0 15px 30px;
+			.list-content{
+
+			}
+			.timer-outside-circle{
+				width: 12px;
+				height: 12px;
+				background: #e5edfd;
+				border-radius: 50%;
+				position: absolute;
+				left: -6px;
+				top: 4px;
+				.timer-inside-circle{
+					    width: 6px;
+					    height: 6px;
+					    background: #008cff;
+					    border-radius: 50%;
+					    position: absolute;
+					    top: 25%;
+					    left: 25%;
+				}
+			}
+			.timer{
+				font-size: 12px;
+				color: #aaa;
+				line-height: 16px;
+				padding-top: 6px;
+			}
+		}
+	}
+}

@@ -71,7 +71,6 @@ const actionMethods = {
         payLoad.comments.forEach(item=>{
             state.comments.push(item)
         })
-        console.log(state.comments)
         return utils.State.setShallow(state,{
             isLoading:false,
             comments:state.comments

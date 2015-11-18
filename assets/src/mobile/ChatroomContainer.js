@@ -1,10 +1,16 @@
 import {Component} from 'react'
 import utils from '../common/utils/utils.js'
+import {enhanceWithStore} from 'react-zlux'
 
 import AudioContainer from './js/containers/audio/AudioContainer.js';
 import VedioContainer from './js/containers/vedio/VedioContainer.js';
-import ArticleContainer from './js/containers/article/articleContainer.js';
 import TabContainer from './js/containers/tab/tabContainer.js';
+
+import ArticleContainer from './js/containers/articleSingal/articleSingalContainer.js';
+import ArticleStore from './js/store/ArticleStore.js';
+const articleStore = global.informationStore;
+const ArticleElement=enhanceWithStore(ArticleContainer, articleStore);
+
 
 import './less/index.less'
 
@@ -12,7 +18,7 @@ const transformsMap = {
     audio: <AudioContainer />,
     vedio: <VedioContainer />,
     commentandarticle: <TabContainer />,
-    article: <ArticleContainer />
+    article: <ArticleElement />
 }
 
 class ChatroomContainer extends Component {
@@ -50,6 +56,7 @@ class ChatroomContainer extends Component {
         return (
             <div className="react-container">
                 {/*{includeArr}*/}
+                <ArticleElement />
                 <TabContainer />
             </div>
         )
