@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import utils from '../../../../../common/utils/utils.js'
 import '../discuss.less'
-
+//它对应的store是CommentStore^_^
 
 export default class CommentList extends Component {
 
@@ -10,6 +10,10 @@ export default class CommentList extends Component {
     }
 
 
+    static contextTypes={
+        minInterval:React.PropTypes.object.isRequired
+    }
+
     constructor(props, context) {
         super(props, context)
     }
@@ -17,7 +21,7 @@ export default class CommentList extends Component {
     componentDidMount() {
         console.log('评论初始化')
         const store = this.props.store;
-        store.loadCommentAjax('fasle')
+        store.loadCommentAjax('fasle',this.context.minInterval.comment)
     }
 
 

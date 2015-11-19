@@ -1,13 +1,9 @@
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
+import AjaxMgr from '../../../common/utils/ajxaLoop.js'
 
 
-const ActionTypes = {
-    ARTICLES_LOAD: 'ARTICLES_LOAD',
-    ARTICLES_LOAD_S: 'ARTICLES_LOAD_S',
-    ARTICLES_LOAD_E: 'ARTICLES_LOAD_E'
-};
 const urlMap = {
     articles: Api.getRelativeArticles,
 }
@@ -16,33 +12,41 @@ export default class PostDetailStore extends BaseStore {
 
     __className = 'PostDetailStore';
 
+    static ActionTypes = {
+        ARTICLES_LOAD: 'ARTICLES_LOAD',
+        ARTICLES_LOAD_S: 'ARTICLES_LOAD_S',
+        ARTICLES_LOAD_E: 'ARTICLES_LOAD_E'
+    };
+
     state = {
         isLoading: false,
         articles: []
     };
 
 
-    loadRelativeAjax(payLoad) {
-        this.dispatch({type: ActionTypes.ARTICLES_LOAD});
-        var that = this
-        utils.ajax({
-            url: urlMap['articles']()
-            , dataType: 'jsonp'
-            , success: function (resp) {
-                that.dispatch({type: ActionTypes.ARTICLES_LOAD_S, payLoad: resp.results})
-            }
+    loadRelativeAjax(payLoad,minInterval) {
+        const ats = PostDetailStore.ActionTypes;
+        this.dispatch({type: ats.ARTICLES_LOAD});
+        const that = this;
+        const articleAjax=new AjaxMgr({
+            url:urlMap["articles"](),
+            success:function(resp){that.dispatch({type: ats.ARTICLES_LOAD_S, payLoad: resp.results})},
+            minInterval:minInterval
+
         })
+        articleAjax.setLoop(true).request();
     }
 
     reduce(action) {
         const type = action.type;
         const payLoad = action.payLoad;
+        const ats = PostDetailStore.ActionTypes;
         switch (type) {
-            case ActionTypes.ARTICLES_LOAD:
+            case ats.ARTICLES_LOAD:
                 return actionMethods.loadRelativeArticles(this.state, payLoad)
-            case ActionTypes.ARTICLES_LOAD_S:
+            case ats.ARTICLES_LOAD_S:
                 return actionMethods.loadRelativeArticles_s(this.state, payLoad)
-            case ActionTypes.ARTICLES_LOAD_E:
+            case ats.ARTICLES_LOAD_E:
                 return actionMethods.loadRelativeArticles_e(this.state, payLoad)
 
             default:

@@ -2,6 +2,8 @@ import {Component} from 'react'
 import utils from '../../../../../common/utils/utils.js'
 import '../information.less'
 
+//它对应的store是ArticleStore^_^
+
 
 export default class InformationList extends Component {
 
@@ -12,9 +14,13 @@ export default class InformationList extends Component {
         super(props, context)
     }
 
+    static contextTypes={
+        minInterval:React.PropTypes.object.isRequired
+    }
+
     componentDidMount() {
         const store = this.props.store;
-        store.loadRelativeAjax('fasle')
+        store.loadRelativeAjax('fasle',this.context.minInterval.article)
     }
 
 

@@ -1,6 +1,7 @@
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
+import AjaxMgr from '../../../common/utils/ajxaLoop.js'
 
 const urlMap = {
     getComments: Api.getComments
@@ -21,17 +22,17 @@ export default class DiscussStore extends BaseStore {
     };
 
 
-    loadCommentAjax(payLoad) {
+    loadCommentAjax(payLoad,minInterval) {
         const ats = DiscussStore.ActionTypes;
         this.dispatch({type: ats.COMMENT_LOAD});
-        var that = this;
-        utils.ajax({
-            url: urlMap['getComments']()
-            , dataType: 'jsonp'
-            , success: function (resp) {
-                that.dispatch({type: ats.COMMENT_LOAD_S, payLoad: resp})
-            }
+        const that = this;
+        const commentAjax=new AjaxMgr({
+            url:urlMap["getComments"](),
+            success:function(resp){that.dispatch({type: ats.COMMENT_LOAD_S, payLoad: resp})},
+            minInterval:minInterval
+
         })
+       commentAjax.setLoop(true).request();
     }
 
 
