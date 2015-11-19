@@ -63,7 +63,11 @@ const actionMethods = {
         }
     },
     loadTopic_s(state, payLoad){
-        state.detail = [];
+        // console.log(state.detail==payLoad.results)
+        // if(state.detail==payLoad.results){
+        //     return state
+        // }
+        console.log("load加载 "+payLoad.results)
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: payLoad.results

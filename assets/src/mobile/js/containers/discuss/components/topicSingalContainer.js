@@ -17,9 +17,6 @@ class TopicContainer extends Component {
         minInterval:React.PropTypes.object.isRequired
     }
 
-    state = {
-        url: 'topics'
-    }
 
     componentDidMount() {
         const store = this.props.store;
@@ -33,6 +30,18 @@ class TopicContainer extends Component {
             var dom = ReactDom.findDOMNode(this);
             this.showORhide(dom)
        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        // const store = this.props.store;
+        // const state = store.getState();
+        // console.log(nextProps==this.props)
+        // console.log(nextProps.store == this.props.store)
+        // console.log(nextProps.store.getState())
+
+        // console.log(this.state.props)
+        // console.log(state==nextProps.store.getState())   
+        // return state==nextProps.store.getState()  
     }
 
     handleClick(){
@@ -73,6 +82,7 @@ class TopicContainer extends Component {
     }
 
     render() {
+        console.log('我在render啊啊啊！')
         const store = this.props.store;
         const state = store.getState();
         if(state.detail.length<=0){

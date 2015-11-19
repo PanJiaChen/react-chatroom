@@ -162,7 +162,8 @@ gulp.task('dev-server',function(){
         inline: true,
         stats: {
             colors:true
-        }
+        },
+        debug:true,
         //proxy: [ {
         //    path:/\/api(.*)/,
         //    target:'http://localhost:3001'
