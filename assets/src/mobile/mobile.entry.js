@@ -26,12 +26,12 @@ export default class BroadcastApp {
     }
 }
 
-BroadcastApp.minInterval = {
-    info: 60 * 1000,//basic info的请求，60s轮询一次
-    comment: 5 * 1000,//评论，5s
-    news: 5 * 1000,//新闻
-    topic: 5 * 1000//话题
-}
+// BroadcastApp.minInterval = {
+//     info: 60 * 1000,//basic info的请求，60s轮询一次
+//     comment: 5 * 1000,//评论，5s
+//     articl: 5 * 1000,//新闻
+//     topic: 5 * 1000//话题
+// }
 
 // export
 window.BroadcastApp = BroadcastApp;

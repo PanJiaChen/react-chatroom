@@ -27,7 +27,8 @@ class ChatroomContainer extends Component {
          editorChatMaxLines:React.PropTypes.number.isRequired,
          editorChatLineHeight:React.PropTypes.number.isRequired,
          topicLineHeight:React.PropTypes.number.isRequired,
-         topicMaxLines:React.PropTypes.number.isRequired
+         topicMaxLines:React.PropTypes.number.isRequired,
+         minInterval:React.PropTypes.object.isRequired
     }
 
     getChildContext() {
@@ -35,7 +36,13 @@ class ChatroomContainer extends Component {
             editorChatMaxLines:2,
             editorChatLineHeight:18,
             topicLineHeight:18,
-            topicMaxLines:2
+            topicMaxLines:2,
+            minInterval:{
+                info: 60 * 1000,//basic info的请求，60s轮询一次
+                comment: 5 * 1000,//评论，5s
+                articl: 5 * 1000,//新闻
+                topic: 5 * 1000//话题
+            }
          };
     }
 

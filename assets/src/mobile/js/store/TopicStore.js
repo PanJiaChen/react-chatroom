@@ -1,7 +1,7 @@
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
-
+import AjaxMgr from '../../../common/utils/ajxaLoop.js'
 
 const urlMap = {
     topic: Api.getRelaticeTopics,
@@ -21,19 +21,18 @@ export default class TopicStore extends BaseStore {
         detail: []
     };
 
-    loadTopicAjax(payLoad) {
+    loadTopicAjax(payLoad,minInterval) {
         const ats = TopicStore.ActionTypes;
         this.dispatch({type: ats.TOPIC_LOAD});
-        var that = this;
-        utils.ajax({
-            url: urlMap["topic"]()
-            , dataType: 'jsonp'
-            , success: function (resp) {
-                that.dispatch({type: ats.TOPIC_LOAD_S, payLoad: resp})
-            }
-        })
-    }
+        const that = this;
+        const topicAjax=new AjaxMgr({
+            url:urlMap["topic"](),
+            success:function(resp){that.dispatch({type: ats.TOPIC_LOAD_S, payLoad: resp})},
+            minInterval:minInterval
 
+        })
+       topicAjax.setLoop(true).request();
+    }
 
     reduce(action) {
         const type = action.type;

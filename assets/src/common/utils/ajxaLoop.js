@@ -1,3 +1,5 @@
+import ajax from './ajax.js'
+
 function noop() {
 }
 
@@ -10,8 +12,8 @@ export default class AjaxMgr {
         //this.ajaxOptins = options.ajaxOptins;
         this.options = options;
 
-        this.done = options.done;
-        this.fail = options.fail || noop;
+        this.success = options.success;
+        this.error = options.error || noop;
         this.minInterval = options.minInterval || 5000;
         this.isLoop = options.isLoop || false;
         //this.maxRetryTimes = options.maxRetryTimes || 5;
@@ -25,41 +27,44 @@ export default class AjaxMgr {
 
     request() {
         this.time = Date.now();
-        $.ajax(this.options)
-            .done(e=> {
-                this.done(e);
-                //this.retryTimes = 0;
-                if (!this.isLoop)return;
+        var that=this;
+        ajax({
+            url: that.options.url
+            , dataType: 'jsonp'
+            ,success:function (e) {
+                that.success(e)
+                if (!that.isLoop)return;
                 var now = Date.now();
-                var diff = now - this.time;
-                var remain = this.minInterval - diff
+
+                var diff = now - that.time;
+                var remain = that.minInterval - diff
                 if (remain > 0) {
                     setTimeout(()=> {
-                        this.request()
+                        that.request()
                     }, remain)
                 } else {
-                    this.request()
+                    that.request()
                 }
-            }).fail(e=> {
-                this.fail(e);
-                if (!this.isLoop) {
+            }
+            ,error: function (e) {
+                that.error(e)
+                if (!that.isLoop) {
                     return;
                 }
 
-                //if(this.retryTimes > this.maxRetryTimes) return;
-                //this.retryTimes++;
-
                 var now = Date.now();
-                var diff = now - this.time;
-                var remain = this.minInterval - diff
+                var diff = now - that.time;
+                var remain = that.minInterval - diff
                 if (remain > 0) {
                     setTimeout(()=> {
-                        this.request()
+                        that.request()
                     }, remain)
                 } else {
-                    this.request()
+                    that.request()
                 }
-            })
+            }
+        })
+            
 
         return this;
     }

@@ -2,6 +2,9 @@ import {Component} from 'react'
 import ReactDom from 'react-dom'
 import utils from '../../../../../common/utils/utils.js'
 import '../discuss.less'
+//它对应的store是TopicStore^_^
+
+
 
 class TopicContainer extends Component {
     constructor(props, context) {
@@ -10,7 +13,8 @@ class TopicContainer extends Component {
 
     static contextTypes={
         topicLineHeight: React.PropTypes.number.isRequired,
-        topicMaxLines:React.PropTypes.number.isRequired
+        topicMaxLines:React.PropTypes.number.isRequired,
+        minInterval:React.PropTypes.object.isRequired
     }
 
     state = {
@@ -19,7 +23,7 @@ class TopicContainer extends Component {
 
     componentDidMount() {
         const store = this.props.store;
-        store.loadTopicAjax('fasle', this.state.url)  
+        store.loadTopicAjax('fasle',this.context.minInterval.topic)
     }
 
     componentDidUpdate(){
