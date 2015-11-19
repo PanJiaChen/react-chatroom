@@ -19,11 +19,7 @@ class TopicContainer extends Component {
 
     componentDidMount() {
         const store = this.props.store;
-        store.loadTopicAjax('fasle', this.state.url)
-        console.log(this.context.topicLineHeight)
-        console.log(this.context.topicMaxLines)
-         
-        
+        store.loadTopicAjax('fasle', this.state.url)  
     }
 
     componentDidUpdate(){
@@ -60,7 +56,6 @@ class TopicContainer extends Component {
         var parent=dom.getElementsByClassName('user-word-container')[0];
         var target=dom.getElementsByClassName('fold-button');
         var max=lineHeight*maxLines;
-        console.log(style.height)
         if(parseInt(style.height) > lineHeight*maxLines){
              contentDom.style.maxHeight=max+'px';
             if(target.length==0){
@@ -76,9 +71,7 @@ class TopicContainer extends Component {
     render() {
         const store = this.props.store;
         const state = store.getState();
-        console.log('我在render')
         if(state.detail.length<=0){
-                console.log(222222222)
               return(
                     <div className='topic-enpty-container'>主持人正在来的路人</div>
                 )
