@@ -35,7 +35,7 @@ class ChatroomContainer extends Component {
             editorChatMaxLines:2,
             editorChatLineHeight:18,
             topicLineHeight:18,
-            topicMaxLines:5
+            topicMaxLines:2
          };
     }
 
