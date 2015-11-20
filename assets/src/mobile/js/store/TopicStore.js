@@ -67,7 +67,7 @@ const actionMethods = {
         // if(state.detail==payLoad.results){
         //     return state
         // }
-        console.log("load加载 "+payLoad.results)
+        // console.log("load加载 "+payLoad.results)
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: payLoad.results
