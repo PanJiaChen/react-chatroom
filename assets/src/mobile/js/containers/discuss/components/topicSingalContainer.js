@@ -92,7 +92,6 @@ class TopicContainer extends Component {
                 <div className='topic-enpty-container'>主持人正在来的路人</div>
             )
         }
-
         const detail = state.detail[0]
         const publishTime = utils.formatTime(detail.createdAt);
         const foldedMap = this.state.foldedMap;
@@ -102,7 +101,7 @@ class TopicContainer extends Component {
             if (foldedMap[id] == 'show') {
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" style={{'maxHeight':'initial','overFlow':'initial'}}
+                        <div className="user-word" style={{'maxHeight':'initial','overflow':'initial'}}
                              data-id={detail.id}>
                             {detail.text}
                         </div>
@@ -112,7 +111,7 @@ class TopicContainer extends Component {
             } else {
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" style={{'maxHeight':'36px','overFlow':'hidden'}} data-id={detail.id}>
+                        <div className="user-word" style={{'maxHeight':'36px','overflow':'hidden'}} data-id={detail.id}>
                             {detail.text}
                         </div>
                         <div className="fold-button" onClick={this.handleClick.bind(this)}>展开</div>
