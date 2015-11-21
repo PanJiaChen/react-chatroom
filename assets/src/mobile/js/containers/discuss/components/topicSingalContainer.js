@@ -2,6 +2,8 @@ import {Component} from 'react'
 import ReactDom from 'react-dom'
 import utils from '../../../../../common/utils/utils.js'
 import '../discuss.less'
+
+
 //它对应的store是TopicStore^_^
 
 class TopicContainer extends Component {
@@ -128,6 +130,16 @@ class TopicContainer extends Component {
             )
         }
 
+        //缩略图展示
+        var thumbnail
+        if(detail.images.length>0){
+            thumbnail=(
+                <div className="thumbnail-container">
+                    <img className='thumbnail' src={require('../../../../img/picture@2x.png')} />
+                    点击查看
+                </div>
+            )
+        }
         return (
             <div className='topic-container'>
                 <div className='list-item-container '>
@@ -146,6 +158,7 @@ class TopicContainer extends Component {
                             </div>
                         </div>
                         {userWordContainer}
+                        {thumbnail}
                     </div>
                 </div>
             </div>

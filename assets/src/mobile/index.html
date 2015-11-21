@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=screen-width,user-scalable=no,initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <script src="http://cdn.bootcss.com/react/0.14.2/react.js"></script>
-    <script src="http://cdn.bootcss.com/react/0.14.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-with-addons.min.js"></script>
     <script src="http://localhost:9527/lib.js"></script>
 </head>
 <style>
@@ -22,16 +23,16 @@
 <div id="mountDom"></div>
 <script src="http://localhost:9527/mobile.entry.js"></script>
 <script>
-    // var broadcast = new BroadcastApp({
-    //     apiBaseUrl:'http://api.wallstcn.com/v2/',
-    //     parentDom:document.getElementById('mountDom'),
-    //     chatId: 35
-    // }).init();
     var broadcast = new BroadcastApp({
-        apiBaseUrl: 'http://api.wscn.com/v2/',
-        parentDom: document.getElementById('mountDom'),
-        chatId: 64
+        apiBaseUrl:'http://api.wallstcn.com/v2/',
+        parentDom:document.getElementById('mountDom'),
+        chatId: 33
     }).init();
+    // var broadcast = new BroadcastApp({
+    //     apiBaseUrl: 'http://api.wscn.com/v2/',
+    //     parentDom: document.getElementById('mountDom'),
+    //     chatId: 64
+    // }).init();
 </script>
 </body>
 </html>

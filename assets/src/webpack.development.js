@@ -40,14 +40,18 @@ function getDevelopWebpack(){
                     loader: "style-loader!css-loader!less-loader"
                 },
 
-                { test: /\.(png|jpg|gif)$/, loader: 'url-loader' }
+                { test: /\.(png|jpg|gif)$/, loader: 'url-loader?name=mobile/' }
 
             ]
         },
         debug:true,
-        devtool:'source-map',
+        // devtool:'source-map',
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
+            new webpack.NoErrorsPlugin(),
+            new webpack.SourceMapDevToolPlugin(
+                '[file].map', null,
+                "[absolute-resource-path]", "[absolute-resource-path]")
             //new webpack.OldWatchingPlugin()//新版的不知道为啥不watch，用这个可以临时解决。
         ]
     }
