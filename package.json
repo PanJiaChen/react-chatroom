@@ -9,10 +9,6 @@
   },
   "author": "PanJiaChen",
   "license": "private",
-  "peerDependencies":{
-    "react": ">=0.14",
-    "react-dom": ">=0.14"
-  },
   "dependencies": {
     "autoprefixer": "^6.0.3",
     "body-parser": "^1.13.3",
@@ -35,9 +31,8 @@
     "redux": "^2.0.0",
     "reqwest-without-xhr2": "^2.0.2",
     "yargs": "^3.29.0",
-    "zlux": "^0.8.8",
-    "react-addons-transition-group": "^0.14.2"
-  },
+    "zlux": "^0.8.8"  
+    },
   "devDependencies": {
     "url-loader": "^0.5.6",
     "less-loader": "^2.2.1",
