@@ -2,7 +2,7 @@ import {Component} from 'react'
 import ReactDom from 'react-dom'
 import utils from '../../../../../common/utils/utils.js'
 import '../discuss.less'
-
+import Thumbnail from '../../../components/Thumbnail.js'
 
 //它对应的store是TopicStore^_^
 
@@ -131,12 +131,16 @@ class TopicContainer extends Component {
         }
 
         //缩略图展示
-        var thumbnail
+        var thumbnail;
         if(detail.images.length>0){
+            const IMAGES=[];
+            detail.images.map(item=>{
+                IMAGES.push({src:item})
+            })
             thumbnail=(
                 <div className="thumbnail-container">
                     <img className='thumbnail' src={require('../../../../img/picture@2x.png')} />
-                    点击查看
+                    <Thumbnail heading={'点击查看'} images={IMAGES}/>
                 </div>
             )
         }

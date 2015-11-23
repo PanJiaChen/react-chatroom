@@ -18,20 +18,20 @@ function getDevelopWebpack(){
             //library:'libName',
             publicPath:'http://localhost:9527/'//webpack-dev-server 文件是在内存里的，使用时，在硬盘上看不到生成的文件。这个路径是静态文件的basePath
         },
-        externals:{
-            'react': {
-                root: 'React',
-                commonjs2: 'react',
-                commonjs: 'react',
-                amd: 'react'
-            },
-            'react-dom':{
-                root:'ReactDOM',
-                commonjs2: 'react-dom',
-                commonjs: 'react-dom',
-                amd:'react-dom'
-            }
-        },
+        // externals:{
+        //     'react': {
+        //         root: 'React',
+        //         commonjs2: 'react',
+        //         commonjs: 'react',
+        //         amd: 'react'
+        //     },
+        //     'react-dom':{
+        //         root:'ReactDOM',
+        //         commonjs2: 'react-dom',
+        //         commonjs: 'react-dom',
+        //         amd:'react-dom'
+        //     }
+        // },
         resolve:{
             alias:{
                 'react':path.join(node_modules,'./react'),
