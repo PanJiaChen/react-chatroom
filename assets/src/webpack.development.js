@@ -1,6 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
-
+var node_modules = path.join(__dirname,'../../node_modules');
 function getDevelopWebpack(){
     return {
         //entry: "./client/Index.jsx",
@@ -19,13 +19,25 @@ function getDevelopWebpack(){
             publicPath:'http://localhost:9527/'//webpack-dev-server 文件是在内存里的，使用时，在硬盘上看不到生成的文件。这个路径是静态文件的basePath
         },
         externals:{
-            'zepto':{
-                root:'Zepto',
-                commonjs:'zepto',
-                commonjs2:'zepto'
+            'react': {
+                root: 'React',
+                commonjs2: 'react',
+                commonjs: 'react',
+                amd: 'react'
             },
-            react:'React',
-            'react-dom':'ReactDOM'
+            'react-dom':{
+                root:'ReactDOM',
+                commonjs2: 'react-dom',
+                commonjs: 'react-dom',
+                amd:'react-dom'
+            }
+        },
+        resolve:{
+            alias:{
+                'react':path.join(node_modules,'./react'),
+                'react-dom':path.join(node_modules,'./react-dom'),
+                'react-addons-transition-group':path.join(node_modules,'./react/lib/ReactTransitionGroup.js'),      
+            }
         },
         module: {
             loaders: [
