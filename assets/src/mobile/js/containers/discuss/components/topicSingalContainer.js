@@ -165,6 +165,7 @@ class TopicContainer extends Component {
                         {thumbnail}
                     </div>
                 </div>
+                <img className='forward_arrow' src={require('../../../../img/forward_arrow@2x.png')} />
             </div>
         )
     }
