@@ -14,10 +14,10 @@ const ArticleElement = enhanceWithStore(ArticleContainer, articleStore);
 import './less/index.less'
 
 const transformsMap = {
-    audio: <AudioContainer />,
-    vedio: <VedioContainer />,
-    commentandarticle: <TabContainer />,
-    article: <ArticleElement />
+    // audio: <AudioContainer />,
+    // vedio: <VedioContainer />,
+    commentandarticle: <TabContainer key={'commentandarticle'} />,
+    // article: <ArticleElement />
 }
 
 class ChatroomContainer extends Component {
@@ -63,15 +63,15 @@ class ChatroomContainer extends Component {
         const store = this.props.store;
         const state = store.getState();
         const detail = state.detail
-        // if (detail.id) {
-        //     var includeArr = [];
-        //     var include = detail.include;
-        //     for (let pop in transformsMap) {
-        //         this.judgeInclude(include, pop, includeArr)
-        //     }
-        // } else {
-        //     return <div></div>
-        // }
+        if (detail.id) {
+            var includeArr = [];
+            var include = detail.include;
+            for (let pop in transformsMap) {
+                this.judgeInclude(include, pop, includeArr)
+            }
+        } else {
+            return <div></div>
+        }
 
         return (
             <div className="react-container">
@@ -79,9 +79,8 @@ class ChatroomContainer extends Component {
                     <div className='wscn'></div>
                     <div className="header-num">{detail.numOfUsers}人参与</div>
                 </div>
-                {/*{includeArr}*/}
                 <ArticleElement />
-                <TabContainer />
+                {includeArr}
             </div>
         )
     }

@@ -5,9 +5,11 @@
   clear: both;
   visibility: hidden;
 }
-.discuss-container{
+
+.discuss-container {
   margin-top: 10px;
 }
+
 .comment-list {
   background-color: #f6f6f6;
   padding: 5px 10px 10px;
@@ -39,7 +41,7 @@
   background: #fff;
   padding: 8px;
   line-height: 18px;
-  word-break:break-all;
+  word-break: break-all;
   &::after {
     content: '';
     width: 0;
@@ -68,7 +70,7 @@
   padding: 10px 34px 10px 8px;
   background-color: #e6eefe;
   position: relative;
-  .forward_arrow{
+  .forward_arrow {
     position: absolute;
     right: 12px;
     top: 0;
@@ -76,7 +78,8 @@
     margin: auto;
   }
 }
-.topic-enpty-container{
+
+.topic-enpty-container {
   width: 100%;
   height: 100px;
   background-color: #e5edfd;
@@ -85,14 +88,15 @@
   color: #aaa;
   font-size: 18px;
 }
-.commentList-empty{
+
+.commentList-empty {
   width: 100%;
   height: 320px;
   font-size: 18px;
   color: #aaa;
   text-align: center;
-  .commentList-empty-img{
-    background: url('../../../img/discuess_empty@2x.png') no-repeat ;
+  .commentList-empty-img {
+    background: url('../../../img/discuess_empty@2x.png') no-repeat;
     width: 133px;
     height: 105px;
     background-size: 100%;
@@ -102,14 +106,14 @@
 }
 
 //收起展开
-.fold-button{
+.fold-button {
   font-size: 12px;
   color: #aaa;
   text-align: right;
   cursor: pointer;
   position: relative;
   padding-top: 8px;
-  &:after{
+  &:after {
     content: '';
     background-image: url('../../../img/forward_arrow@2x.png');
     width: 14px;
@@ -121,22 +125,263 @@
 }
 
 //缩略图
-.thumbnail-container{
+.thumbnail-container {
   font-size: 12px;
   color: #aaa;
   position: absolute;
   bottom: 6px;
-  .thumbnail{
+  .thumbnail {
     width: 18px;
     height: 15px;
-}
-.section{
-  display: inline-block;
-}
-.thumbnail-btn{
-  display: inline-block;
-  text-indent: 6px;
+  }
+  .section {
+    display: inline-block;
+  }
+  .thumbnail-btn {
+    display: inline-block;
+    text-indent: 6px;
     vertical-align: 2px;
-}
+  }
 }
 
+.modal-close {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  z-index: 999;
+  &::before, &::after {
+    border-radius: 5px;
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #000;
+  }
+  &::before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  &::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.discuss-container {
+  margin-top: 10px;
+}
+
+.comment-list {
+  background-color: #f6f6f6;
+  padding: 5px 10px 10px;
+  margin: 0px;
+}
+
+.list-item-container {
+  list-style: none;
+  margin-top: 10px;
+  position: relative;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 80%;
+  float: left;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.user-content {
+  position: relative;
+  margin-left: 40px;
+  border-radius: 6px;
+  background: #fff;
+  padding: 8px;
+  line-height: 18px;
+  word-break: break-all;
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 10px 6px 0;
+    border-color: transparent #fff transparent transparent;
+    position: absolute;
+    left: -8px;
+    top: 8px;
+  }
+  .user-detail {
+    font-size: 12px;
+
+    color: #aaa;
+    float: left;
+  }
+  .user-time {
+    font-size: 11px;
+    color: #aaa;
+    float: right;
+  }
+}
+
+.topic-container {
+  padding: 10px 34px 10px 8px;
+  background-color: #e6eefe;
+  position: relative;
+  .forward_arrow {
+    position: absolute;
+    right: 12px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+
+.topic-enpty-container {
+  width: 100%;
+  height: 100px;
+  background-color: #e5edfd;
+  line-height: 100px;
+  text-align: center;
+  color: #aaa;
+  font-size: 18px;
+}
+
+.commentList-empty {
+  width: 100%;
+  height: 320px;
+  font-size: 18px;
+  color: #aaa;
+  text-align: center;
+  .commentList-empty-img {
+    background: url('../../../img/discuess_empty@2x.png') no-repeat;
+    width: 133px;
+    height: 105px;
+    background-size: 100%;
+    margin: 75px auto 0;
+    margin-bottom: 25px;
+  }
+}
+
+//收起展开
+.fold-button {
+  font-size: 12px;
+  color: #aaa;
+  text-align: right;
+  cursor: pointer;
+  position: relative;
+  padding-top: 8px;
+  &:after {
+    content: '';
+    background-image: url('../../../img/forward_arrow@2x.png');
+    width: 14px;
+    height: 7px;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+  }
+}
+
+//缩略图
+.thumbnail-container {
+  font-size: 12px;
+  color: #aaa;
+  position: absolute;
+  bottom: 6px;
+  .thumbnail {
+    width: 18px;
+    height: 15px;
+  }
+  .section {
+    display: inline-block;
+  }
+  .thumbnail-btn {
+    display: inline-block;
+    text-indent: 6px;
+    vertical-align: 2px;
+  }
+}
+
+.modal-close {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  float: right;
+  z-index: 99;
+  &::before, &::after {
+    border-radius: 5px;
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #000;
+  }
+  &::before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  &::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+}
+
+//主持人话题列表页
+.topic-list {
+
+}
+
+.topic-list-container {
+  margin: 10px 0px;
+  background-color: #f6f6f6;
+  &::before {
+    content: ' ';
+    border-right: 5px solid #0a96ff;
+    display: inline-block;
+    height: 15px;
+    vertical-align: -6px;
+    position: absolute;
+    left: 0px;
+  }
+
+  .title {
+    font-size: 13px;
+    color: #232629;
+    padding-left: 10px;
+  }
+  .topic-container{
+    background: #fff;
+  }
+}

@@ -3,6 +3,7 @@ import ReactDom from 'react-dom'
 import utils from '../../../../../common/utils/utils.js'
 import '../discuss.less'
 import Thumbnail from '../../../components/Thumbnail.js'
+import TopList from './TopicList.js'
 
 //它对应的store是TopicStore^_^
 
@@ -85,6 +86,7 @@ class TopicContainer extends Component {
         }
     }
 
+
     render() {
         console.log('我在render啊啊啊！')
         const store = this.props.store;
@@ -165,7 +167,7 @@ class TopicContainer extends Component {
                         {thumbnail}
                     </div>
                 </div>
-                <img className='forward_arrow' src={require('../../../../img/forward_arrow@2x.png')} />
+                <TopList topicDetail={state.detail} /> 
             </div>
         )
     }

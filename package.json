@@ -28,6 +28,7 @@
     "react-dom": "^0.14.3",
     "react-images": "^0.1.0",
     "react-mixin": "^3.0.0",
+    "react-modal": "^0.6.1",
     "react-router": "1.0.0-rc1",
     "react-zlux": "0.0.6",
     "redux": "^2.0.0",
