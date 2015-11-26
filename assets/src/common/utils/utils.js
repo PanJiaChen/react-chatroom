@@ -71,6 +71,15 @@ Utils.formatTime=function(time){
     return `${d.getMonth()+1}月${d.getDate()}日${d.getHours()}时`
 }
 
+Utils.loading=document.getElementById('js-loading')
+Utils.showLoading=function(target){
+    console.log(target)
+}
+
+Utils.hideLoading=function(){
+    document.getElementById('js-loading').remove('show')
+}
+
 function createScrollMgr(){
     var scrollMap={}
 
