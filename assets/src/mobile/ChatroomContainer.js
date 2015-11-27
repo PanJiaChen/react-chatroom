@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import ReactDom from 'react-dom'
 import utils from '../common/utils/utils.js'
 import {enhanceWithStore} from 'react-zlux'
 import AudioContainer from './js/containers/audio/AudioContainer.js';
@@ -10,6 +11,7 @@ import ArticleStore from './js/store/ArticleStore.js';
 const articleStore = global.informationStore;
 const ArticleElement = enhanceWithStore(ArticleContainer, articleStore);
 
+import Loading from './js/components/Loading.js'
 
 import './less/index.less'
 
@@ -53,10 +55,15 @@ class ChatroomContainer extends Component {
     componentDidMount() {
         const store = this.props.store
         store.loadChatroomAjax('fasle')
+        this.node = document.createElement('div');
+        this.node.className = 'loading-container';
+        this.node.id = 'js-loading';
+        document.body.appendChild(this.node);
+        ReactDom.render(<Loading />, document.getElementById('js-loading'))
     }
 
     componentWillUnmount() {
-
+        document.body.removeChild(this.node);
     }
 
     render() {

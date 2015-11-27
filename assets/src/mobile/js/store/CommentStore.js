@@ -65,6 +65,7 @@ const actionMethods = {
         }
     },
     loadComment_s(state, payLoad){
+        utils.hideLoading();
         state.comments = [];
         payLoad.comments.forEach(item=> {
             state.comments.push(item)
