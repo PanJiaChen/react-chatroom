@@ -21,7 +21,7 @@ const customStyles = {
     right                      : '40px',
     bottom                     : '40px',
     border                     : '1px solid #ccc',
-    background                 : '#f6f6f6',
+    background                 : '#fff',
     overflow                   : 'auto',
     WebkitOverflowScrolling    : 'touch',
     borderRadius               : '4px',
