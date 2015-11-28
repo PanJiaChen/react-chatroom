@@ -5,9 +5,6 @@ var WSCN_URL = 'http://wscn.com/';
 var ChatroomId;
 
 
-//参与人数
-var Get_Count = 'chatrooms/' + ChatroomId + '/count';
-
 
 //登录信息
 var User_Login = 'me';
@@ -36,20 +33,30 @@ function _getRelativeArticles() {
     return HOST_URL + 'chatrooms/' + ChatroomId + '/articles';
 }
 
-
+//参与人数
 function _getCount() {
-    return HOST_URL + Get_Count;
-}
-
-
-function _replyComment() {
-    return WSCN_URL + Reply_Comment;
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/count';
 }
 
 function _getLoginDetail() {
     return WSCN_URL + User_Login;
 }
 
+//评论列表
+function _getComments() {
+    return HOST_URL + 'comments?channel=chat&id='+ChatroomId;
+}
+
+//评论
+function _replyComment() {
+    return WSCN_URL + 'thread/chat_'+ChatroomId+'/comments/save';
+}
+
+//登录信息
+var User_Login='me';
+function _getLoginDetail() {
+    return WSCN_URL + User_Login;
+}
 
 module.exports = {
     setBaseUrl: _setBaseUrl,
@@ -61,5 +68,4 @@ module.exports = {
     getCount: _getCount,
     replyComment: _replyComment,
     getLoginDetail: _getLoginDetail
-
 };

@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import ReactDom from 'react-dom'
 import utils from '../common/utils/utils.js'
+import './less/index.less'
 import {enhanceWithStore} from 'react-zlux'
 import AudioContainer from './js/containers/audio/AudioContainer.js';
 import VedioContainer from './js/containers/vedio/VedioContainer.js';
@@ -10,14 +11,30 @@ import LeftBarStore from './js/store/LeftBarStore.js'
 const leftBarStore = new LeftBarStore();
 const LeftBarElement = enhanceWithStore(LeftbarContainer, leftBarStore);
 
+import TitleContainer from './js/containers/title/TitleContainer'
+import TitleStore from './js/store/TitleStore.js'
+const titleStore = new TitleStore();
+const TitleElement = enhanceWithStore(TitleContainer, titleStore);
+
+
+import TopicContainer from './js/containers/topic/topicContainer'
+import TopicStore from './js/store/TopicStore.js'
+const topicStore = new TopicStore();
+const TopicElement = enhanceWithStore(TopicContainer, topicStore);
+
+import CommentContainer from './js/containers/comment/CommentContainer.js'
+import CommentStore from './js/store/CommentStore.js'
+const commentStore = new CommentStore();
+const CommentElement = enhanceWithStore(CommentContainer, commentStore);
+
 
 import Loading from './js/components/Loading.js'
 
 import './less/index.less'
 
 const transformsMap = {
-    audio: <AudioContainer />,
-    vedio: <VedioContainer />,
+    audio: <AudioContainer key='audio' />,
+    vedio: <VedioContainer key='vedio' />
     // commentandarticle: <LeftBarElement key={'commentandarticle'} />,
     // article: <ArticleElement />
 }
@@ -54,11 +71,11 @@ class ChatroomContainer extends Component {
     componentDidMount() {
         const store = this.props.store
         store.loadChatroomAjax('fasle')
-        this.node = document.createElement('div');
-        this.node.className = 'loading-container';
-        this.node.id = 'js-loading';
-        document.body.appendChild(this.node);
-        ReactDom.render(<Loading />, document.getElementById('js-loading'))
+        // this.node = document.createElement('div');
+        // this.node.className = 'loading-container';
+        // this.node.id = 'js-loading';
+        // document.body.appendChild(this.node);
+        // ReactDom.render(<Loading />, document.getElementById('js-loading'))
     }
 
     componentWillUnmount() {
@@ -81,11 +98,13 @@ class ChatroomContainer extends Component {
 
         return (
             <div className="react-container">
-                <div className='broadcast-header'>
-                    <div className='wscn'></div>
-                    <div className="header-num">{detail.numOfUsers}人参与</div>
-                </div>
                 <LeftBarElement />
+                <div className="main-container">
+                    <TitleElement />
+                    <TopicElement />
+                    <CommentElement />
+                  
+                </div>
             </div>
         )
     }

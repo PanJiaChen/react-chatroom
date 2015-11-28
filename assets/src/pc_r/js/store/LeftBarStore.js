@@ -9,8 +9,8 @@ const ActionTypes={
     LOAD_E:'LOAD_E'
 };
 const urlMap={
-    articles:Api.getRelativeArticles(),
-    topics:Api.getRelaticeTopics()
+    articles:Api.getRelativeArticles,
+    topics:Api.getRelaticeTopics
 }
 
 export default class PostDetailStore extends BaseStore{
@@ -22,12 +22,11 @@ export default class PostDetailStore extends BaseStore{
         detail:[]
     };
 
-
     loadRelativeAjax(payLoad,url) {
         this.dispatch({type:ActionTypes.LOAD});
         var that=this
         utils.ajax({
-                url: urlMap[url]
+                url: urlMap[url]()
               , dataType: 'jsonp'
               , success: function (resp) {
                   that.dispatch({type:ActionTypes.LOAD_S,payLoad:resp.results})
