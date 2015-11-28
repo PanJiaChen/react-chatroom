@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://localhost:9527/lib.js"></script>
+</head>
+<style>
+ body {
+        font-family: 'Heiti SC', '华文黑体', '黑体', "Helvetica Neue";
+        font-size: 14px;
+        padding: 0;
+        max-width: 540px;
+        margin: 0 auto;
+    }
+	#container{
+		width: 1170px;
+		margin: 90px auto 0;
+        position: relative;
+	}
+</style>
+<body>
+    <div id="container">
+        <div id="mountDom"></div>
+    </div>
+    <script src="http://localhost:9527/pc_r.entry.js"></script>
+    <script>
+    var broadcast = new BroadcastApp({
+        apiBaseUrl:'http://api.wallstcn.com/v2/',
+        parentDom:document.getElementById('mountDom'),
+        chatId: 33,
+        minInterval:{
+            info: 60 * 1000,//basic info的请求，60s轮询一次
+            comment: 10 * 1000,//评论，5s
+            article: 90 * 1000,//资讯
+            topic: 10 * 1000//话题
+        }
+    }).init();
+</script>
+</body>
+</html>

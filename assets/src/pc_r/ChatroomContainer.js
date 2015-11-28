@@ -4,21 +4,21 @@ import utils from '../common/utils/utils.js'
 import {enhanceWithStore} from 'react-zlux'
 import AudioContainer from './js/containers/audio/AudioContainer.js';
 import VedioContainer from './js/containers/vedio/VedioContainer.js';
-import TabContainer from './js/containers/tab/tabContainer.js';
 
-import ArticleContainer from './js/containers/articleSingal/articleSingalContainer.js';
-import ArticleStore from './js/store/ArticleStore.js';
-const articleStore = global.informationStore;
-const ArticleElement = enhanceWithStore(ArticleContainer, articleStore);
+import LeftbarContainer from './js/containers/leftbar/LeftBarContainer.js'
+import LeftBarStore from './js/store/LeftBarStore.js'
+const leftBarStore = new LeftBarStore();
+const LeftBarElement = enhanceWithStore(LeftbarContainer, leftBarStore);
+
 
 import Loading from './js/components/Loading.js'
 
 import './less/index.less'
 
 const transformsMap = {
-    // audio: <AudioContainer />,
-    // vedio: <VedioContainer />,
-    commentandarticle: <TabContainer key={'commentandarticle'} />,
+    audio: <AudioContainer />,
+    vedio: <VedioContainer />,
+    // commentandarticle: <LeftBarElement key={'commentandarticle'} />,
     // article: <ArticleElement />
 }
 
@@ -85,8 +85,7 @@ class ChatroomContainer extends Component {
                     <div className='wscn'></div>
                     <div className="header-num">{detail.numOfUsers}人参与</div>
                 </div>
-                <ArticleElement />
-                {includeArr}
+                <LeftBarElement />
             </div>
         )
     }
