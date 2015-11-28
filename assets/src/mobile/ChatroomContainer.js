@@ -39,20 +39,20 @@ class ChatroomContainer extends Component {
             topicLineHeight:18,
             topicMaxLines:2,
             minInterval:{
-                info: 60 * 1000,//basic info的请求，60s轮询一次
-                comment: 5 * 1000,//评论，5s
-                article: 90 * 1000,//资讯
-                topic: 5 * 1000//话题
+                info: this.props.minInterval.info,
+                comment: this.props.minInterval.comment,
+                article: this.props.minInterval.article,
+                topic: this.props.minInterval.topic
             }
          };
     }
 
     constructor(props, context) {
         super(props, context)
-
     }
 
     componentDidMount() {
+        console.log(this.props.minInterval)
         const store = this.props.store
         store.loadChatroomAjax('fasle')
         this.node = document.createElement('div');

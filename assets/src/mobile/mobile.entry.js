@@ -13,7 +13,7 @@ export default class BroadcastApp {
     constructor(options = {}) {
         this.parentDom = options.parentDom
         this.apiBaseUrl = options.apiBaseUrl
-        this.minInterval = options || BroadcastApp.minInterval
+        this.minInterval = options.minInterval || BroadcastApp.minInterval
         this.chatId = options.chatId
     }
 
@@ -26,17 +26,12 @@ export default class BroadcastApp {
     }
 }
 
-// BroadcastApp.minInterval = {
-//     info: 60 * 1000,//basic info的请求，60s轮询一次
-//     comment: 5 * 1000,//评论，5s
-//     articl: 5 * 1000,//新闻
-//     topic: 5 * 1000//话题
-// }
+BroadcastApp.minInterval = {
+        info: 60 * 1000,//basic info的请求，60s轮询一次
+        comment: 5 * 1000,//评论，5s
+        article: 90 * 1000,//资讯
+        topic: 5 * 1000//话题
+}
 
 // export
 window.BroadcastApp = BroadcastApp;
-// setTimeout(function(){
-//     require.ensure([],function(){
-//         require('./js/async.js')
-//     })
-// },1000)
