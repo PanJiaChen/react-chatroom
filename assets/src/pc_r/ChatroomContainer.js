@@ -59,7 +59,8 @@ class ChatroomContainer extends Component {
                 info: this.props.minInterval.info,
                 comment: this.props.minInterval.comment,
                 article: this.props.minInterval.article,
-                topic: this.props.minInterval.topic
+                topic: this.props.minInterval.topic,
+                count: this.props.minInterval.count
             }
          };
     }

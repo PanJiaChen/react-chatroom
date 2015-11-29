@@ -3,7 +3,11 @@ import utils from '../../../../../common/utils/utils.js'
 
 
 export default class CommentList extends Component {
-
+    static contextTypes={
+        commentLineHeight: React.PropTypes.number.isRequired,
+        commentMaxLines: React.PropTypes.number.isRequired,
+        minInterval:React.PropTypes.object.isRequired
+    }
     static defaultProps = {
         list: []
     }

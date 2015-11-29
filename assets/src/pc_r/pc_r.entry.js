@@ -30,7 +30,8 @@ BroadcastApp.minInterval = {
         info: 60 * 1000,//basic info的请求，60s轮询一次
         comment: 5 * 1000,//评论，5s
         article: 90 * 1000,//资讯
-        topic: 5 * 1000//话题
+        topic: 5 * 1000,//话题
+        count: 30*1000//参与人数
 }
 
 // export

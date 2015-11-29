@@ -1,8 +1,16 @@
 import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
 import './title.less'
+//对应的TitleStore
 
 class TitleContainer extends Component{
+
+    static contextTypes={
+        commentLineHeight: React.PropTypes.number.isRequired,
+        commentMaxLines: React.PropTypes.number.isRequired,
+        minInterval:React.PropTypes.object.isRequired
+    }
+
     constructor(props,context){
         super(props,context)
     }
@@ -11,7 +19,7 @@ class TitleContainer extends Component{
         const store = this.props.store;
 
         store.loadTitleAjax('false')
-        store.loadCountAjax('false')
+        store.loadCountAjax('false',this.context.minInterval.count)
     }
 
     render(){

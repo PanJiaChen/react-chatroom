@@ -1,11 +1,12 @@
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
+import AjaxMgr from '../../../common/utils/ajxaLoop.js'
 
 
 const urlMap = {
-    title: Api.getChatroom,
-    count: Api.getCount
+    getTitle: Api.getChatroom,
+    getCount: Api.getCount
 }
 
 export default class TitleDetailStore extends BaseStore {
@@ -35,7 +36,7 @@ export default class TitleDetailStore extends BaseStore {
         this.dispatch({type: ats.TITLE_LOAD});
         var that = this;
         utils.ajax({
-            url: urlMap["title"]()
+            url: urlMap["getTitle"]()
             , dataType: 'jsonp'
             , success: function (resp) {
                 that.dispatch({type: ats.TITLE_LOAD_S, payLoad: resp})
@@ -43,17 +44,16 @@ export default class TitleDetailStore extends BaseStore {
         })
     }
 
-    loadCountAjax(payLoad) {
+    loadCountAjax(payLoad,minInterval) {
         const ats = TitleDetailStore.ActionTypes;
         this.dispatch({type: ats.COUNT_LOAD});
         var that = this;
-        utils.ajax({
-            url: urlMap["count"]()
-            , dataType: 'jsonp'
-            , success: function (resp) {
-                that.dispatch({type: ats.COUNT_LOAD_S, payLoad: resp})
-            }
+        const countAjax=new AjaxMgr({
+            url:urlMap["getCount"](),
+            success:function(resp){that.dispatch({type: ats.COUNT_LOAD_S, payLoad: resp})},
+            minInterval:minInterval
         })
+        countAjax.setLoop(true).request();
     }
 
     reduce(action) {

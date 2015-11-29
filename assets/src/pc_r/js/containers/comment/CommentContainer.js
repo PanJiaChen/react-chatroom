@@ -9,7 +9,11 @@ class CommentContainer extends Component {
         super(props, context)
     }
 
-    static contextTypes = {}
+    static contextTypes={
+        commentLineHeight: React.PropTypes.number.isRequired,
+        commentMaxLines: React.PropTypes.number.isRequired,
+        minInterval:React.PropTypes.object.isRequired
+    }
 
     state = {
 
@@ -17,7 +21,7 @@ class CommentContainer extends Component {
 
     componentDidMount() {
         const store = this.props.store;
-        store.loadCommentAjax('fasle')
+        store.loadCommentAjax('fasle',this.context.minInterval.comment)
     }
 
     render() {
