@@ -16,29 +16,14 @@ module.exports = {
         filename: "[name]-[chunkhash].js",
         chunkFilename:'[name]-[chunkhash].js',
         path: path.join(__dirname + "/assets/dist"),
-        libraryTarget:'umd',
+        // libraryTarget:'var',
         publicPath:''//webpack-dev-server build的文件是在内存里的，使用时，在硬盘上看不到生成的文件。这个路径是静态文件的basePath
     },
     //devtool: 'eval',
     externals:{
-        'react': {
-            root: 'React',
-            commonjs2: 'react',
-            commonjs: 'react',
-            amd: 'react'
-        },
-        'jquery': {
-            root: 'jQuery',
-            commonjs2: 'jquery',
-            commonjs: 'jquery',
-            amd: 'jquery'
-        },
-        'react-dom':{
-            root:'ReactDOM',
-            commonjs2: 'react-dom',
-            commonjs: 'react-dom',
-            amd:'react-dom'
-        }
+        'react': 'React',
+        'jquery': 'jQuery',
+        'react-dom':'ReactDOM'
         //'wscn-common':{
         //    commonjs2:'wscn-common',
         //    commonjs:'wscn-common'
@@ -46,18 +31,18 @@ module.exports = {
     },
 
     resolve:{
-        alias:{
-            react:path.join(node_modules,'./react/dist/react.min.js'),
-            jquery:path.join(node_modules,'./jquery/dist/jquery.min.js'),
-            'react-dom':path.join(node_modules,'./react-dom/dist/react-dom.min.js'),
-        }
+        // alias:{
+        //     react:path.join(node_modules,'./react/dist/react.min.js'),
+        //     jquery:path.join(node_modules,'./jquery/dist/jquery.min.js'),
+        //     'react-dom':path.join(node_modules,'./react-dom/dist/react-dom.min.js'),
+        // }
     },
     module: {
-        noParse:[
-            path.join(node_modules,'./react/dist/react.min.js'),
-            path.join(node_modules,'./jquery/dist/jquery.min.js'),
-            path.join(node_modules,'./react-dom/dist/react-dom.min.js')
-        ],
+        // noParse:[
+        //     path.join(node_modules,'./react/dist/react.min.js'),
+        //     path.join(node_modules,'./jquery/dist/jquery.min.js'),
+        //     path.join(node_modules,'./react-dom/dist/react-dom.min.js')
+        // ],
         loaders: [
             {
                 test: /[\.jsx|\.js ]$/,

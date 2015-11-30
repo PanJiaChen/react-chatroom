@@ -35,8 +35,6 @@ import './less/index.less'
 const transformsMap = {
     audio: <AudioContainer key='audio' />,
     vedio: <VedioContainer key='vedio' />
-    // commentandarticle: <LeftBarElement key={'commentandarticle'} />,
-    // article: <ArticleElement />
 }
 
 class ChatroomContainer extends Component {
@@ -90,6 +88,7 @@ class ChatroomContainer extends Component {
         if (detail.id) {
             var includeArr = [];
             var include = detail.include;
+            console.log(include )
             for (let pop in transformsMap) {
                 this.judgeInclude(include, pop, includeArr)
             }
@@ -99,6 +98,7 @@ class ChatroomContainer extends Component {
 
         return (
             <div className="react-container">
+                {includeArr}
                 <LeftBarElement />
                 <div className="main-container">
                     <TitleElement />

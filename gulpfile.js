@@ -12,7 +12,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //es6 template string，需要node 4.0 以上版本，如果版本不到，只能手动拼了
 function getTplContent(libJs, libCss) {
-    var str = '\n<!DOCTYPE html>\n    <html>\n    <head lang="en">\n        <meta charset="UTF-8">\n        <title>webpack coc</title>\n        <link href="' + libCss + '" rel="stylesheet">\n    </head>\n    <body>\n        <div id="mount-dom"></div>\n        <script src="' + libJs + '"></script>\n    </body>\n</html>\n    ';
+    var str = '\n<!DOCTYPE html>\n    <html>\n    <head lang="en">\n        <meta charset="UTF-8">\n        <title>webpack coc</title>\n        <link href="' + libCss + '" rel="stylesheet">\n    </head>\n    <body>\n        <div id="mount-dom"></div>\n    <script src="commons.js"></script>    <script src="' + libJs + '"></script>\n    </body>\n</html>\n    ';
     return str;
 }
 
@@ -54,7 +54,17 @@ gulp.task('lib', ['clean'],function (callback) {
         }
     }
 
+    for(var i in plugins){
+        if(plugins[i] instanceof webpack.optimize.CommonsChunkPlugin){
+            plugins.splice(i,1)
+            break;
+        }
+    }
+
+
     plugins.push(libPathPlugin);
+    console.log(111111111)
+    console.log(config)
     webpack(config, function (err, stats) {
         if (err) {
             throw new gutil.PluginError('webpack-lib', err);
