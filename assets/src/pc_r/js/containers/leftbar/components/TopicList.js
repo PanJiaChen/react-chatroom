@@ -1,7 +1,8 @@
 import {Component} from 'react'
 import utils from '../../../../../common/utils/utils.js'
-
-
+import Thumbnail from '../../../components/Thumbnail.js'
+//它对应的store是TopicStore^_^
+//
 export default class LeftbarList extends Component {
 
     static defaultProps = {
@@ -9,8 +10,6 @@ export default class LeftbarList extends Component {
     }
 
     static contextTypes={
-        commentLineHeight: React.PropTypes.number.isRequired,
-        commentMaxLines: React.PropTypes.number.isRequired,
         minInterval:React.PropTypes.object.isRequired
     }
 
@@ -35,11 +34,33 @@ export default class LeftbarList extends Component {
             )
         }
         var repeatLi = list.map(item=> {
-            var publishTime = utils.formatTime(item.createdAt);
-            var content = item.text;
+            const publishTime = utils.formatTime(item.createdAt);
+            const content = item.text;
+
+            //缩略图
+            var thumbnail;
+            const imagesLength=item.images.length;
+            if(imagesLength>0){
+                const IMAGES=[];
+                if(imagesLength>=2){
+                    var tooltips=(<div className='img-tooltips'>多图</div>)
+                }else{
+                     var tooltips=''
+                }
+                item.images.map(item=>{
+                    IMAGES.push({src:item})
+                })
+                thumbnail=(
+                    <div className="thumbnail-container">
+                        <Thumbnail heading={'点击查看'} showImg={item.images[0]} images={IMAGES}/>
+                       {tooltips}
+                    </div>
+                )
+            }
+
             return (
                 <li key={item.id} className="list-item-container">
-                    <div className="list-item clearfixd">
+                    <div className="list-item clearfix">
                        <img className="list-avatar" src={item.user.avatar} />
                        <div className="list-content-container">
                             <div className="list-meta">
@@ -47,6 +68,7 @@ export default class LeftbarList extends Component {
                                 <div className="timer">{publishTime}</div>
                             </div>
                             <div className="list-content">{content}</div>
+                            {thumbnail}
                        </div>                        
                     </div>
                 </li>

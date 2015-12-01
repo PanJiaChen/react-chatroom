@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import utils from '../../../../../common/utils/utils.js'
-
+import Thumbnail from '../../../components/Thumbnail.js'
+//它对应的store是ArticlStore^_^
 
 export default class LeftbarList extends Component {
 
@@ -32,6 +33,28 @@ export default class LeftbarList extends Component {
         var repeatLi = list.map(item=> {
             var publishTime = utils.formatTime(item.createdAt);
             var content = item.title ? item.title : item.text;
+
+            //缩略图
+            var thumbnail;
+            const imagesLength=item.imageUrls.length;
+            if(imagesLength>0){
+                const IMAGES=[];
+                if(imagesLength>=2){
+                    var tooltips=(<div className='img-tooltips'>多图</div>)
+                }else{
+                     var tooltips=''
+                }
+                item.imageUrls.map(item=>{
+                    IMAGES.push({src:item})
+                })
+                thumbnail=(
+                    <div className="thumbnail-container">
+                        <Thumbnail heading={'点击查看'} showImg={item.imageUrls[0]} images={IMAGES}/>
+                       {tooltips}
+                    </div>
+                )
+            }
+
             return (
                 <li key={item.id} className="list-item-container">
                     <div className="list-item">
@@ -39,6 +62,7 @@ export default class LeftbarList extends Component {
                             <div className="timer-inside-circle"></div>
                         </div>
                         <div className="list-content">{content}</div>
+                        {thumbnail}
                         <div className="timer">{publishTime}</div>
                     </div>
                 </li>

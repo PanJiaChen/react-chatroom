@@ -23,7 +23,9 @@ class AudioContainer extends Component {
         "&starttime=0&"+
         "buffer=5&"+
         "lang=en_US&"+
-        "logo=http://onvod.sewise.com/libs/swfplayer/skin/images/logo.png&skin=vodWhite&videourl=http://pili-live-hls.wscn.wallstcn.com/wscn/chat_56_1130103516_rebirth_wallstcn_com.m3u8");
+        "logo=http://onvod.sewise.com/libs/swfplayer/skin/images/logo.png&"+
+        "skin=vodWhite&"+
+        "videourl=http://pili-live-hls.wscn.wallstcn.com/wscn/chat_58_1201025545_rebirth_wallstcn_com.m3u8");
         var script = document.createElement('script');
         script.type = "text/javascript";
         script.src = srcPath ;

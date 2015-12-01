@@ -15,10 +15,9 @@ const titleStore = new TitleStore();
 const TitleElement = enhanceWithStore(TitleContainer, titleStore);
 
 
-import TopicContainer from './js/containers/topic/topicContainer'
-import TopicStore from './js/store/TopicStore.js'
-const topicStore = new TopicStore();
-const TopicElement = enhanceWithStore(TopicContainer, topicStore);
+import SingalTopicContainer from './js/containers/singalTopic/singalTopicContainer.js'
+const singalTopicStore=topicStore//全局变量
+const SingalTopicElement = enhanceWithStore(SingalTopicContainer, singalTopicStore);
 
 import CommentContainer from './js/containers/comment/CommentContainer.js'
 import CommentStore from './js/store/CommentStore.js'
@@ -100,9 +99,7 @@ class ChatroomContainer extends Component {
                 <LeftbarContainer />
                 <div className="main-container">
                     <TitleElement />
-                    
-                    
-                  
+                    <SingalTopicElement />
                 </div>
             </div>
         )

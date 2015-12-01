@@ -13,6 +13,7 @@ import TopicStore from '../../store/TopicStore.js'
 const topicStore = new TopicStore();
 const TopicListElement = enhanceWithStore(TopicListContainer, topicStore);
 
+global.topicStore = topicStore;//暴露全局
 
 class LeftBarContainer extends Component{
     constructor(props,context){
@@ -24,7 +25,7 @@ class LeftBarContainer extends Component{
     }
 
     state = {
-        tabSelect:'topics',
+        tabSelect:'informations',
     }
 
     componentDidMount(){
@@ -35,8 +36,8 @@ class LeftBarContainer extends Component{
         return (
             <div className='leftbar-container'>
                 <div className='tab'>
-                    <div className={'tab-list '+this.judgeTabClass("informations")} data-selected='true' data-ref='informations'  onClick={this.handleClick.bind(this)}>资讯</div>
-                    <div className={'tab-list '+this.judgeTabClass("topics")} data-ref='topics'  onClick={this.handleClick.bind(this)}>话题</div>
+                    <div className={'tab-list '+this.judgeTabClass("informations")} data-selected='true' data-ref='informations'  onClick={this.handleClick.bind(this)} onMouseEnter={this.handleHover.bind(this)}>资讯</div>
+                    <div className={'tab-list '+this.judgeTabClass("topics")} data-ref='topics'  onClick={this.handleClick.bind(this)} onMouseEnter={this.handleHover.bind(this)}>话题</div>
                 </div>
                 <div className="tab-main">
                     <div className={'tab-main-tab '+this.judgeTabClass("informations")}><InformationListElement /></div>
@@ -47,6 +48,10 @@ class LeftBarContainer extends Component{
     }
 
     handleClick(event){
+        var tabUrl=event.target.getAttribute('data-ref');
+        this.setState({tabSelect: tabUrl});
+    }
+    handleHover(event){
         var tabUrl=event.target.getAttribute('data-ref');
         this.setState({tabSelect: tabUrl});
     }

@@ -1,12 +1,3 @@
-
-.clearfixd:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-
 .leftbar-container{
 	width: 470px;
 	height: 600px;
@@ -51,6 +42,7 @@
 		}
 		height: 560px;
 		overflow-y: scroll;
+		background-color: #fff;
 		&::-webkit-scrollbar-track-piece {
 		    background: #fff;
 		}
@@ -171,6 +163,29 @@
 				padding-top: 4px;
 			}
 		}
+	}
+}
+
+//缩略图
+.thumbnail{
+	margin-top: 8px;
+	width: 200px;
+	height: 200px;
+	cursor: pointer;
+}
+.thumbnail-container{
+	position: relative;
+	.img-tooltips{
+		position: absolute;
+		color: #fff;
+		width: 30px;
+		height: 20px;
+		background-color: #008cff;
+		text-align: center;
+		line-height: 20px;
+		font-size: 12px;
+		bottom: 2px;
+		left: 170px;
 	}
 }
 

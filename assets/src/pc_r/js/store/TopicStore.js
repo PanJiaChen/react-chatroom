@@ -65,7 +65,6 @@ const actionMethods = {
     },
     loadTopic_s(state, payLoad){
         state.detail=[];
-        console.log(payLoad)
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: payLoad.results

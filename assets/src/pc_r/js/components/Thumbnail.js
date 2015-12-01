@@ -25,14 +25,13 @@ var Standard = React.createClass({
 	render () {
 		return (
 			<div className="section">
-				<div className='thumbnail-btn' onClick={(event) => this.openLightbox(0, event)}>{this.props.heading}</div>
+				<img className='thumbnail' onClick={(event) => this.openLightbox(0, event)} src={this.props.showImg} />
 				<Lightbox
 					images={this.props.images}
 					initialImage={this.state.lightboxInitialImage}
 					isOpen={this.state.lightboxIsOpen}
 					onClose={this.closeLightbox}
-					styles={this.props.styles}
-				/>
+					styles={this.props.styles} />
 			</div>
 		);
 	}
