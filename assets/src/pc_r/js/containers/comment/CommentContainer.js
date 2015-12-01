@@ -22,6 +22,7 @@ class CommentContainer extends Component {
     componentDidMount() {
         const store = this.props.store;
         store.loadCommentAjax('fasle',this.context.minInterval.comment)
+        store.userValidateAjax('fasle')
     }
 
     render() {

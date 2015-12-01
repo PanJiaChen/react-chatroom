@@ -100,6 +100,7 @@ class ChatroomContainer extends Component {
                 <div className="main-container">
                     <TitleElement />
                     <SingalTopicElement />
+                    <CommentElement />
                 </div>
             </div>
         )
