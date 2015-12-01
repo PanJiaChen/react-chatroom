@@ -1,46 +1,98 @@
 
+.clearfixd:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
 .leftbar-container{
-	width: 300px;
+	width: 470px;
 	height: 600px;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	position: relative;
 	left: 0px;
 	float: left;
+	
+	// overflow: hidden;
 	// overflow-y:scroll; 
-	overflow: hidden;
 	.tab{
 		height: 40px;
 		width: 100%;
+		margin-bottom: 15px;
 		.tab-list{
 			font-size: 16px;
 			line-height: 40px;
-			font-weight: bold;
 			text-align: center;
 			color: #666;
-			background-color: #ddd;
-			width: 150px;
+			background-color: #f0f6fc;
+			width: 50%;
 			height: 40px;
 			display: inline-block;
 			float: left;
 			cursor: pointer;
+			border-bottom: 1px solid #e6e6e6;
+			border-left: 1px solid #e6e6e6;
+			box-sizing: border-box;
 			&.active{
 				background-color: #fff;
-				color: #333;
+				color: #008cff;
+				border-top: 2px solid #008cff;
+				border-bottom: 1px solid #fff;
 			}
 		}
 	}
+	.tab-main-tab{
+		display: none;
+		&.active{
+			display: block;
+		}
+		height: 560px;
+		overflow-y: scroll;
+		&::-webkit-scrollbar-track-piece {
+		    background: #fff;
+		}
+	  	&::-webkit-scrollbar {
+	   	 width: 6px;
+	 	}
+	  	&::-webkit-scrollbar-thumb {
+	    	background: #999;
+	    	border-radius: 20px;
+	  	}
+	}
 }
+
+//时间轴
+.timer-outside-circle {
+        width: 12px;
+        height: 12px;
+        background: #e5edfd;
+        border-radius: 50%;
+        position: absolute;
+        left: -6px;
+        top: 2px;
+        .timer-inside-circle {
+          width: 6px;
+          height: 6px;
+          background: #008cff;
+          border-radius: 50%;
+          position: absolute;
+          top: 25%;
+          left: 25%;
+        }
+      }
 
 //LeftbarList component
 .article-list{
+	padding-left: 15px;
 	.list-item-container{
 		border-left: 1px solid #d8d8d8;
 		list-style: none;
 		position: relative;
 		&:first-child{
-			.list-item{
-				.timer:before{
+			.list-item:before{
 					content: '';
 					width: 9px;
 					height: 9px;
@@ -48,23 +100,27 @@
 					display: inline-block;
 					position: absolute;
 					left: -5px;
-					top: -5px
-				}
+					top: -7px
+			}
+		}
+		&:last-of-type{
+			.list-item:after{
+					content: '';
+					width: 9px;
+					height: 60px;
+					background: #fff;
+					display: inline-block;
+					position: absolute;
+					left: -5px;
+					top: 14px
 			}
 		}
 		.list-item{
 			padding: 0 15px 30px;
 			.list-content{
-
-			}
-			.timer-circle{
-				width: 9px;
-				height: 9px;
-				background: #8bceff;
-				border-radius: 50%;
-				position: absolute;
-				left: -5px;
-				top: 4px;
+				font-size: 14px;
+				color: #393939;
+				line-height: 21px;
 			}
 			.timer{
 				font-size: 12px;
@@ -76,5 +132,45 @@
 	}
 }
 
-
+//侧边栏话题
+.topic-list{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	.list-item-container{
+		padding: 15px 0 15px 15px;
+		border-bottom: 1px solid #e6e6e6;
+		.list-avatar{
+			width: 30px;
+			height: 30px;
+			border:1px solid #d8d8d8;
+			border-radius: 3px;
+			float: left;
+		}
+		.list-content-container{
+			float: left;
+			padding:0 8px 0 8px;
+			width: 400px;
+			.list-meta{
+				.username{
+					display: inline-block;
+					font-size: 12px;
+					color: #666;
+					margin-right: 8px;
+				}
+				.timer{
+					display: inline-block;
+					font-size: 12px;
+					color: #999;
+				}
+			}
+			.list-content{
+				font-size: 14px;
+				color: #333;
+				line-height: 18px;
+				padding-top: 4px;
+			}
+		}
+	}
+}
 

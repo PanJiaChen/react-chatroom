@@ -1,15 +1,15 @@
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
-
+import AjaxMgr from '../../../common/utils/ajxaLoop.js'
 
 const urlMap = {
-    topic: Api.getRelaticeTopics,
+    getTopics: Api.getRelaticeTopics,
 }
 
 export default class TopicStore extends BaseStore {
 
-    __className = 'TitleDetailStore';
+    __className = 'TopicStore';
 
     static ActionTypes = {
         TOPIC_LOAD: 'TOPIC_LOAD',
@@ -18,27 +18,20 @@ export default class TopicStore extends BaseStore {
     };
 
     state = {
-        detail:[{
-            text:"正在努力加载中!",
-            createdAt:"",
-            user:{
-                username:"小编",
-                avatar:"http://avatar.cdn.wallstcn.com/60/6c/b4/loading8.gif!wscn.avatar.xs"
-            }
-        }]
+        detail:[]
     };
 
-    loadTopicAjax(payLoad) {
+    loadTopicAjax(payLoad,minInterval) {
         const ats = TopicStore.ActionTypes;
         this.dispatch({type: ats.TOPIC_LOAD});
         var that = this;
-        utils.ajax({
-            url: urlMap["topic"]()
-            , dataType: 'jsonp'
-            , success: function (resp) {
-                that.dispatch({type: ats.TOPIC_LOAD_S, payLoad: resp})
-            }
+        const commentAjax=new AjaxMgr({
+            url:urlMap["getTopics"](),
+            success:function(resp){that.dispatch({type: ats.TOPIC_LOAD_S, payLoad: resp})},
+            minInterval:minInterval
+
         })
+       commentAjax.setLoop(true).request();
     }
 
 
@@ -72,6 +65,7 @@ const actionMethods = {
     },
     loadTopic_s(state, payLoad){
         state.detail=[];
+        console.log(payLoad)
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: payLoad.results

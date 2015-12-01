@@ -7,9 +7,7 @@ import AudioContainer from './js/containers/audio/AudioContainer.js';
 import VedioContainer from './js/containers/vedio/VedioContainer.js';
 
 import LeftbarContainer from './js/containers/leftbar/LeftBarContainer.js'
-import LeftBarStore from './js/store/LeftBarStore.js'
-const leftBarStore = new LeftBarStore();
-const LeftBarElement = enhanceWithStore(LeftbarContainer, leftBarStore);
+
 
 import TitleContainer from './js/containers/title/TitleContainer'
 import TitleStore from './js/store/TitleStore.js'
@@ -33,8 +31,8 @@ import Loading from './js/components/Loading.js'
 import './less/index.less'
 
 const transformsMap = {
-    audio: <AudioContainer key='audio' />,
-    vedio: <VedioContainer key='vedio' />
+    // audio: <AudioContainer key='audio' />,
+    // vedio: <VedioContainer key='vedio' />
 }
 
 class ChatroomContainer extends Component {
@@ -99,11 +97,11 @@ class ChatroomContainer extends Component {
         return (
             <div className="react-container">
                 {includeArr}
-                <LeftBarElement />
+                <LeftbarContainer />
                 <div className="main-container">
                     <TitleElement />
-                    <TopicElement />
-                    <CommentElement />
+                    
+                    
                   
                 </div>
             </div>

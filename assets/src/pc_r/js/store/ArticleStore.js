@@ -1,48 +1,51 @@
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
+import AjaxMgr from '../../../common/utils/ajxaLoop.js'
 
 
-const ActionTypes={
-    LOAD:'LOAD',
-    LOAD_S:'LOAD_S',
-    LOAD_E:'LOAD_E'
-};
 const urlMap={
-    articles:Api.getRelativeArticles,
-    topics:Api.getRelaticeTopics
+    getArticles:Api.getRelativeArticles
 }
 
-export default class PostDetailStore extends BaseStore{
+export default class ArticleStore extends BaseStore{
 
-    __className ='PostDetailStore';
+    __className ='ArticeStore';
+
+    static ActionTypes={
+        LOAD:'LOAD',
+        LOAD_S:'LOAD_S',
+        LOAD_E:'LOAD_E'
+    };
 
     state = {
         isLoading:false,
         detail:[]
     };
 
-    loadRelativeAjax(payLoad,url) {
-        this.dispatch({type:ActionTypes.LOAD});
-        var that=this
-        utils.ajax({
-                url: urlMap[url]()
-              , dataType: 'jsonp'
-              , success: function (resp) {
-                  that.dispatch({type:ActionTypes.LOAD_S,payLoad:resp.results})
-                }
-            })
+    loadArticleAjax(payLoad,minInterval) {
+        const ats = ArticleStore.ActionTypes;
+        this.dispatch({type: ats.LOAD});
+        var that = this;
+        const commentAjax=new AjaxMgr({
+            url:urlMap["getArticles"](),
+            success:function(resp){that.dispatch({type: ats.LOAD_S, payLoad: resp})},
+            minInterval:minInterval
+
+        })
+       commentAjax.setLoop(true).request();
     }
 
     reduce(action){
         const type = action.type;
         const payLoad = action.payLoad;
+        const ats = ArticleStore.ActionTypes;
         switch(type) {
-            case ActionTypes.LOAD:
+            case ats.LOAD:
                 return actionMethods.loadRelativeArticles(this.state,payLoad)
-            case ActionTypes.LOAD_S:
+            case ats.LOAD_S:
                 return actionMethods.loadRelativeArticles_s(this.state, payLoad)
-            case ActionTypes.LOAD_E:
+            case ats.LOAD_E:
                 return actionMethods.loadRelativeArticles_e(this.state, payLoad)
 
             default:
@@ -54,7 +57,6 @@ export default class PostDetailStore extends BaseStore{
 
 const actionMethods={
     loadRelativeArticles(state,payLoad){
-
         if(state.isLoading){
             return state;
         }else{
@@ -66,7 +68,8 @@ const actionMethods={
     },
     loadRelativeArticles_s(state,payLoad){
         state.detail=[];
-        payLoad.forEach(item=>{
+        console.log(payLoad)
+        payLoad.results.forEach(item=>{
             state.detail.push(item)
         })
         return utils.State.setShallow(state,{
