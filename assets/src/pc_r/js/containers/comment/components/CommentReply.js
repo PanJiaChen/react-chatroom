@@ -17,7 +17,7 @@ export default class CommentReplay extends Component {
         if(!userDetail.id){
             var userAvatar=(<div  className='user-avatar'><img src='' /></div>)
         }else{
-            var userAvatar=(<div r className='user-avatar has-login'><img src={userDetail.avatar} /></div>)
+            var userAvatar=(<div  className='user-avatar has-login'><img src={userDetail.avatar} /></div>)
         }
        
         return (
@@ -31,7 +31,7 @@ export default class CommentReplay extends Component {
 
     handleClick(event){
         const store = this.props.store;
-        console.log(this.refs.userAvatar.getAttribute('class'))
+        console.log($('.comment-reply-textarea').val())
         if(this.ref.userAvatar.getAttribute('class')=='user-avatar has-login'){
             var input = this.refs.commentReplyTextarea;
             var inputVal=input.value;
