@@ -1,10 +1,10 @@
 'use strict';
 var HOST_URL = 'http://api.wscn.com/v2/';
 // 获取节点
-var WSCN_URL = 'http://wscn.com/';
+// var WSCN_URL = 'http://wscn.com/';
+var WSCN_URL = 'http://rebirth.wallstcn.com/';
+
 var ChatroomId;
-
-
 
 //登录信息
 var User_Login = 'me';
@@ -38,9 +38,6 @@ function _getCount() {
     return HOST_URL + 'chatrooms/' + ChatroomId + '/count';
 }
 
-function _getLoginDetail() {
-    return WSCN_URL + User_Login;
-}
 
 //评论列表
 function _getComments() {

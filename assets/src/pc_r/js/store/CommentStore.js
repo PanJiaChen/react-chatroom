@@ -12,7 +12,7 @@ const urlMap = {
 
 export default class CommentStore extends BaseStore {
 
-    __className = 'TitleDetailStore';
+    __className = 'CommentStore';
 
     static ActionTypes = {
         COMMENT_LOAD: 'COMMENT_LOAD',
@@ -60,6 +60,7 @@ export default class CommentStore extends BaseStore {
     replyCommentAjax(payLoad,val) {
         const ats = CommentStore.ActionTypes;
         this.dispatch({type: ats.COMMENT_REPLY});
+        console.log('回复请求')
         var that = this;
         utils.ajax({
             url: urlMap['replyComment']()
