@@ -2,11 +2,11 @@ import {Component} from 'react'
 import utils from '../../../../../common/utils/utils.js'
 import Thumbnail from '../../../components/Thumbnail.js'
 //它对应的store是TopicStore^_^
-//
+
 export default class LeftbarList extends Component {
 
-    static defaultProps = {
-        list: []
+    state = {
+        page:2
     }
 
     static contextTypes={
@@ -22,6 +22,13 @@ export default class LeftbarList extends Component {
         console.log('话题')
         const store = this.props.store;
         store.loadTopicAjax('fasle',this.context.minInterval.topic)
+    }
+
+    loadMore(){
+        const page=this.state.page;
+        const store = this.props.store;
+        store.loadPageAjax('fasle',page)
+        this.setState({page: page+1});
     }
 
     render() {
@@ -74,12 +81,23 @@ export default class LeftbarList extends Component {
                 </li>
             )
         })
+        
+        //判读是否有加载
+        var loadBtnClass;
+        console.log('判断class'+state.hasLoadMoreBtn)
+        if(state.hasLoadMoreBtn){
+            loadBtnClass="load-more active"
+        }else{
+            loadBtnClass="load-more"
+        }
 
         return (
             <ul className='topic-list'>
                {repeatLi}
+               <div className={loadBtnClass}  onClick={this.loadMore.bind(this)}>加载更多</div>
             </ul>
         )
     }
+
 
 }

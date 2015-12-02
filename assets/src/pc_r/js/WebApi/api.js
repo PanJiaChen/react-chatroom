@@ -25,8 +25,13 @@ function _getComments() {
     return HOST_URL + 'comments?channel=chat&id=' + ChatroomId;
 }
 
-function _getRelaticeTopics() {
-    return HOST_URL + 'chatrooms/' + ChatroomId + '/topics?';
+function _getRelaticeTopics(page) {
+    if(page){
+        page=page
+    }else{
+        page=1
+    }
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/topics?limit=7&page='+page;
 }
 
 function _getRelativeArticles() {
