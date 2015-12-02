@@ -15,15 +15,15 @@ export default class CommentReplay extends Component {
         var userDetail=this.props.userDetail;
 
         if(!userDetail.id){
-            var userAvatar=(<div  className='user-avatar'><img src='' /></div>)
+            var userAvatar=(<div id='js-user-avatar' className='user-avatar'><img src='' /></div>)
         }else{
-            var userAvatar=(<div  className='user-avatar has-login'><img src={userDetail.avatar} /></div>)
+            var userAvatar=(<div id='js-user-avatar' className='user-avatar has-login'><img src={userDetail.avatar} /></div>)
         }
        
         return (
             <div className='comment-reply-container'>
                 {userAvatar}
-                <textarea  className='comment-reply-textarea' placeholder="我也说几句"></textarea>
+                <textarea id='js-comment-reply-textarea' className='comment-reply-textarea' placeholder="我也说几句"></textarea>
                 <div className="reply-btn" onClick={this.handleClick.bind(this)} >发表</div>
             </div>
         )
@@ -31,12 +31,11 @@ export default class CommentReplay extends Component {
 
     handleClick(event){
         const store = this.props.store;
-        console.log($('.comment-reply-textarea').val())
-        if(this.ref.userAvatar.getAttribute('class')=='user-avatar has-login'){
-            var input = this.refs.commentReplyTextarea;
-            var inputVal=input.value;
+        const avatarClass=$('#js-user-avatar').attr('class')
+        if(avatarClass=='user-avatar has-login'){
+            var inputVal = $('#js-comment-reply-textarea').val();
+            console.log(inputVal)
             store.replyCommentAjax('fasle',inputVal)
-            co
         }else{
             store.userValidateAjax('fasle')
         } 

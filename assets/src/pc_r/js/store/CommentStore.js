@@ -60,7 +60,7 @@ export default class CommentStore extends BaseStore {
     replyCommentAjax(payLoad,val) {
         const ats = CommentStore.ActionTypes;
         this.dispatch({type: ats.COMMENT_REPLY});
-        console.log('回复请求')
+        console.log('回复请求'+val)
         var that = this;
         utils.ajax({
             url: urlMap['replyComment']()
@@ -68,10 +68,10 @@ export default class CommentStore extends BaseStore {
             , method:'post'
             , data:{content:val}
             , withCredentials: true
-            , crossOrigin: true
+            , crossDomain: true
             , success: function (resp) {
-                console.log(resp)
-                that.dispatch({type: ats.COMMENT_REPLY_S, payLoad: resp})
+                console.log("成功")
+                that.dispatch({type: ats.COMMENT_REPLY_S, payLoad: 'resp'})
             }
         })
     }

@@ -13,13 +13,15 @@ export default class BroadcastApp {
     constructor(options = {}) {
         this.parentDom = options.parentDom
         this.apiBaseUrl = options.apiBaseUrl
+        this.hostUrl = options.hostUrl
         this.minInterval = options.minInterval || BroadcastApp.minInterval
         this.chatId = options.chatId
     }
 
     init() {
         Api.setChatroomId(this.chatId);
-        Api.setBaseUrl(this.apiBaseUrl)
+        Api.setBaseUrl(this.apiBaseUrl);
+        Api.setHostUrl(this.hostUrl)
         this.pageElem = <ChatroomElement chatId={this.chatId} minInterval={this.minInterval}/>
         this.ChatroomElement = ReactDom.render(this.pageElem, this.parentDom)
         return this;

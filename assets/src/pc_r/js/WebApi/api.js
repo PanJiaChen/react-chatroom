@@ -1,8 +1,8 @@
 'use strict';
 var HOST_URL = 'http://api.wscn.com/v2/';
 // 获取节点
-// var WSCN_URL = 'http://wscn.com/';
-var WSCN_URL = 'http://rebirth.wallstcn.com/';
+var WSCN_URL = 'http://wscn.com/';
+// var WSCN_URL = 'http://rebirth.wallstcn.com/';
 
 var ChatroomId;
 
@@ -12,7 +12,9 @@ var User_Login = 'me';
 function _setBaseUrl(url) {
     HOST_URL = url;
 }
-
+function _setHostUrl(url) {
+    WSCN_URL = url;
+}
 function _setChatroomId(id) {
     console.log('setId')
     ChatroomId = id;
@@ -62,6 +64,7 @@ function _getLoginDetail() {
 
 module.exports = {
     setBaseUrl: _setBaseUrl,
+    setHostUrl: _setHostUrl,
     setChatroomId: _setChatroomId,
     getChatroom: _getChatroom,
     getRelativeArticles: _getRelativeArticles,

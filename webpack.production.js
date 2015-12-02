@@ -68,28 +68,6 @@ module.exports = {
                 except: ['$', 'exports', 'require']
             }
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name:'commons',
-            filename:'commons.js',
-            minChunks:function(module,count){
-                //引用测试大于某个次数
-                if(count>=3){
-                    return true;
-                }
-
-                //符合某种格式
-                var resourceName = module.resource
-                if(resourceName){
-                    resourceName = resourceName.substring(resourceName.lastIndexOf(path.sep)+1)
-                }
-                var reg = /^(\w)+.common/
-                if(reg.test(resourceName)){
-                    return true;
-                }
-
-                return false;
-            }
-        }),
         assetsPluginInstance
     ],
     postcss: function () {
