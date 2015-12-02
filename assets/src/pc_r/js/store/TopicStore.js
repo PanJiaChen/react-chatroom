@@ -89,27 +89,37 @@ const actionMethods = {
         var nTopic=payLoad.results[0];
         console.log(nTopic.id)
         console.log(state.newTopicId)
-        if((payLoad.results.length==0) ||( (state.newTopicId!='') && (nTopic.id==state.newTopicId) )  ){
+        if((payLoad.results.length==0) ||(nTopic.id==state.newTopicId)   ){
             console.log('不更新')
             return state
         }else{
-            const idMap=[];
-            const topicMap=[]
-            state.detail.map(item=>{
-                idMap.push(item.id)
-            })
-            console.log(idMap)
-            for(var i=payLoad.results.length-1;i>=0;i--){
-                console.log('哎'+payLoad.results[i])
-                state.detail.unshift(payLoad.results[i])
+            
+            if(state.newTopicId==''){
+                console.log('初始化')
+                state.newTopicId=nTopic.id;
+                return utils.State.setShallow(state, {
+                    isLoading: false,
+                    detail: payLoad.results
+                })
+            }else{
+                const idMap=[];
+                state.detail.map(item=>{
+                    idMap.push(item.id)
+                })
+                for(var i=payLoad.results.length-1;i>=0;i--){
+                    if(idMap.indexOf(payLoad.results[i].id)>=0){
+                        
+                    }else{
+                        state.detail.unshift(payLoad.results[i])
+                    }
+                }
+                console.log('更新')
+                state.newTopicId=nTopic.id;
+                return utils.State.setShallow(state, {
+                    isLoading: false,
+                    detail: state.detail
+                })
             }
-
-            console.log('更新'+payLoad.results[0])
-            state.newTopicId=nTopic.id;
-            return utils.State.setShallow(state, {
-                isLoading: false,
-                detail: state.detail
-            })
         }
         
     },
@@ -129,12 +139,23 @@ const actionMethods = {
         }
     },
     loadPage_s(state, payLoad){
-       state.detail=state.detail.concat(payLoad.results)
+       
        const preUrl=payLoad.paginator.previous;
        const lastUrl=payLoad.paginator.last;
-       const lastPage=utils.splitUrl(lastUrl)['page']
-       const prePage=utils.splitUrl(preUrl)['page']
-       console.log(lastPage-prePage)
+       const lastPage=utils.splitUrl(lastUrl)['page'];
+       const prePage=utils.splitUrl(preUrl)['page'];
+       const idMap=[];
+        state.detail.map(item=>{
+            idMap.push(item.id)
+        })
+        for(var i=0;i<payLoad.results.length;i++){
+            if(idMap.indexOf(payLoad.results[i].id)>=0){
+                
+            }else{
+                state.detail.push(payLoad.results[i])
+            }
+        }
+
        if(lastPage-prePage==1){
             return utils.State.setShallow(state, {
                 isLoading: false,

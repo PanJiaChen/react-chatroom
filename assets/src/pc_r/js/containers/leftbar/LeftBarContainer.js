@@ -25,7 +25,7 @@ class LeftBarContainer extends Component{
     }
 
     state = {
-        tabSelect:'informations',
+        tabSelect:'topics',
     }
 
     componentDidMount(){
