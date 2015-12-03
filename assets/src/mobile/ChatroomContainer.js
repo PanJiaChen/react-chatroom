@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import ReactDom from 'react-dom'
+import ReactDOM from 'react-dom'
 import utils from '../common/utils/utils.js'
 import {enhanceWithStore} from 'react-zlux'
 import AudioContainer from './js/containers/audio/AudioContainer.js';
@@ -58,7 +58,7 @@ class ChatroomContainer extends Component {
         this.node.className = 'loading-container';
         this.node.id = 'js-loading';
         document.body.appendChild(this.node);
-        ReactDom.render(<Loading />, document.getElementById('js-loading'))
+        ReactDOM.render(<Loading />, document.getElementById('js-loading'))
     }
 
     componentWillUnmount() {
@@ -82,7 +82,7 @@ class ChatroomContainer extends Component {
         return (
             <div className="react-container">
                 <div className='broadcast-header'>
-                    <div className='wscn'></div>
+                    <div className='wscn'><img src={require('./img/wscn.png')} /></div>
                     <div className="header-num">{detail.numOfUsers}人参与</div>
                 </div>
 

@@ -4,17 +4,14 @@ var path = require('path')
 var AssetsPlugin         = require('assets-webpack-plugin');
 var assetsPluginInstance = new AssetsPlugin({filename:'assets/assets-map.json',update: true,prettyPrint: true})
 
-var autoprefixer = require('autoprefixer');
-var precss      = require('precss');
-
 var node_modules = path.join(__dirname,'./node_modules');
 module.exports = {
     //entry: {'index.entry':"./assets/src/index/index.entry.js"},
     entry: {
     },
     output: {
-        filename: "[name]-[chunkhash].js",
-        chunkFilename:'[name]-[chunkhash].js',
+        filename: "[name].js",
+        chunkFilename:'[name].js',
         path: path.join(__dirname + "/assets/dist"),
         // libraryTarget:'var',
         publicPath:''//webpack-dev-server build的文件是在内存里的，使用时，在硬盘上看不到生成的文件。这个路径是静态文件的basePath
@@ -51,21 +48,18 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!postcss-loader!less-loader')
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!less-loader')
             },
             { test: /\.(png|jpg|gif)$/, loader: 'file-loader?name=/img/[hash].[ext]' }
         ]
     },
     devtool:'sourcemap',
     plugins: [
-        new ExtractTextPlugin("css/[name]-[chunkhash].css"),
+        new ExtractTextPlugin("css/[name].css"),
         new webpack.optimize.UglifyJsPlugin({
             mangle: {
                 except: ['$', 'exports', 'require']
             }
         })
     ],
-    postcss: function () {
-        return [autoprefixer, precss];
-    }
 }

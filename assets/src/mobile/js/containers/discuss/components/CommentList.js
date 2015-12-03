@@ -85,7 +85,9 @@ export default class CommentList extends Component {
         if (list.length<=0) {
             return (
                 <div className='commentList-empty'>
-                    <div className='commentList-empty-img'></div>
+                    <div className='commentList-empty-img'>
+                        <img src={require('../../../../img/discuess_empty@2x.png')} />
+                    </div>
                     暂无讨论
                 </div>
             )

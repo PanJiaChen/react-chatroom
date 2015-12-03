@@ -1,4 +1,4 @@
-import ReactDom from 'react-dom'
+import ReactDOM from 'react-dom'
 import {Component} from 'react'
 import ChatroomContainer from './ChatroomContainer.js'
 var Api = require('./js/WebApi/api.js');
@@ -21,7 +21,7 @@ export default class BroadcastApp {
         Api.setChatroomId(this.chatId);
         Api.setBaseUrl(this.apiBaseUrl)
         this.pageElem = <ChatroomElement chatId={this.chatId} minInterval={this.minInterval}/>
-        this.ChatroomElement = ReactDom.render(this.pageElem, this.parentDom)
+        this.ChatroomElement = ReactDOM.render(this.pageElem, this.parentDom)
         return this;
     }
 }
