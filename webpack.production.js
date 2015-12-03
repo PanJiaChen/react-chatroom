@@ -16,19 +16,21 @@ module.exports = {
         // libraryTarget:'var',
         publicPath:''//webpack-dev-server build的文件是在内存里的，使用时，在硬盘上看不到生成的文件。这个路径是静态文件的basePath
     },
-    //devtool: 'eval',
+    // //devtool: 'eval',
     externals:{
         'react': 'React',
         'jquery': 'jQuery',
-        'react-dom':'ReactDOM'
+        'react-dom':'ReactDOM',
+        'react-addons-transition-group': 'React.addons.TransitionGroup'
     },
 
     resolve:{
-        // alias:{
-        //     react:path.join(node_modules,'./react/dist/react.min.js'),
-        //     jquery:path.join(node_modules,'./jquery/dist/jquery.min.js'),
-        //     'react-dom':path.join(node_modules,'./react-dom/dist/react-dom.min.js'),
-        // }
+        alias:{
+            react:path.join(node_modules,'./react/dist/react-with-addons.min.js'),
+            jquery:path.join(node_modules,'./jquery/dist/jquery.min.js'),
+            'react-dom':path.join(node_modules,'./react-dom/dist/react-dom.min.js'),
+            'react-addons-transition-group':path.join(node_modules,'./react/lib/ReactTransitionGroup.js'),     
+        }
     },
     module: {
         // noParse:[
