@@ -82,7 +82,7 @@ class ChatroomContainer extends Component {
         return (
             <div className="react-container">
                 <div className='broadcast-header'>
-                    <div className='wscn'><img src={require('./img/wscn.png')} /></div>
+                    <div className='wscn'></div>
                     <div className="header-num">{detail.numOfUsers}人参与</div>
                 </div>
 

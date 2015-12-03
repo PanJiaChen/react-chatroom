@@ -86,7 +86,6 @@ export default class CommentList extends Component {
             return (
                 <div className='commentList-empty'>
                     <div className='commentList-empty-img'>
-                        <img src={require('../../../../img/discuess_empty@2x.png')} />
                     </div>
                     暂无讨论
                 </div>

@@ -94,7 +94,7 @@ export default class TopicList extends Component {
         })
         return (
             <ul className='topic-list'>
-                <img className='forward_arrow' onClick={this.showModal.bind(this)} src={require('../../../../img/forward_arrow@2x.png')} />
+                <div className='forward_arrow' onClick={this.showModal.bind(this)} ></div>
                 <Modal isOpen={this.state.modalIsOpen}  style={customStyles} >
                     <span onClick={this.closeModal.bind(this)} className="modal-close"></span>
                     <div className='topic-list-container'>

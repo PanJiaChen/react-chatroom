@@ -33,7 +33,6 @@ export default class InformationList extends Component {
             return(
                 <div className='information-empty-container'>
                     <div className='information-empty-img'>
-                        <img src={require('../../../../img/news_empty@2x.png')} />
                     </div>
                     暂无最新资讯
                 </div>

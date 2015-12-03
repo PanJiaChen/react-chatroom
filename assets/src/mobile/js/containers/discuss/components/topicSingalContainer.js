@@ -141,7 +141,7 @@ class TopicContainer extends Component {
             })
             thumbnail=(
                 <div className="thumbnail-container">
-                    <img className='thumbnail' src={require('../../../../img/picture@2x.png')} />
+                    <div className='thumbnail'></div>
                     <Thumbnail heading={'点击查看'} images={IMAGES}/>
                 </div>
             )
