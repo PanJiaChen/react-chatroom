@@ -1,9 +1,7 @@
 'use strict';
 var HOST_URL = 'http://api.wscn.com/v2/';
-// 获取节点
-var WSCN_URL = 'http://wscn.com/';
-var ChatroomId;
 
+var ChatroomId;
 
 //参与人数
 var Get_Count = 'chatrooms/' + ChatroomId + '/count';
@@ -42,14 +40,6 @@ function _getCount() {
 }
 
 
-function _replyComment() {
-    return WSCN_URL + Reply_Comment;
-}
-
-function _getLoginDetail() {
-    return WSCN_URL + User_Login;
-}
-
 
 module.exports = {
     setBaseUrl: _setBaseUrl,
@@ -58,8 +48,5 @@ module.exports = {
     getRelativeArticles: _getRelativeArticles,
     getRelaticeTopics: _getRelaticeTopics,
     getComments: _getComments,
-    getCount: _getCount,
-    replyComment: _replyComment,
-    getLoginDetail: _getLoginDetail
-
+    getCount: _getCount
 };

@@ -24,10 +24,6 @@ module.exports = {
         'react': 'React',
         'jquery': 'jQuery',
         'react-dom':'ReactDOM'
-        //'wscn-common':{
-        //    commonjs2:'wscn-common',
-        //    commonjs:'wscn-common'
-        //}
     },
 
     resolve:{
@@ -67,8 +63,7 @@ module.exports = {
             mangle: {
                 except: ['$', 'exports', 'require']
             }
-        }),
-        assetsPluginInstance
+        })
     ],
     postcss: function () {
         return [autoprefixer, precss];

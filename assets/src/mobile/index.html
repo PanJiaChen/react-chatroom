@@ -19,15 +19,7 @@
     }
 </style>
 <body>
-    <!-- <video id="really-cool-video" class="video-js vjs-default-skin" controls
-     preload="auto" width="640" height="264" poster="really-cool-video-poster.jpg"
-     data-setup='{}'>
-      <source src="http://pili-live-hls.wscn.wallstcn.com/wscn/chat_55_1127023302_rebirth_wallstcn_com.flv" type='video/flv'>
-      <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a web browser
-        that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-      </p>
-    </video> -->
+
 <div id="mountDom"></div>
 <script src="http://localhost:9527/mobile.entry.js"></script>
 <script>
@@ -37,9 +29,9 @@
         chatId: 65,
         minInterval:{
             info: 60 * 1000,//basic info的请求，60s轮询一次
-            comment: 10 * 1000,//评论，5s
+            comment: 60 * 1000,//评论，5s
             article: 90 * 1000,//资讯
-            topic: 10 * 1000//话题
+            topic: 60 * 1000//话题
         }
     }).init();
 </script>

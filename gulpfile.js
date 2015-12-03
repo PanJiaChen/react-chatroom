@@ -12,7 +12,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //es6 template string，需要node 4.0 以上版本，如果版本不到，只能手动拼了
 function getTplContent(libJs, libCss) {
-    var str = '\n<!DOCTYPE html>\n    <html>\n    <head lang="en">\n        <meta charset="UTF-8">\n        <title>webpack coc</title>\n        <link href="' + libCss + '" rel="stylesheet">\n    </head>\n    <body>\n        <div id="mount-dom"></div>\n    <script src="commons.js"></script>    <script src="' + libJs + '"></script>\n    </body>\n</html>\n    ';
+    var str = '\n<!DOCTYPE html>\n    <html>\n    <head lang="en">\n        <meta charset="UTF-8">\n        <title>webpack coc</title>\n        <link href="' + libCss + '" rel="stylesheet">\n    </head>\n    <body>\n        <div id="mountDom"></div>\n     <script src="' + libJs + '"></script>\n    </body>\n</html>\n    ';
     return str;
 }
 
@@ -143,15 +143,15 @@ gulp.task('dev-server',function(){
     //    throw new Error('can not find *.entry.js in folder:'+folder);
     //}
 
-   var argv = require('yargs').argv;
-   var folder = argv['f'];
-   if(!folder){
-       folder='**'
-   }
-   var entryFiles = glob.sync(__dirname+'/assets/src/'+folder+'/*.entry.js')
-   if(entryFiles.length==0){
-       throw new Error('can not find *.entry.js in folder:'+folder);
-   }
+   // var argv = require('yargs').argv;
+   // var folder = argv['f'];
+   // if(!folder){
+       // folder='**'
+   // }
+   var entryFiles = glob.sync(__dirname+'/assets/src/**/*.entry.js')
+   // if(entryFiles.length==0){
+       // throw new Error('can not find *.entry.js in folder:'+folder);
+   // }
 
     var port = 9527;
     var webpackDevConfig = getDevelopConfig();

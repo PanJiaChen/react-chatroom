@@ -85,7 +85,7 @@ class ChatroomContainer extends Component {
                     <div className='wscn'></div>
                     <div className="header-num">{detail.numOfUsers}人参与</div>
                 </div>
-                <ArticleElement />
+
                 {includeArr}
             </div>
         )
