@@ -31,11 +31,17 @@ export default class CommentReplay extends Component {
 
     handleClick(event){
         const store = this.props.store;
-        const avatarClass=$('#js-user-avatar').attr('class')
+        const avatarClass=$('#js-user-avatar').attr('class');
+        const input=$('#js-comment-reply-textarea')
+         console.log('卧槽'+$('.comment-list')[0].scrollHeight)
+         $('.comment-list')[0].scrollTop=$('.comment-list')[0].scrollHeight
+        $('.comment-list').addClass('apple')
         if(avatarClass=='user-avatar has-login'){
-            var inputVal = $('#js-comment-reply-textarea').val();
+            var inputVal = input.val();
             console.log(inputVal)
-            store.replyCommentAjax('fasle',inputVal)
+            store.replyCommentAjax('fasle',inputVal);
+            input.val('');
+
         }else{
             store.userValidateAjax('fasle')
         } 

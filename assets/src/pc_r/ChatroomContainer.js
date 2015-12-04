@@ -1,5 +1,4 @@
 import {Component} from 'react'
-import ReactDom from 'react-dom'
 import utils from '../common/utils/utils.js'
 import './less/index.less'
 import {enhanceWithStore} from 'react-zlux'
@@ -23,9 +22,6 @@ import CommentContainer from './js/containers/comment/CommentContainer.js'
 import CommentStore from './js/store/CommentStore.js'
 const commentStore = new CommentStore();
 const CommentElement = enhanceWithStore(CommentContainer, commentStore);
-
-
-import Loading from './js/components/Loading.js'
 
 import './less/index.less'
 

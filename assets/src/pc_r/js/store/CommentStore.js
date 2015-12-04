@@ -24,11 +24,16 @@ export default class CommentStore extends BaseStore {
 
         USER_DETAIL: 'USER_DETAIL',
         USER_DETAIL_S: 'USER_DETAIL_S',
+
+        GET_NEW_COMMENT: 'GET_NEW_COMMENT',
+        GET_NEW_COMMENT_S: 'GET_NEW_COMMENT_S',
     };
 
     state = {
         comments: [[]],
-        userDetail:{}
+        userDetail:{},
+        toLoacateBottom:false
+
     };
 
     loadCommentAjax(payLoad,minInterval) {
@@ -60,18 +65,29 @@ export default class CommentStore extends BaseStore {
     replyCommentAjax(payLoad,val) {
         const ats = CommentStore.ActionTypes;
         this.dispatch({type: ats.COMMENT_REPLY});
-        console.log('回复请求'+val)
         var that = this;
         utils.ajax({
             url: urlMap['replyComment']()
-            , dataType: 'json'
             , method:'post'
             , data:{content:val}
             , withCredentials: true
             , crossDomain: true
             , success: function (resp) {
                 console.log("成功")
-                that.dispatch({type: ats.COMMENT_REPLY_S, payLoad: 'resp'})
+                that.getNewCommentAjax(that)
+            }
+        })
+    }
+
+   getNewCommentAjax(_this) {
+        const ats = CommentStore.ActionTypes;
+        _this.dispatch({type: ats.GET_NEW_COMMENT});
+        var that=_this;
+        utils.ajax({
+            url: urlMap['getComments']()
+            , dataType: 'jsonp'
+            , success: function (resp) {
+                that.dispatch({type: ats.GET_NEW_COMMENT_S, payLoad: resp})
             }
         })
     }
@@ -95,6 +111,10 @@ export default class CommentStore extends BaseStore {
                 return actionMethods.getLoginDetail(this.state, payLoad)
             case ats.USER_DETAIL_S:
                 return actionMethods.getLoginDetail_s(this.state, payLoad)
+            case ats.GET_NEW_COMMENT:
+                return actionMethods.getNewComment(this.state, payLoad)
+            case ats.GET_NEW_COMMENT_S:
+                return actionMethods.getNewComment_s(this.state, payLoad)
             default:
                 console.warn(`type:${type} not found: use default`)
                 return this.state
@@ -115,11 +135,13 @@ const actionMethods = {
     loadComment_s(state, payLoad){
         state.comments=[];
         payLoad.comments.forEach(item=>{
-            state.comments.push(item)
+            state.comments.unshift(item)
         })
+
         return utils.State.setShallow(state,{
             isLoading:false,
-            comments:state.comments
+            comments:state.comments,
+            toLoacateBottom:true
         })
     },
     loadComment_e(state, payLoad){
@@ -146,9 +168,23 @@ const actionMethods = {
             
         })
     },
-    replyComment_s(state, payLoad){
+    replyComment_s(state, that){
+       // that.getNewCommentAjax('false')
+    },
+    getNewComment(state, payLoad){
+        return utils.State.setShallow(state,{
+            isLoading:false,
+        })
+    },
+    getNewComment_s(state, payLoad){
        console.log(payLoad)
+       state.comments.push(payLoad.comments[0])
+       console.log(state.comments)
+       return utils.State.setShallow(state,{
+            isLoading:false,
+            comments:state.comments,
+            toLoacateBottom:true
+        })
     }
-
 }
 

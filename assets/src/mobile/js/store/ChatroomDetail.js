@@ -24,12 +24,17 @@ export default class ChatroomDetailStore extends BaseStore {
         console.log('banan' + Api.getChatroom())
         const ats = ChatroomDetailStore.ActionTypes;
         this.dispatch({type: ats.CHATROOM_LOAD});
+        utils.createLoaidng();
+        utils.showLoading();
         var that = this;
         utils.ajax({
             url: Api.getChatroom()
             , dataType: 'jsonp'
             , success: function (resp) {
                 that.dispatch({type: ats.CHATROOM_LOAD_S, payLoad: resp})
+            }
+            ,error: function (err) { 
+                utils.hideLoading();
             }
         })
     }

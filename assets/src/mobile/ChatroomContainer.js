@@ -11,9 +11,8 @@ import ArticleStore from './js/store/ArticleStore.js';
 const articleStore = global.informationStore;
 const ArticleElement = enhanceWithStore(ArticleContainer, articleStore);
 
-import Loading from './js/components/Loading.js'
-
 import './less/index.less'
+import './js/components/loading.less'
 
 const transformsMap = {
     // audio: <AudioContainer />,
@@ -54,11 +53,6 @@ class ChatroomContainer extends Component {
     componentDidMount() {
         const store = this.props.store
         store.loadChatroomAjax('fasle')
-        this.node = document.createElement('div');
-        this.node.className = 'loading-container';
-        this.node.id = 'js-loading';
-        document.body.appendChild(this.node);
-        ReactDOM.render(<Loading />, document.getElementById('js-loading'))
     }
 
     componentWillUnmount() {

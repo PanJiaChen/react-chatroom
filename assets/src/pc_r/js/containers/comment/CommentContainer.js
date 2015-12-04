@@ -25,6 +25,8 @@ class CommentContainer extends Component {
         store.userValidateAjax('fasle')
     }
 
+
+
     render() {
         const store = this.props.store;
         const state = store.getState();
@@ -32,7 +34,7 @@ class CommentContainer extends Component {
         return (
             <div className='comment-container'>
                 <div className="comment-topic">讨论区</div>
-                <CommentList listDetail={state.comments} />
+                <CommentList store={store} listDetail={state.comments} />
                 <CommentReply store={store} userDetail={state.userDetail} />
             </div>
         )

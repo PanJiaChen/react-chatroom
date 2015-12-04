@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import ReactDOM from 'react-dom'
 import utils from '../../../../../common/utils/utils.js'
 
 
@@ -15,6 +16,21 @@ export default class CommentList extends Component {
 
     constructor(props, context) {
         super(props, context)
+    }
+
+
+    componentDidUpdate() {
+        const store = this.props.store;
+        const state=store.getState();
+        const targetDiv=$('.comment-list')[0];
+        if(state.toLoacateBottom){
+            targetDiv.scrollTop=targetDiv.scrollHeight
+        }
+        
+
+        // if(targetDiv){
+        //     targetDiv.scrollTop=targetDiv.scrollHeight
+        // }
     }
 
     render() {

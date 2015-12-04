@@ -1,6 +1,6 @@
 import getApiUrl from './getApiUrl.js'
 import ajax from './ajax.js'
-
+import $ from 'jquery'
 const Utils = {}
 
 var toString = Object.prototype.toString
@@ -72,11 +72,32 @@ Utils.formatTime=function(time){
 }
 
 Utils.showLoading=function(target){
-    document.getElementById('js-loading').className='loading-container hide'
+    $('#js-loading').attr('class','loading-container show')
 }
 
 Utils.hideLoading=function(){
-    document.getElementById('js-loading').className='loading-container hide'
+    $('#js-loading').attr('class','loading-container hide')
+}
+
+Utils.createLoaidng=function(){
+    $('body').attr('class','apple')
+
+    var $loading = $(
+        '<div id="js-loading">'+
+            '<div class="la-ball-spin la-2x">' +
+                '<div></div>' +
+                '<div></div>' +
+                '<div></div>' +
+                '<div></div>' +
+                '<div></div>' +
+                '<div></div>' +
+                '<div></div>' +
+                '<div></div>' +
+            '</div>'+
+        '</div>'
+    );
+    $('body').append($loading.clone())
+
 }
 
 Utils.splitUrl=function(href){
