@@ -26,6 +26,10 @@ export default class BroadcastApp {
         this.ChatroomElement = ReactDom.render(this.pageElem, this.parentDom)
         return this;
     }
+
+    _onceLogin(obj){
+        commentStore.userValidateAjax();
+    }
 }
 
 BroadcastApp.minInterval = {

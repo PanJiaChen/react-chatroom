@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src="http://localhost:9527/lib.js"></script>
+    <script src="http://localhost:9528/lib.js"></script>
 </head>
 <style>
  body {
@@ -23,18 +23,18 @@
     <div id="container">
         <div id="mountDom" class="clearfix"></div>
     </div>
-    <script src="http://localhost:9527/pc_r.entry.js"></script>
+    <script src="http://localhost:9528/pc_r.entry.js"></script>
     <script>
         var broadcast = new BroadcastApp({   
             parentDom:document.getElementById('mountDom'),
-            chatId: 65,
-            apiBaseUrl:'http://api.wscn.com/v2/',
+            chatId: 18,
+            apiBaseUrl:'http://api.wallstcn.com/v2/',
             hostUrl:'http://wscn.com/',
             minInterval:{
                 info: 60 * 1000,//basic info的请求，60s轮询一次
-                comment: 10 * 1000,//评论，5s
+                comment: 60 * 1000,//评论，5s
                 article: 90 * 1000,//资讯
-                topic: 6 * 1000,//话题
+                topic: 60 * 1000,//话题
                 count: 50 * 1000//参与人数
             }
         }).init();

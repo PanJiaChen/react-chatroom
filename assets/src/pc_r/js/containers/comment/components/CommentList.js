@@ -23,19 +23,14 @@ export default class CommentList extends Component {
         const store = this.props.store;
         const state=store.getState();
         const targetDiv=$('.comment-list')[0];
-        if(state.toLoacateBottom){
-            targetDiv.scrollTop=targetDiv.scrollHeight
-        }
-        
-
-        // if(targetDiv){
+        // if(state.toLoacateBottom){
         //     targetDiv.scrollTop=targetDiv.scrollHeight
         // }
     }
 
     render() {
         var list = this.props.listDetail;
-        if(!list[0].content){
+        if(list.length<=1){
             return <div></div>
         }
         var repeatLi = list.map(item=> {

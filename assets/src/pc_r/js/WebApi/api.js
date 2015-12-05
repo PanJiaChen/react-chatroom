@@ -6,9 +6,6 @@ var WSCN_URL = 'http://wscn.com/';
 
 var ChatroomId;
 
-//登录信息
-var User_Login = 'me';
-
 function _setBaseUrl(url) {
     HOST_URL = url;
 }

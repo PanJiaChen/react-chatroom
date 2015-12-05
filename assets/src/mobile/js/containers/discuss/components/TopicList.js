@@ -69,9 +69,7 @@ export default class TopicList extends Component {
                 <div className='topic-container' key={item.id}>
                     <div className='list-item-container '>
                         <div className="user-avatar">
-                            {/*<img src={detail.user['avatar']}/>*/}
-                            <img
-                                src='http://cv.qiaobutang.com/uploads/social_avatars/2015/9/10/10/55f0e5880cf20c2d88d33a43/large.JPG?v1441850761756 '/>
+                            <img src={item.user['avatar']} />
                         </div>
                         <div className="user-content">
                             <div className='chat-meta clearfix'>

@@ -80,8 +80,6 @@ Utils.hideLoading=function(){
 }
 
 Utils.createLoaidng=function(){
-    $('body').attr('class','apple')
-
     var $loading = $(
         '<div id="js-loading">'+
             '<div class="la-ball-spin la-2x">' +

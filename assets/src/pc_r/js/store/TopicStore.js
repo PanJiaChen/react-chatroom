@@ -87,13 +87,10 @@ const actionMethods = {
 
     loadTopic_s(state, payLoad){
         var nTopic=payLoad.results[0];
-        console.log(nTopic.id)
-        console.log(state.newTopicId)
         if((payLoad.results.length==0) ||(nTopic.id==state.newTopicId)   ){
             console.log('不更新')
             return state
         }else{
-            
             if(state.newTopicId==''){
                 console.log('初始化')
                 state.newTopicId=nTopic.id;

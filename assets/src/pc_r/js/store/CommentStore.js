@@ -73,7 +73,6 @@ export default class CommentStore extends BaseStore {
             , withCredentials: true
             , crossDomain: true
             , success: function (resp) {
-                console.log("成功")
                 that.getNewCommentAjax(that)
             }
         })

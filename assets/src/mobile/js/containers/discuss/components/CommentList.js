@@ -131,8 +131,7 @@ export default class CommentList extends Component {
 
                 <li key={item.id} className="list-item-container">
                     <div className="user-avatar" key={"avatar"}>
-                        <img
-                            src={'http://cv.qiaobutang.com/uploads/social_avatars/2015/9/10/10/55f0e5880cf20c2d88d33a43/large.JPG?v1441850761756'}/>
+                        <img src={item.user['avatar']} />
                     </div>
                     <div className="user-content " key={"userContent"}>
                         <div className='chat-meta clearfix'>

@@ -3,7 +3,7 @@ import utils from '../common/utils/utils.js'
 import './less/index.less'
 import {enhanceWithStore} from 'react-zlux'
 import AudioContainer from './js/containers/audio/AudioContainer.js';
-import VedioContainer from './js/containers/vedio/VedioContainer.js';
+import VideoContainer from './js/containers/video/VideoContainer.js';
 
 import LeftbarContainer from './js/containers/leftbar/LeftBarContainer.js'
 
@@ -22,12 +22,13 @@ import CommentContainer from './js/containers/comment/CommentContainer.js'
 import CommentStore from './js/store/CommentStore.js'
 const commentStore = new CommentStore();
 const CommentElement = enhanceWithStore(CommentContainer, commentStore);
+global.commentStore = commentStore;
 
 import './less/index.less'
 
 const transformsMap = {
-    // audio: <AudioContainer key='audio' />,
-    // vedio: <VedioContainer key='vedio' />
+    audio: <AudioContainer key='audio' />,
+    video: <VideoContainer key='video' />
 }
 
 class ChatroomContainer extends Component {
