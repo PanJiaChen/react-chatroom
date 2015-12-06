@@ -37,7 +37,11 @@ export default class LeftbarList extends Component {
         const list=state.detail;
         if (list.length <= 0) {
             return (
-                <div className='topic-enpty-container'>主持人正在来的路人</div>
+                <div className='information-empty-container'>
+                    <div className='information-empty-img'>
+                    </div>
+                    暂无最新资讯
+                </div>
             )
         }
         var repeatLi = list.map(item=> {
