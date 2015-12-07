@@ -23,7 +23,7 @@ export default class TopicStore extends BaseStore {
     state = {
         detail:[],
         newTopicId:'',
-        hasLoadMoreBtn:true
+        hasLoadMoreBtn:false
     };
 
     loadTopicAjax(payLoad,minInterval) {

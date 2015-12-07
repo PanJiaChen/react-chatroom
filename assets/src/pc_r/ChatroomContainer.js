@@ -19,6 +19,10 @@ import TitleStore from './js/store/TitleStore.js'
 const titleStore = new TitleStore();
 const TitleElement = enhanceWithStore(TitleContainer, titleStore);
 
+import VoteContainer from './js/containers/vote/VoteContainer'
+import VoteStore from './js/store/VoteStore'
+const voteStore = new VoteStore();
+const VoteElement = enhanceWithStore(VoteContainer, voteStore);
 
 import SingalTopicContainer from './js/containers/singalTopic/singalTopicContainer.js'
 const singalTopicStore=topicStore//全局变量
@@ -60,7 +64,8 @@ class ChatroomContainer extends Component {
                 comment: this.props.minInterval.comment,
                 article: this.props.minInterval.article,
                 topic: this.props.minInterval.topic,
-                count: this.props.minInterval.count
+                count: this.props.minInterval.count,
+                vote: this.props.minInterval.vote
             }
          };
     }
@@ -105,6 +110,7 @@ class ChatroomContainer extends Component {
                     <LeftbarContainer />
                 </div>
                 <div className="main-container">
+                    <VoteElement />
                     <TitleElement />
                     <SingalTopicElement />
                     <CommentElement />

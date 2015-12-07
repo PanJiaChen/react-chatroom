@@ -63,6 +63,17 @@ function _getLoginDetail() {
 function _getStream() {
     return HOST_URL + 'chatrooms/' + ChatroomId + '/streams';
 }
+
+//投票列表
+function _getVote() {
+    return HOST_URL + 'chatroom/votes?chatroomId=' + ChatroomId;
+}
+
+//投票
+function _postVote() {
+    return HOST_URL + 'chatroom/votes?chatroomId=' + ChatroomId;
+}
+
 module.exports = {
     setBaseUrl: _setBaseUrl,
     setHostUrl: _setHostUrl,
@@ -74,5 +85,6 @@ module.exports = {
     getCount: _getCount,
     replyComment: _replyComment,
     getLoginDetail: _getLoginDetail,
-    getStream:_getStream
+    getStream:_getStream,
+    getVote:_getVote
 };
