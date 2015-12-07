@@ -30,10 +30,19 @@ export default class LeftbarList extends Component {
         const store = this.props.store;
         const state = store.getState();
         const list=state.detail;
+
+        if (list.length <= 0) {
+            return (
+                <div className='information-empty-container'>
+                    <div className='information-empty-img'>
+                    </div>
+                    暂无最新资讯
+                </div>
+            )
+        }
         var repeatLi = list.map(item=> {
             var publishTime = utils.formatTime(item.createdAt);
             var content = item.title ? item.title : item.text;
-
             //缩略图
             var thumbnail;
             const imagesLength=item.imageUrls.length;

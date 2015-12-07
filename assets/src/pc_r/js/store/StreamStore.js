@@ -4,35 +4,35 @@ var Api = require('../WebApi/api.js');
 
 
 const urlMap = {
-    getTitle: Api.getVedio
+    getStream: Api.getStream
 }
 
-export default class VedioStore extends BaseStore {
+export default class StreamStore extends BaseStore {
 
-    __className = 'TitleDetailStore';
+    __className = 'StreamStore';
 
     static ActionTypes = {
-        VEDIO_LOAD: 'VEDIO_LOAD',
-        VEDIO_LOAD_S: 'VEDIO_LOAD_S',
-        VEDIO_LOAD_E: 'VEDIO_LOAD_E'
+        STREAM_LOAD: 'STREAM_LOAD',
+        STREAM_LOAD_S: 'STREAM_LOAD_S',
+        STREAM_LOAD_E: 'STREAM_LOAD_E'
     };
 
     state = {
-       
+       results:[]
     };
 
 
 
 
-    loadVedioAjax(payLoad) {
-        const ats = Vedio.ActionTypes;
-        this.dispatch({type: ats.VEDIO_LOAD});
+    loadStreamAjax(payLoad) {
+        const ats = StreamStore.ActionTypes;
+        this.dispatch({type: ats.STREAM_LOAD});
         var that = this;
         utils.ajax({
-            url: urlMap['getTitle']()
+            url: urlMap['getStream']()
             , dataType: 'jsonp'
             , success: function (resp) {
-                that.dispatch({type: ats.VEDIO_LOAD_S, payLoad: resp})
+                that.dispatch({type: ats.STREAM_LOAD_S, payLoad: resp})
             }
         })
     }
@@ -41,14 +41,14 @@ export default class VedioStore extends BaseStore {
     reduce(action) {
         const type = action.type;
         const payLoad = action.payLoad;
-        const ats = VedioStore.ActionTypes;
+        const ats = StreamStore.ActionTypes;
         switch (type) {
-            case ats.VEDIO_LOAD:
-                return actionMethods.loadVedio(this.state, payLoad)
-            case ats.VEDIO_LOAD_S:
-                return actionMethods.loadVedio_s(this.state, payLoad)
-            case ats.VEDIO_LOAD_E:
-                return actionMethods.loadVedio_e(this.state, payLoad)
+            case ats.STREAM_LOAD:
+                return actionMethods.loadStream(this.state, payLoad)
+            case ats.STREAM_LOAD_S:
+                return actionMethods.loadStream_s(this.state, payLoad)
+            case ats.STREAM_LOAD_E:
+                return actionMethods.loadStream_e(this.state, payLoad)
             default:
                 console.warn(`type:${type} not found: use default`)
                 return this.state
@@ -57,7 +57,7 @@ export default class VedioStore extends BaseStore {
 }
 
 const actionMethods = {
-    loadVedio(state, payLoad){
+    loadStream(state, payLoad){
         if (state.isLoading) {
             return state;
         } else {
@@ -66,13 +66,14 @@ const actionMethods = {
             })
         }
     },
-    loadVedio_s(state, payLoad){
+    loadStream_s(state, payLoad){
+        console.log(payLoad)
         return utils.State.setShallow(state, {
             isLoading: false,
-            Vedio: payLoad
+            results: payLoad.results
         })
     },
-    loadVedio_e(state, payLoad){
+    loadStream_e(state, payLoad){
         return utils.State.setShallow(state, {
             isLoading: false,
             detail: 'fail'

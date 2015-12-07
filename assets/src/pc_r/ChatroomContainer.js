@@ -2,8 +2,14 @@ import {Component} from 'react'
 import utils from '../common/utils/utils.js'
 import './less/index.less'
 import {enhanceWithStore} from 'react-zlux'
-import AudioContainer from './js/containers/audio/AudioContainer.js';
+
 import VideoContainer from './js/containers/video/VideoContainer.js';
+import StreamStore from './js/store/StreamStore.js'
+const streamStore = new StreamStore();
+const VideoElement = enhanceWithStore(VideoContainer, streamStore);
+
+import AudioContainer from './js/containers/audio/AudioContainer.js';
+const AudioElement = enhanceWithStore(AudioContainer, streamStore);
 
 import LeftbarContainer from './js/containers/leftbar/LeftBarContainer.js'
 
@@ -27,13 +33,14 @@ global.commentStore = commentStore;
 import './less/index.less'
 
 const transformsMap = {
-    audio: <AudioContainer key='audio' />,
-    video: <VideoContainer key='video' />
+    audio: <AudioElement key='audio' />,
+    video: <VideoElement key='video' />
 }
 
 class ChatroomContainer extends Component {
 
     static childContextTypes={
+         chatId:React.PropTypes.number.isRequired,
          commentMaxLines:React.PropTypes.number.isRequired,
          commentLineHeight:React.PropTypes.number.isRequired,
          topicLineHeight:React.PropTypes.number.isRequired,
@@ -43,6 +50,7 @@ class ChatroomContainer extends Component {
 
     getChildContext() {
          return {
+            chatId:this.props.chatId,
             commentMaxLines:2,
             commentLineHeight:18,
             topicLineHeight:18,
@@ -92,8 +100,10 @@ class ChatroomContainer extends Component {
 
         return (
             <div className="react-container">
-                {includeArr}
-                <LeftbarContainer />
+                <div className='leftbar-wrapper'>
+                    {includeArr}
+                    <LeftbarContainer />
+                </div>
                 <div className="main-container">
                     <TitleElement />
                     <SingalTopicElement />

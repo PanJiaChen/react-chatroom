@@ -59,6 +59,10 @@ function _getLoginDetail() {
     return WSCN_URL + User_Login;
 }
 
+//stream流媒体
+function _getStream() {
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/streams';
+}
 module.exports = {
     setBaseUrl: _setBaseUrl,
     setHostUrl: _setHostUrl,
@@ -69,5 +73,6 @@ module.exports = {
     getComments: _getComments,
     getCount: _getCount,
     replyComment: _replyComment,
-    getLoginDetail: _getLoginDetail
+    getLoginDetail: _getLoginDetail,
+    getStream:_getStream
 };

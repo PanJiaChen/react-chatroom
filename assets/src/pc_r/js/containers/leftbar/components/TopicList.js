@@ -40,7 +40,7 @@ export default class LeftbarList extends Component {
                 <div className='information-empty-container'>
                     <div className='information-empty-img'>
                     </div>
-                    暂无最新资讯
+                    暂无相关话题
                 </div>
             )
         }

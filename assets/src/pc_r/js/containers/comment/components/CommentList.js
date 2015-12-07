@@ -23,15 +23,21 @@ export default class CommentList extends Component {
         const store = this.props.store;
         const state=store.getState();
         const targetDiv=$('.comment-list')[0];
-        // if(state.toLoacateBottom){
-        //     targetDiv.scrollTop=targetDiv.scrollHeight
-        // }
+        if(state.toLoacateBottom){
+            targetDiv.scrollTop=targetDiv.scrollHeight
+        }
     }
 
     render() {
         var list = this.props.listDetail;
         if(list.length<=1){
-            return <div></div>
+            return (
+                <div className='comment-list commentList-empty'>
+                    <div className='commentList-empty-img'>
+                    </div>
+                    暂无讨论
+                </div>
+            )
         }
         var repeatLi = list.map(item=> {
             var publishTime = utils.formatTime(item.createdAt);
