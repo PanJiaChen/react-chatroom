@@ -38,7 +38,7 @@ BroadcastApp.minInterval = {
         article: 90 * 1000,//资讯
         topic: 50 * 1000,//话题
         count: 30*1000,//参与人数
-        vote: 10*1000//投票
+        vote: 60*1000//投票
 }
 
 // export

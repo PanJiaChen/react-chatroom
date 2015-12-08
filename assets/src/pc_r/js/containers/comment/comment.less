@@ -38,6 +38,14 @@
     list-style: none;
     padding: 10px 0;
     border-bottom: 1px solid #e6e6e6;
+    &.host{
+      .user-detail{
+        color: #008cff!important;
+      }
+      .user-word{
+        color: #FF321E!important;
+      }
+    }
     .user-avatar {
       width: 30px;
       height: 30px;
@@ -103,7 +111,7 @@
     line-height: 30px;
     resize:none;
     width: 520px;
-    height: 56px;
+    height: 60px;
     text-indent: 12px;
     float: left;
     border: 0;
@@ -115,9 +123,12 @@
     width: 80px;
     height: 60px;
     color: #fff;
-    background-color: #0a96ff;
+    background-color: #008cff;
     float: left;
     cursor: pointer;
+    &:hover{
+      background-color: #00a0ff;
+    }
   }
 }
 

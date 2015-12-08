@@ -71,6 +71,12 @@ Utils.formatTime=function(time){
     return `${d.getMonth()+1}月${d.getDate()}日${d.getHours()}时`
 }
 
+Utils.formatTimeTwo=function(time){
+    var time = +time * 1000;
+    var d =new Date(time);
+    return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日${d.getHours()}:${d.getMinutes()}分`
+}
+
 Utils.showLoading=function(target){
     $('#js-loading').attr('class','loading-container show')
 }

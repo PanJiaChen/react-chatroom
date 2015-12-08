@@ -5,8 +5,8 @@
         width: 48px;
         height: 48px;
         right: 0;
-        -webkit-transform: translate3d(-260px,0,0);
-        transform: translate3d(-260px,0,0);
+        -webkit-transform: translate3d(-290px,0,0);
+        transform: translate3d(-290px,0,0);
         background-image: url("../../../img/Vote@2x.png");
         background-position:  center 6px;
         background-size: 20px 17px;
@@ -15,6 +15,11 @@
         vertical-align: bottom;
         font-size: 14px;
         line-height: 70px;
+        cursor: pointer;
+        color: #fff;
+        &:hover{
+            background-color: #008cff;
+        }
     }
     .vote-title{
         font-size: 18px;
@@ -32,6 +37,9 @@
             color: #999;
             line-height: 18px;
         }
+        .vote-createdAt{
+            padding-top: 6px;
+        }
         .vote-publish-status{
             width: 40px;
             height: 40px;
@@ -39,7 +47,7 @@
             position: absolute;
             right: 0;
             top: 0;
-            &.pushlished{
+            &.published{
                 background-image: url('../../../img/opening@2x.png')
             }
             &.closed{
@@ -56,20 +64,40 @@
             line-height:24px;
             word-break: break-all;
             font-weight: bold;
+            padding-right: 12px;
+            padding-bottom: 10px;
+        }
+        .options{
+            .option-item{
+                font-size: 14px;
+                color: #333;
+                line-height: 20px;
+                padding-top: 2px;
+                & label{
+                    padding-left: 6px;
+                }
+            }
+        }
+        .vote-button{
+            width: 80px;
+            height: 32px;
+            background-color: #008cff;
+            border-radius: 3px;
+            text-align: center;
+            line-height: 32px;
+            font-size: 16px;
+            color: #fff;
+            margin-top: 18px;
+            cursor: pointer;
         }
     }
 }
 
 //侧边栏
-.container,
 .content-wrap {
     overflow: hidden;
     width: 100%;
     height: 100%;
-}
-
-.container {
-    background: #373a47;
 }
 
 .menu-wrap a {
@@ -130,17 +158,23 @@
     background: transparent;
     color: transparent;
     cursor: pointer;
+    &:hover {
+        &::before,&::after{
+            background-color: #fff;
+        }
+    }
+
 }
 
 .close-button::before,
 .close-button::after {
     content: '';
     position: absolute;
-    width: 3px;
+    width: 2px;
     height: 100%;
     top: 0;
     left: 50%;
-    background: #bdc3c7;
+    background: #ccc;
 }
 
 .close-button::before {
@@ -159,12 +193,12 @@
     right: 0px;
     position: fixed;
     z-index: 1001;
-    width: 260px;
+    width: 290px;
     height: 100%;
     font-size: 16px;
-    color:#fff;
-    -webkit-transform: translate3d(260px,0,0);
-    transform: translate3d(260px,0,0);
+    color:#333;
+    -webkit-transform: translate3d(290px,0,0);
+    transform: translate3d(290px,0,0);
     -webkit-transition: -webkit-transform 0.4s;
     transition: transform 0.4s;
     -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
@@ -191,7 +225,6 @@
     -webkit-transform: translate3d(0,100%,0);
     transform: translate3d(0,100%,0);
     padding-top: 13px;
-    background: #fff;
     margin: 15px 10px 0;
     border-radius:4px ;
 
@@ -199,9 +232,12 @@
 
 .icon-list .icon-list-item {
     display: block;
-    padding: 13px;
+    padding:0px  0px 12px 12px;
     -webkit-transform: translate3d(0,500px,0);
     transform: translate3d(0,500px,0);
+    background: #fff;
+    margin-bottom: 15px;
+    border-radius: 4px;
 
 }
 

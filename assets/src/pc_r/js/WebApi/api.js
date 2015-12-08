@@ -86,5 +86,6 @@ module.exports = {
     replyComment: _replyComment,
     getLoginDetail: _getLoginDetail,
     getStream:_getStream,
-    getVote:_getVote
+    getVote:_getVote,
+    postVote:_postVote
 };

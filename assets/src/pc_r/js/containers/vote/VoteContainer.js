@@ -31,6 +31,7 @@ class VoteContainer extends Component{
             this.setState({isOpen: false});
         }
     }
+
     closeClick(){
         const isOpen=this.state.isOpen;
         if(isOpen){
@@ -39,16 +40,19 @@ class VoteContainer extends Component{
         }
     }
 
+    postVote(event){
+        const store = this.props.store;
+        const optionId=event.target.getAttribute('data-id');
+        const $parent=$(event.target).closest('.vote-item-main');
+        const voteId=$parent.find('input:checked').attr('data-id')
+        console.log('我是投票'+optionId+voteId)
+        store.postVote(voteId,optionId)
+    }
+
     render(){
         const store = this.props.store;
         const state = store.getState();
-        var publishStatus=state.status;
 
-        if(publishStatus=='published'){
-            var publishStatus='vote-publish-status published'
-        }else{
-            var publishStatus='vote-publish-status closed'
-        }
         const  list=state.voteList;
         if (list.length <= 0) {
             return (
@@ -61,10 +65,20 @@ class VoteContainer extends Component{
         }
         var repeatLi = list.map(item=> {
             const publishTime = utils.formatTime(item.createdAt);
-            const finishTime = utils.formatTime(item.expiredAt);
-            const content = item.text;
-
-
+            const finishTime = utils.formatTimeTwo(item.expiredAt);
+            var publishStatus=item.status;
+            if(publishStatus=='published'){
+                var publishStatus='vote-publish-status published'
+            }else{
+                var publishStatus='vote-publish-status closed'
+            }
+            const options=item.options.map(option=>{
+                return (
+                        <div className="option-item" key={option.id}>
+                            <input name={item.id} type="radio" data-id={option.id} value={option.name} />
+                            <label htmlFor={option.id}>{option.name}</label>
+                        </div>)
+            })
             return (
                 <li key={item.id} className="icon-list-item">
                     <div className="vote-item-meta">
@@ -74,7 +88,10 @@ class VoteContainer extends Component{
                     </div>
                     <div className="vote-item-main">
                         <div className="vote-item-title">{item.description}</div>
-                        <div className="vote-item-title option"></div>
+                        <div className="options">
+                            {options}
+                        </div>
+                        <div className="vote-button" data-id={item.id} onClick={this.postVote.bind(this)}>投票</div>
                     </div>
                 </li>
             )

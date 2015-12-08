@@ -44,7 +44,6 @@ const transformsMap = {
 class ChatroomContainer extends Component {
 
     static childContextTypes={
-         chatId:React.PropTypes.number.isRequired,
          commentMaxLines:React.PropTypes.number.isRequired,
          commentLineHeight:React.PropTypes.number.isRequired,
          topicLineHeight:React.PropTypes.number.isRequired,
@@ -54,7 +53,6 @@ class ChatroomContainer extends Component {
 
     getChildContext() {
          return {
-            chatId:this.props.chatId,
             commentMaxLines:2,
             commentLineHeight:18,
             topicLineHeight:18,
