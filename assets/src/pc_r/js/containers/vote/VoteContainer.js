@@ -158,8 +158,10 @@ class VoteContainer extends Component{
                     {voteBtn}
                     <nav className="menu">
                         <div className="vote-title">投票区</div>
+                        <div className="icon-list-container">
                         <div className="icon-list">
                             {repeatLi}
+                        </div>
                         </div>
                     </nav>
                     <button className="close-button" onClick={this.closeClick.bind(this)} >Close Menu</button>

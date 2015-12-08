@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import utils from '../../../../../common/utils/utils.js'
 import Thumbnail from '../../../components/Thumbnail.js'
+
 //它对应的store是ArticlStore^_^
 
 export default class LeftbarList extends Component {

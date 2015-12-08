@@ -74,7 +74,7 @@ class TopicContainer extends Component {
         var style = window.getComputedStyle(contentDom, null);
         const id = +contentDom.getAttribute('data-id');
 
-        if (parseInt(style.height) > lineHeight * maxLines) {
+        if (parseInt(style.height) > max) {
             if (id in foldedMap) {
                 return
             } else {

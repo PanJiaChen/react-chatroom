@@ -20,8 +20,6 @@ class VideoContainer extends Component {
         const state = store.getState();
         if(state.results.length>0){
             var url=state.results[0].url['liveHls'];
-            
-            console.log('试试'+$('.video-container').html())
                 var srcPath =(
                     "http://wscn.cdn.wallstreetcn.com/wscn/js/swise-player/sewise.player.min.js?"+
                     "server=vod&"+
@@ -29,8 +27,10 @@ class VideoContainer extends Component {
                     "autostart=true"+
                     "&starttime=0&"+
                     "buffer=2&"+
+                    "title=华尔街见闻&"+
                     "lang=en_US&"+
-                    "logo=http://onvod.sewise.com/libs/swfplayer/skin/images/logo.png&"+
+                    "claritybutton=disable&"+
+                    "poster=http://wscn.cdn.wallstreetcn.com/wscn/img/logo@2x.png&"+
                     "skin=vodTransparent&"+
                     "videourl="+url
                 )
