@@ -24,7 +24,7 @@ export default class VoteStore extends BaseStore {
     };
 
     state = {
-        voteList:[]
+        voteList:[],
     };
 
 
@@ -96,7 +96,7 @@ const actionMethods = {
     loadVote_s(state, payLoad){
         return utils.State.setShallow(state, {
             isLoading: false,
-            voteList: payLoad.results
+            voteList: payLoad.results,
         })
     },
     loadVote_e(state, payLoad){

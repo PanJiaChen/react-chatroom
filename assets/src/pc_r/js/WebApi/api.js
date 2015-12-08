@@ -71,7 +71,7 @@ function _getVote() {
 
 //投票
 function _postVote() {
-    return HOST_URL + 'chatroom/votes?chatroomId=' + ChatroomId;
+    return WSCN_URL + 'chatroom/votes?chatroomId=' + ChatroomId;
 }
 
 module.exports = {

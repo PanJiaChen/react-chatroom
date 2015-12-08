@@ -17,8 +17,25 @@
         line-height: 70px;
         cursor: pointer;
         color: #fff;
+        span{
+            position: relative;
+            display: inline-block;
+        }
         &:hover{
             background-color: #008cff;
+        }
+        .hasNewVote{
+            position: absolute;
+            top:0;
+            right:0;
+            background: #ff321e;
+            width: 16px;
+            height: 16px;
+            border-radius: 7px;
+            text-align: center;
+            line-height: 16px;
+            top: -8px;
+            font-size: 12px;
         }
     }
     .vote-title{
@@ -89,7 +106,39 @@
             color: #fff;
             margin-top: 18px;
             cursor: pointer;
+            border: none;
+            &.closed{
+                background-color: #aaa;
+                cursor:not-allowed ;
+            }
         }
+    }
+}
+
+//投票百分比
+.vote-percentage-container{
+    .vote-percentage{
+        width: 140px;
+        height: 6px;
+        border-radius: 3px;
+        background-color: #d8d8d8;
+        position: relative;
+        display: inline-block;
+        margin-right: 10px;
+        .vote-percentage-in{
+            background-color: #0a96ff;
+            border-radius: 3px;
+            height: 6px;
+            width: 10%;
+        }
+        &.closed{
+            .vote-percentage-in{
+                background-color: #aaa;
+            }
+        }
+    }
+    .vote-percentage-people{
+        display: inline-block;
     }
 }
 
