@@ -68,4 +68,4 @@ const styles = {
 	},
 };
 
-module.exports = Standard;
+export default  Standard;

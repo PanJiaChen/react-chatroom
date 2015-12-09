@@ -52,6 +52,7 @@ export default class TopicStore extends BaseStore {
             }
         })
     }
+    
     reduce(action) {
         const type = action.type;
         const payLoad = action.payLoad;

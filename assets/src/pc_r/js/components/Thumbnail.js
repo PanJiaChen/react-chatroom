@@ -1,7 +1,7 @@
 import Lightbox from 'react-images';
 
-var Standard = React.createClass({
-	displayName: 'Standard',
+var Thumbnail = React.createClass({
+	displayName: 'Thumbnail',
 	propTypes: {
 		images: React.PropTypes.array,
 	},
@@ -67,4 +67,4 @@ const styles = {
 	},
 };
 
-module.exports = Standard;
+export default Thumbnail;

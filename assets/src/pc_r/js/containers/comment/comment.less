@@ -20,10 +20,29 @@
 }
 
 //评论列表组件
+.comment-list-container{
+    position: relative;
+     //新消息
+    .newComment{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #ddd;
+        cursor: pointer;
+        border-radius: 50%;
+        right: 22px;
+        bottom: 10px;
+        display: none;
+        &.show{
+            display: block;
+        }
+    }
+}
 .comment-list {
     padding: 0 12px 0 0;
     height: 290px;
     overflow-y: scroll;
+    position: relative;
     &::-webkit-scrollbar-track-piece {
         background: #fff;
     }
@@ -38,8 +57,8 @@
         list-style: none;
         padding: 10px 0;
         border-top: 1px solid #e6e6e6;
-        &:first-child{
-            border-top:none ;
+        &:first-child {
+            border-top: none;
         }
         &.host {
             .user-detail {
@@ -87,6 +106,7 @@
                 word-break: break-all;
                 overflow: hidden;
                 transition: all 0.5s ease;
+                cursor: pointer;
             }
         }
 
@@ -112,7 +132,24 @@
 
             }
         }
+    }
 
+    //加载更多
+    .load-more {
+        padding: 0 15px;
+        height: 35px;
+        width: 100%;
+        color: #666;
+        text-align: center;
+        line-height: 35px;
+        background: #eee;
+        margin: 15px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        display: none;
+        &.show {
+            display: block;
+        }
     }
 }
 

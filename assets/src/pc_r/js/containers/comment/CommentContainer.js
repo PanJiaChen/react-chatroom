@@ -21,11 +21,10 @@ class CommentContainer extends Component {
 
     componentDidMount() {
         const store = this.props.store;
-        store.loadCommentAjax('fasle',this.context.minInterval.comment)
+        const state = store.getState();
+        store.loadCommentAjax('fasle',this.context.minInterval.comment,state.up_id)
         store.userValidateAjax('fasle')
     }
-
-
 
     render() {
         const store = this.props.store;

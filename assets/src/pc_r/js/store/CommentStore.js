@@ -5,7 +5,8 @@ import AjaxMgr from '../../../common/utils/ajxaLoop.js'
 
 
 const urlMap = {
-    getComments: Api.getComments,
+    getCommentsDown: Api.getCommentsDown,
+    getCommentsUp:Api.getCommentsUp,
     getLoginDetail:Api.getLoginDetail,
     replyComment:Api.replyComment
 }
@@ -27,26 +28,50 @@ export default class CommentStore extends BaseStore {
 
         GET_NEW_COMMENT: 'GET_NEW_COMMENT',
         GET_NEW_COMMENT_S: 'GET_NEW_COMMENT_S',
+
+        PAGE_LOAD: 'PAGE_LOAD',
+        PAGE_LOAD_S: 'PAGE_LOAD_S'
     };
 
     state = {
-        comments: [[]],
+        comments: [],
         userDetail:{},
-        toLoacateBottom:false
+        toLoacateBottom:false,
+        firstInit:true,
+        hasNewComment:false,
+        hasMoreComment:true,
+        up_id:undefined,
+        down_id:undefined
 
     };
 
-    loadCommentAjax(payLoad,minInterval) {
+    loadCommentAjax(payLoad,minInterval,up_id) {
         const ats = CommentStore.ActionTypes;
         this.dispatch({type: ats.COMMENT_LOAD});
         var that = this;
-        const commentAjax=new AjaxMgr({
-            url:urlMap["getComments"](),
+        var _commentAjax=new AjaxMgr({
+            url:urlMap["getCommentsUp"](up_id),
             success:function(resp){that.dispatch({type: ats.COMMENT_LOAD_S, payLoad: resp})},
             minInterval:minInterval
 
         })
-       commentAjax.setLoop(true).request();
+
+       _commentAjax.setLoop(true).request();
+       global._commentAjax=_commentAjax;
+    }
+
+    //分页
+    loadPageAjax(payLoad,down_id) {
+        const ats = CommentStore.ActionTypes;
+        this.dispatch({type: ats.PAGE_LOAD});
+        var that = this;
+        utils.ajax({
+            url: urlMap["getCommentsDown"](down_id)
+            , dataType: 'jsonp'
+            , success: function (resp) {
+                that.dispatch({type: ats.PAGE_LOAD_S, payLoad: resp})
+            }
+        })
     }
 
     userValidateAjax(payLoad) {
@@ -114,6 +139,10 @@ export default class CommentStore extends BaseStore {
                 return actionMethods.getNewComment(this.state, payLoad)
             case ats.GET_NEW_COMMENT_S:
                 return actionMethods.getNewComment_s(this.state, payLoad)
+            case ats.PAGE_LOAD:
+                return actionMethods.loadPage(this.state, payLoad)
+            case ats.PAGE_LOAD_S:
+                return actionMethods.loadPage_s(this.state, payLoad)
             default:
                 console.warn(`type:${type} not found: use default`)
                 return this.state
@@ -132,16 +161,43 @@ const actionMethods = {
         }
     },
     loadComment_s(state, payLoad){
-        state.comments=[];
-        payLoad.comments.forEach(item=>{
-            state.comments.unshift(item)
-        })
+        //判断是不是初次拿到数据
+        if(state.firstInit){
+            state.toLoacateBottom=true;
+            state.firstInit=false;
+            state.down_id=payLoad.comments[payLoad.comments.length-1].id;
+            state.up_id=payLoad.comments[0].id;
+            payLoad.comments.forEach(item=>{
+                    state.comments.unshift(item)
+            })
 
-        return utils.State.setShallow(state,{
-            isLoading:false,
-            comments:state.comments,
-            toLoacateBottom:true
-        })
+            const url=urlMap["getCommentsUp"](state.up_id)
+            _commentAjax.setUrl(url)
+            return utils.State.setShallow(state,{
+                    comments:state.comments
+            })
+        }else{
+            state.toLoacateBottom=false;
+            //判断有没有新数据
+            if(payLoad.comments.length>0){
+                state.hasNewComment=true;
+                state.up_id=payLoad.comments[0].id;
+                payLoad.comments.forEach(item=>{
+                    state.comments.push(item)
+                })
+                return utils.State.setShallow(state,{
+                    isLoading:false,
+                    comments:state.comments
+                })
+            }else{
+                state.hasNewComment=false;
+                return utils.State.setShallow(state,{
+                    comments:state.comments
+            })
+            }
+        }
+
+        
     },
     loadComment_e(state, payLoad){
         return utils.State.setShallow(state, {
@@ -171,19 +227,49 @@ const actionMethods = {
        // that.getNewCommentAjax('false')
     },
     getNewComment(state, payLoad){
+
         return utils.State.setShallow(state,{
             isLoading:false,
         })
     },
     getNewComment_s(state, payLoad){
-       console.log(payLoad)
        state.comments.push(payLoad.comments[0])
-       console.log(state.comments)
+       state.up_id=payLoad.comments[0].id
        return utils.State.setShallow(state,{
             isLoading:false,
-            comments:state.comments,
-            toLoacateBottom:true
+            comments:state.comments
         })
-    }
+    },
+
+    //分页
+    loadPage(state, payLoad){
+        if (state.isLoading) {
+            return state;
+        } else {
+            return utils.State.setShallow(state, {
+                isLoading: true,
+            })
+        }
+    },
+    loadPage_s(state, payLoad){
+        payLoad.comments.map(item=>{
+            state.comments.unshift(item)
+        })
+        
+        if(payLoad.comments.length==0){
+            return utils.State.setShallow(state, {
+                hasMoreComment:false
+            })
+        }
+        state.down_id=payLoad.comments[payLoad.comments.length-1].id;
+        state.toLoacateBottom=false;
+
+        return utils.State.setShallow(state, {
+            isLoading: false,
+            comments:state.comments
+        })
+       
+        
+    },
 }
 

@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import utils from '../../../../../common/utils/utils.js'
-import Thumbnail from '../../../components/Thumbnail.js'
+import Thumbnail from '../../../components/Thumbnail'
 
 //它对应的store是ArticlStore^_^
 

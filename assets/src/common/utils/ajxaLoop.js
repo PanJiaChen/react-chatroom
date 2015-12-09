@@ -6,7 +6,7 @@ function noop() {
 export default class AjaxMgr {
 
     constructor(options = {}) {
-        //this.url = options.url;
+        this.url = options.url;
         //this.data = options.data;
         //this.dataType = options.dataType || 'jsonp'
         //this.ajaxOptins = options.ajaxOptins;
@@ -24,12 +24,15 @@ export default class AjaxMgr {
         this.isLoop = isLoop;
         return this;
     }
-
+    setUrl(url) {
+        this.url = url;
+        return this;
+    }
     request() {
         this.time = Date.now();
         var that=this;
         ajax({
-            url: that.options.url
+            url: that.url
             , dataType: 'jsonp'
             ,success:function (e) {
                 that.success(e)

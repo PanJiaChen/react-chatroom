@@ -20,10 +20,6 @@ function _getChatroom() {
     return HOST_URL + "chatrooms/" + ChatroomId;
 }
 
-function _getComments() {
-    return HOST_URL + 'comments?channel=chat&id=' + ChatroomId;
-}
-
 function _getRelaticeTopics(page) {
     if(page){
         page=page
@@ -43,9 +39,14 @@ function _getCount() {
 }
 
 
-//评论列表
-function _getComments() {
-    return HOST_URL + 'comments?channel=chat&id='+ChatroomId;
+//评论列表 down_id
+function _getCommentsDown(down_id) {
+    return HOST_URL + 'comments?channel=chat&id='+ChatroomId+'&count=5&down_id='+down_id;
+}
+
+//评论列表 up_id
+function _getCommentsUp(up_id) {
+    return HOST_URL + 'comments?channel=chat&id='+ChatroomId+'&count=5&up_id='+up_id;
 }
 
 //评论
@@ -81,7 +82,8 @@ module.exports = {
     getChatroom: _getChatroom,
     getRelativeArticles: _getRelativeArticles,
     getRelaticeTopics: _getRelaticeTopics,
-    getComments: _getComments,
+    getCommentsDown: _getCommentsDown,
+    getCommentsUp: _getCommentsUp,
     getCount: _getCount,
     replyComment: _replyComment,
     getLoginDetail: _getLoginDetail,

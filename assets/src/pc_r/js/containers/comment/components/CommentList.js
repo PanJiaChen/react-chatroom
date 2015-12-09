@@ -12,6 +12,7 @@ export default class CommentList extends Component {
 
     state = {
         foldedMap: {}
+
     }
 
     constructor(props, context) {
@@ -77,9 +78,16 @@ export default class CommentList extends Component {
         }
     }
 
+    loadMore(){
+        const store = this.props.store;
+        const state=store.getState();
+        store.loadPageAjax('fasle',state.down_id)
+    }
 
 
     render() {
+        const store = this.props.store;
+        const state=store.getState();
         var list = this.props.listDetail;
         if(list.length<=1){
             return (
@@ -152,11 +160,28 @@ export default class CommentList extends Component {
                 </li>
             )
         })
+        
+        //判断是否有新消息
+        if(state.hasNewComment){
+            var newCommentClass='newComment show'
+        }else{
+             var newCommentClass='newComment'
+        }
+        //判读是否有更多页
+        if(state.hasMoreComment){
+          var hasMoreComment=(<div className='load-more show'  onClick={this.loadMore.bind(this)}>加载更多</div>)
+        }else{
+           var hasMoreComment=(<div className='load-more show'>没有更多了~</div>)
+        }
 
         return (
-            <ul className='comment-list'>
-                {repeatLi}
-            </ul>
+            <div className='comment-list-container'>
+                <ul className='comment-list'>
+                    {hasMoreComment}
+                    {repeatLi}  
+                </ul>
+            <div className={newCommentClass}>new</div>
+            </div>
         )
     }
 
