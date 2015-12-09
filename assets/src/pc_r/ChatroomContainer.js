@@ -53,9 +53,9 @@ class ChatroomContainer extends Component {
 
     getChildContext() {
          return {
-            commentMaxLines:2,
-            commentLineHeight:18,
-            topicLineHeight:18,
+            commentMaxLines:3,
+            commentLineHeight:20,
+            topicLineHeight:20,
             topicMaxLines:2,
             minInterval:{
                 info: this.props.minInterval.info,

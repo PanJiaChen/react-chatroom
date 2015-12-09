@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import ReactDom from 'react-dom'
+import ReactDOM  from 'react-dom'
 import utils from '../../../../common/utils/utils.js'
 import './singalTopic.less'
 
@@ -20,17 +20,17 @@ class TopicContainer extends Component {
     componentDidMount() {
  
     }
+
     componentDidUpdate() {
         const store = this.props.store;
         const state = store.getState();
         if (state.detail.length > 0) {
-            var dom = ReactDom.findDOMNode(this);
+            var dom = ReactDOM .findDOMNode(this);
             this.showORhide(dom)
         }
     }
 
     showORhide(dom) {
-        console.log('我在showhide')
         const lineHeight = this.context.topicLineHeight;
         const maxLines = this.context.topicMaxLines;
         var max = lineHeight * maxLines;
@@ -38,14 +38,14 @@ class TopicContainer extends Component {
         var contentDom = dom.getElementsByClassName('user-word')[0];
         var style = window.getComputedStyle(contentDom, null);
         const id = +contentDom.getAttribute('data-id');
-
         if (parseInt(style.height) > max) {
             if (id in foldedMap) {
                 return
             } else {
                 var idMap = [];
                 idMap = this.state.foldedMap;
-                idMap[id] = 'hide'
+                idMap[id] = 'hide';
+                idMap[id+'lineHeight']=parseInt(style.height);
                 this.setState({foldedMap: idMap});
             }
         }
@@ -71,7 +71,7 @@ class TopicContainer extends Component {
         const store = this.props.store;
         const state = store.getState();
         const detail=state.detail[0];
-
+        const contextLineHeight = this.context.topicLineHeight*this.context.topicMaxLines;
         if(!detail){
             return <div></div>
         }
@@ -82,22 +82,23 @@ class TopicContainer extends Component {
         const id = detail.id;
         if (id in foldedMap) {
             if (foldedMap[id] == 'show') {
+                var lineHeight=foldedMap[id+'lineHeight']
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" style={{'maxHeight':'initial','overflow':'initial'}}
+                        <div className="user-word" onClick={this.handleClick.bind(this)}  style={{'maxHeight':lineHeight,'overflow':'initial'}}
                              data-id={detail.id}>
                             {detail.text}
                         </div>
-                        <div className="fold-button folded" onClick={this.handleClick.bind(this)}>收起</div>
+                        <div className="fold-button folded" onClick={this.handleClick.bind(this)}></div>
                     </div>
                 )
             } else {
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" style={{'maxHeight':'36px','overflow':'hidden'}} data-id={detail.id}>
+                        <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight,'overflow':'hidden'}} data-id={detail.id}>
                             {detail.text}
                         </div>
-                        <div className="fold-button" onClick={this.handleClick.bind(this)}>展开</div>
+                        <div className="fold-button" onClick={this.handleClick.bind(this)}></div>
                     </div>
                 )
             }
