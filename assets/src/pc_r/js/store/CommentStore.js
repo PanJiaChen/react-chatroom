@@ -172,7 +172,8 @@ const actionMethods = {
             })
 
             const url=urlMap["getCommentsUp"](state.up_id)
-            _commentAjax.setUrl(url)
+            _commentAjax.setUrl(url);
+             utils.hideLoading();
             return utils.State.setShallow(state,{
                     comments:state.comments
             })

@@ -21,8 +21,9 @@ export default class ChatroomDetailStore extends BaseStore {
     };
 
     loadChatroomAjax(payLoad) {
-        console.log('banan' + Api.getChatroom())
         const ats = ChatroomDetailStore.ActionTypes;
+        utils.createLoaidng();
+        utils.showLoading();
         this.dispatch({type: ats.CHATROOM_LOAD});
         var that = this;
         utils.ajax({

@@ -35,6 +35,7 @@ const CommentElement = enhanceWithStore(CommentContainer, commentStore);
 global.commentStore = commentStore;
 
 import './less/index.less'
+import './js/components/loading.less'
 
 const transformsMap = {
     audio: <div className='audio-container' key='audio'><AudioElement  /></div>,
