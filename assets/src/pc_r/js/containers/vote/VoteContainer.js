@@ -52,6 +52,7 @@ class VoteContainer extends Component{
         if(isOpen){
             $('body').removeClass('show-menu')
             this.setState({hasNewVote: 0});
+            this.setState({isOpen: false});
         }
     }
 

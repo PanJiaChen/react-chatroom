@@ -22,12 +22,21 @@
        z-index: 3000;
        margin-bottom: 30px;
     }
-	#container{
-		width: 1170px;
-		margin: 90px auto 0;
-        position: relative;
+    body,html {
+        padding: 0;
+        margin: 0 auto;
         height: 100%;
-	}
+    }
+    #content{
+        width: 100%!important;
+        height: 100%!important;
+    }
+    .container{
+        height: 100%!important;
+    }
+    #footer{
+        display: none!important;
+    }
     #mountDom{
         position: absolute;
         width: 1200px;
@@ -48,9 +57,9 @@
     <script>
         var broadcast = new BroadcastApp({   
             parentDom:document.getElementById('mountDom'),
-            chatId: 67,
-//            apiBaseUrl:'http://api.wallstcn.com/v2/',
-            apiBaseUrl:'http://api.wscn.com/v2/',
+            chatId: 24,
+           apiBaseUrl:'http://api.wallstcn.com/v2/',
+            // apiBaseUrl:'http://api.wscn.com/v2/',
             hostUrl:'http://wscn.com/',
             minInterval:{
                 info: 600 * 1000,//basic info的请求，60s轮询一次

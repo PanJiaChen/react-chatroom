@@ -13,7 +13,6 @@ function _setHostUrl(url) {
     WSCN_URL = url;
 }
 function _setChatroomId(id) {
-    console.log('setId')
     ChatroomId = id;
 }
 function _getChatroom() {
@@ -26,7 +25,7 @@ function _getRelaticeTopics(page) {
     }else{
         page=1
     }
-    return HOST_URL + 'chatrooms/' + ChatroomId + '/topics?limit=7&page='+page;
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/topics?limit=15&page='+page;
 }
 
 function _getRelativeArticles() {
@@ -38,15 +37,14 @@ function _getCount() {
     return HOST_URL + 'chatrooms/' + ChatroomId + '/count';
 }
 
-
 //评论列表 down_id
 function _getCommentsDown(down_id) {
-    return HOST_URL + 'comments?channel=chat&id='+ChatroomId+'&count=5&down_id='+down_id;
+    return HOST_URL + 'comments?channel=chat&id='+ChatroomId+'&count=25&down_id='+down_id;
 }
 
 //评论列表 up_id
 function _getCommentsUp(up_id) {
-    return HOST_URL + 'comments?channel=chat&id='+ChatroomId+'&count=5&up_id='+up_id;
+    return HOST_URL + 'comments?channel=chat&id='+ChatroomId+'&count=25&up_id='+up_id;
 }
 
 //评论

@@ -27,7 +27,9 @@ class CommentContainer extends Component {
         const _height=window.document.body.offsetHeight;
          const commentTopicH=$('.comment-topic').outerHeight();
          const commentReplyH=$('.comment-reply-container').outerHeight();
-         const height=_height-commentTopicH-commentReplyH-54-101-160;
+         // const titleH=$('.title-continer').outerHeight(); 
+         // const topicH=$('.topic-container').outerHeight();
+         const height=_height-commentTopicH-commentReplyH-56-103-160;
          this.setState({height: height});
     }
 

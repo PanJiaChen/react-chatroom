@@ -37,8 +37,8 @@ global.commentStore = commentStore;
 import './less/index.less'
 
 const transformsMap = {
-    audio: <AudioElement key='audio' />,
-    video: <VideoElement key='video' />
+    audio: <div className='audio-container' key='audio'><AudioElement  /></div>,
+    video: <div className='video-container' key='video'><VideoElement  /></div>
 }
 
 class ChatroomContainer extends Component {
@@ -77,10 +77,12 @@ class ChatroomContainer extends Component {
     }
 
     componentDidMount() {
-        const store = this.props.store
+        const store = this.props.store        
         store.loadChatroomAjax('fasle')
         const _height=window.document.body.offsetHeight;
+        
         const _BHeight=_height-90;
+      
         this.setState({bHeight: _BHeight});
     }
 
@@ -103,6 +105,7 @@ class ChatroomContainer extends Component {
             return <div></div>
         }
 
+       
         return (
             <div className="react-container clearfix">
                 <div id='leftbar-wrapper' className='leftbar-wrapper' style={{'height':this.state.bHeight}}>

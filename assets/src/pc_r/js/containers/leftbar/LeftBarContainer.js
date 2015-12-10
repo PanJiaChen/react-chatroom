@@ -31,7 +31,9 @@ class LeftBarContainer extends Component{
 
     componentDidMount(){
         const _height=window.document.body.offsetHeight;
-        const _tabHeight=_height-90-55;
+        const audioH=$('.audio-container').outerHeight();
+        const videoH=$('.video-container').outerHeight();
+        const _tabHeight=_height-90-55-audioH-videoH;
         this.setState({tabHeight: _tabHeight});
     }
 
