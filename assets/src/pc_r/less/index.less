@@ -11,20 +11,48 @@ body{
   clear: both;
   visibility: hidden;
 }
-.react-container{
+
+@media (min-width: 1200px){
+	.header {
+	    background-color: red;
+	}
 	.leftbar-wrapper{
-		width: 470px;
-		height: 600px;
-		background-color: #F0F1F2;
-		border: 1px solid #ddd;
-		position: relative;
-		left: 0px;
-		float: left;
+		position: relative!important;
+		float: left!important;
+		left: 15px!important;
 	}
 	.main-container{
-		float: left;
+		margin-right: 15px!important;
+	}
+}
+@media (max-width: 1199px){
+	.header {
+	    background-color: green;
+	}
+	.leftbar-wrapper{
+		position: fixed!important;
+		left: 0px!important;
+		width: 260px!important;
+	}
+	.main-container{
+		margin-right: 20%!important;
+	}
+}
+.react-container{
+	height: 100%;
+	.leftbar-wrapper{
+		width: 470px;
+		height: 100%;
+		background-color: #F0F1F2;
+		border: 1px solid #ddd;
+		position: fixed;
+		left: 50px;
+	}
+	.main-container{
+		min-width: 500px;
+    	margin-right: 320px;
+    	float: right;
 		width: 670px;
-		margin-left: 30px;
 	}
 
 }

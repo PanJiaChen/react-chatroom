@@ -51,6 +51,10 @@ class ChatroomContainer extends Component {
          minInterval:React.PropTypes.object.isRequired
     }
 
+    state = {
+        bHeight:0
+    }
+
     getChildContext() {
          return {
             commentMaxLines:3,
@@ -75,11 +79,9 @@ class ChatroomContainer extends Component {
     componentDidMount() {
         const store = this.props.store
         store.loadChatroomAjax('fasle')
-        // this.node = document.createElement('div');
-        // this.node.className = 'loading-container';
-        // this.node.id = 'js-loading';
-        // document.body.appendChild(this.node);
-        // ReactDom.render(<Loading />, document.getElementById('js-loading'))
+        const _height=window.document.body.offsetHeight;
+        const _BHeight=_height-90;
+        this.setState({bHeight: _BHeight});
     }
 
     componentWillUnmount() {
@@ -102,12 +104,12 @@ class ChatroomContainer extends Component {
         }
 
         return (
-            <div className="react-container">
-                <div className='leftbar-wrapper'>
+            <div className="react-container clearfix">
+                <div id='leftbar-wrapper' className='leftbar-wrapper' style={{'height':this.state.bHeight}}>
                     {includeArr}
                     <LeftbarContainer />
                 </div>
-                <div className="main-container">
+                <div className="main-container" style={{'height':this.state.bHeight}}>
                     <VoteElement />
                     <TitleElement />
                     <SingalTopicElement />

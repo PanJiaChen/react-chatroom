@@ -26,10 +26,13 @@ class LeftBarContainer extends Component{
 
     state = {
         tabSelect:'topics',
+        tabHeight:360,
     }
 
     componentDidMount(){
-       
+        const _height=window.document.body.offsetHeight;
+        const _tabHeight=_height-90-55;
+        this.setState({tabHeight: _tabHeight});
     }
 
     render(){
@@ -40,8 +43,8 @@ class LeftBarContainer extends Component{
                     <div className={'tab-list '+this.judgeTabClass("topics")} data-ref='topics'  onClick={this.handleClick.bind(this)} onMouseEnter={this.handleHover.bind(this)}>话题</div>
                 </div>
                 <div className="tab-main">
-                    <div className={'tab-main-tab '+this.judgeTabClass("informations")}><InformationListElement /></div>
-                    <div className={'tab-main-tab '+this.judgeTabClass("topics")}><TopicListElement /></div>
+                    <div style={{'height':this.state.tabHeight}} className={'tab-main-tab '+this.judgeTabClass("informations")}><InformationListElement /></div>
+                    <div style={{'height':this.state.tabHeight}} className={'tab-main-tab '+this.judgeTabClass("topics")}><TopicListElement /></div>
                 </div>
             </div>
         )

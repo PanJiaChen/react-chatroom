@@ -28,7 +28,6 @@ export default class CommentList extends Component {
         if(state.toLoacateBottom){
             targetDiv.scrollTop=targetDiv.scrollHeight
         }
-
         //展开收起
         if (state.comments.length > 0) {
             var dom = ReactDOM.findDOMNode(this);

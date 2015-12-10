@@ -1,6 +1,7 @@
 .leftbar-container {
     // overflow: hidden;
     // overflow-y:scroll;
+    height: 100%;
     background: #fff;
     .tab {
         height: 40px;
@@ -33,7 +34,7 @@
         &.active {
             display: block;
         }
-        height: 560px;
+        min-height: 360px;
         overflow-y: scroll;
         background-color: #fff;
         &::-webkit-scrollbar-track-piece {
@@ -71,6 +72,7 @@
 
 //LeftbarList component
 .article-list {
+    margin: 0px;
     padding-left: 15px;
     .list-item-container {
         border-left: 1px solid #d8d8d8;

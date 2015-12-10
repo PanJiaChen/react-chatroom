@@ -185,6 +185,8 @@ const actionMethods = {
                 payLoad.comments.forEach(item=>{
                     state.comments.push(item)
                 })
+                const url=urlMap["getCommentsUp"](state.up_id)
+                _commentAjax.setUrl(url)
                 return utils.State.setShallow(state,{
                     isLoading:false,
                     comments:state.comments

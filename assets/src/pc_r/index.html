@@ -6,23 +6,44 @@
     <script src="http://localhost:9528/lib.js"></script>
 </head>
 <style>
- body {
+ body,html {
         font-family: 'Heiti SC', '华文黑体', '黑体', "Helvetica Neue";
         padding: 0;
         margin: 0 auto;
+        height: 100%;
+    }
+    .header{
+        height: 60px;
+        background-color:#0a96ff; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+       z-index: 3000;
+       margin-bottom: 30px;
     }
 	#container{
 		width: 1170px;
 		margin: 90px auto 0;
         position: relative;
+        height: 100%;
 	}
+    #mountDom{
+        position: absolute;
+        width: 1200px;
+        height: 100%;
+        top: 0px;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        margin: 90px auto;
+    }
 </style>
 
 
 <body>
-    <div id="container">
-        <div id="mountDom" class="clearfix"></div>
-    </div>
+    <div class="header"></div>
+    <div id="mountDom" class="clearfix"></div>
     <script src="http://localhost:9528/pc_r.entry.js"></script>
     <script>
         var broadcast = new BroadcastApp({   
@@ -40,6 +61,21 @@
                 vote: 600*1000//投票
             }
         }).init();
+    </script>
+    <script>
+    (function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        require(["jquery"], factory);
+    } else {
+        factory(root.jQuery);
+    }
+})(this, function ($) {
+    // const _height=$("body").height();
+    //     const _leftBarHeight=_height-90;
+    //     $("#leftbar-wrapper").css('height',_leftBarHeight+'px');
+})
+    
+        
     </script>
 </body>
 </html>

@@ -22,7 +22,6 @@ export default class LeftbarList extends Component {
     }
 
     componentDidMount(){
-        console.log('资讯')
         const store = this.props.store;
         store.loadArticleAjax('fasle',this.context.minInterval.article)
     }
