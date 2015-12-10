@@ -106,9 +106,10 @@ export default class CommentStore extends BaseStore {
    getNewCommentAjax(_this) {
         const ats = CommentStore.ActionTypes;
         _this.dispatch({type: ats.GET_NEW_COMMENT});
+        const up_id=_this.state.up_id;
         var that=_this;
         utils.ajax({
-            url: urlMap['getComments']()
+            url: urlMap['getCommentsUp'](up_id)
             , dataType: 'jsonp'
             , success: function (resp) {
                 that.dispatch({type: ats.GET_NEW_COMMENT_S, payLoad: resp})
@@ -236,8 +237,15 @@ const actionMethods = {
         })
     },
     getNewComment_s(state, payLoad){
-       state.comments.push(payLoad.comments[0])
-       state.up_id=payLoad.comments[0].id
+       payLoad.comments.map(item=>{
+            if (item.id !=state.up_id) {
+                state.comments.push(item)
+                state.up_id=payLoad.comments[0].id;
+                 const url=urlMap["getCommentsUp"](state.up_id)
+                _commentAjax.setUrl(url)
+            };
+       })
+       
        return utils.State.setShallow(state,{
             isLoading:false,
             comments:state.comments
@@ -257,7 +265,7 @@ const actionMethods = {
     loadPage_s(state, payLoad){
         payLoad.comments.map(item=>{
             state.comments.unshift(item)
-        })
+        });
         
         if(payLoad.comments.length==0){
             return utils.State.setShallow(state, {

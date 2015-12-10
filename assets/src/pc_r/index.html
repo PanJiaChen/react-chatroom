@@ -6,38 +6,44 @@
     <script src="http://localhost:9528/lib.js"></script>
 </head>
 <style>
- body,html {
+    body, html {
         font-family: 'Heiti SC', '华文黑体', '黑体', "Helvetica Neue";
         padding: 0;
         margin: 0 auto;
         height: 100%;
     }
-    .header{
+
+    .header {
         height: 60px;
-        background-color:#0a96ff; 
+        background-color: #0a96ff;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-       z-index: 3000;
-       margin-bottom: 30px;
+        z-index: 3000;
+        margin-bottom: 30px;
     }
-    body,html {
+
+    body, html {
         padding: 0;
         margin: 0 auto;
         height: 100%;
     }
-    #content{
-        width: 100%!important;
-        height: 100%!important;
+
+    #content {
+        width: 100% !important;
+        height: 100% !important;
     }
-    .container{
-        height: 100%!important;
+
+    .container {
+        height: 100% !important;
     }
-    #footer{
-        display: none!important;
+
+    #footer {
+        display: none !important;
     }
-    #mountDom{
+
+    #mountDom {
         position: absolute;
         width: 1200px;
         height: 100%;
@@ -51,40 +57,40 @@
 
 
 <body>
-    <div class="header"></div>
-    <div id="mountDom" class="clearfix"></div>
-    <script src="http://localhost:9528/pc_r.entry.js"></script>
-    <script>
-        var broadcast = new BroadcastApp({   
-            parentDom:document.getElementById('mountDom'),
-            chatId: 24,
-           apiBaseUrl:'http://api.wallstcn.com/v2/',
-            // apiBaseUrl:'http://api.wscn.com/v2/',
-            hostUrl:'http://wscn.com/',
-            minInterval:{
-                info: 600 * 1000,//basic info的请求，60s轮询一次
-                comment: 8 * 1000,//评论，5s
-                article: 900 * 1000,//资讯
-                topic: 600 * 1000,//话题
-                count: 600*1000,//参与人数
-                vote: 600*1000//投票
-            }
-        }).init();
-    </script>
-    <script>
+<div class="header"></div>
+<div id="mountDom" class="clearfix"></div>
+<script src="http://localhost:9528/pc_r.entry.js"></script>
+<script>
+    var broadcast = new BroadcastApp({
+        parentDom: document.getElementById('mountDom'),
+        chatId: 21,
+        apiBaseUrl: 'http://api.wallstcn.com/v2/',
+        // apiBaseUrl:'http://api.wscn.com/v2/',
+        hostUrl: 'http://wscn.com/',
+        minInterval: {
+            info: 600 * 1000,//basic info的请求，60s轮询一次
+            comment: 8 * 1000,//评论，5s
+            article: 900 * 1000,//资讯
+            topic: 600 * 1000,//话题
+            count: 600 * 1000,//参与人数
+            vote: 600 * 1000//投票
+        }
+    }).init();
+</script>
+<script>
     (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        require(["jquery"], factory);
-    } else {
-        factory(root.jQuery);
-    }
-})(this, function ($) {
-    // const _height=$("body").height();
-    //     const _leftBarHeight=_height-90;
-    //     $("#leftbar-wrapper").css('height',_leftBarHeight+'px');
-})
-    
-        
-    </script>
+        if (typeof define === 'function' && define.amd) {
+            require(["jquery"], factory);
+        } else {
+            factory(root.jQuery);
+        }
+    })(this, function ($) {
+        // const _height=$("body").height();
+        //     const _leftBarHeight=_height-90;
+        //     $("#leftbar-wrapper").css('height',_leftBarHeight+'px');
+    })
+
+
+</script>
 </body>
 </html>

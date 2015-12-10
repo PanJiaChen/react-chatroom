@@ -22,15 +22,17 @@ class AudioContainer extends Component {
             var url=state.results[0].url['liveHls'];
             
             console.log('试试'+$('.audio-container').html())
-                var srcPath =(
+               var srcPath =(
                     "http://wscn.cdn.wallstreetcn.com/wscn/js/swise-player/sewise.player.min.js?"+
                     "server=vod&"+
                     "type=m3u8&"+
                     "autostart=true"+
                     "&starttime=0&"+
                     "buffer=2&"+
+                    "title=华尔街见闻&"+
                     "lang=en_US&"+
-                    "logo=http://onvod.sewise.com/libs/swfplayer/skin/images/logo.png&"+
+                    "claritybutton=disable&"+
+                    "poster=http://wscn.cdn.wallstreetcn.com/wscn/img/logo@2x.png&"+
                     "skin=vodTransparent&"+
                     "videourl="+url
                 )

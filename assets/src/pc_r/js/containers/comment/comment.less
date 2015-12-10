@@ -20,25 +20,30 @@
 }
 
 //评论列表组件
-.comment-list-container{
+.comment-list-container {
     position: relative;
     height: 100%;
-     //新消息
-    .newComment{
+    //新消息
+    .newComment {
         position: absolute;
-        width: 20px;
-        height: 20px;
-        background-color: #ddd;
+        width: 42px;
+        height: 18px;
+        background-color: #f6a55c;
         cursor: pointer;
-        border-radius: 50%;
+        border-radius: 20px;
+        text-align: center;
+        color: #fff;
+        line-height: 18px;
+        font-size: 12px;
         right: 22px;
         bottom: 10px;
         display: none;
-        &.show{
+        &.show {
             display: block;
         }
     }
 }
+
 .comment-list {
     padding: 0 12px 0 0;
     height: 100%;
@@ -143,7 +148,7 @@
         text-align: center;
         line-height: 35px;
         background: #fff;
-        margin:0;
+        margin: 0;
         border-radius: 4px;
         cursor: pointer;
         display: none;
