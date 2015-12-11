@@ -65,7 +65,7 @@ function _getStream() {
 
 //投票列表
 function _getVote() {
-    return HOST_URL + 'chatroom/votes?chatroomId=' + ChatroomId;
+    return WSCN_URL + 'chatroom/votes?chatroomId=' + ChatroomId;
 }
 
 //投票

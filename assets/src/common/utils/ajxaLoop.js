@@ -11,7 +11,7 @@ export default class AjaxMgr {
         this.dataType = options.dataType || 'jsonp'
         //this.ajaxOptins = options.ajaxOptins;
         this.options = options;
-
+        this.cors=options.dataType ||'false'
         this.success = options.success;
         this.error = options.error || noop;
         this.minInterval = options.minInterval || 5000;
@@ -32,12 +32,18 @@ export default class AjaxMgr {
         this.dataType = dataType;
         return this;
     }
+    setCors(cors) {
+        this.cors = cors;
+        return this;
+    }
     request() {
         this.time = Date.now();
         var that=this;
         ajax({
             url: that.url
             , dataType: that.dataType
+            , withCredentials: that.cors
+            , crossDomain: that.cors
             ,success:function (e) {
                 that.success(e)
                 if (!that.isLoop)return;

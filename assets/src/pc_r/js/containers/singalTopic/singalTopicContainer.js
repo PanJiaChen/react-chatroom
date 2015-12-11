@@ -95,7 +95,7 @@ class TopicContainer extends Component {
             } else {
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight,'overflow':'hidden'}} data-id={detail.id}>
+                        <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight,'overflow':'hidden','cursor':'pointer'}} data-id={detail.id}>
                             {detail.text}
                         </div>
                         <div className="fold-button" onClick={this.handleClick.bind(this)}></div>

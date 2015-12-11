@@ -72,9 +72,14 @@ Utils.formatTime=function(time){
 }
 
 Utils.formatTimeTwo=function(time){
-    var time = +time * 1000;
+    if(time!=0){
+         var time = +time * 1000;
     var d =new Date(time);
     return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日${d.getHours()}:${d.getMinutes()}分`
+    }else{
+        return `无`
+    }
+   
 }
 
 Utils.showLoading=function(target){

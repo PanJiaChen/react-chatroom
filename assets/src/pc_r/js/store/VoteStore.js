@@ -21,14 +21,14 @@ export default class VoteStore extends BaseStore {
         VOTE_POST: 'VOTE_POST',
         VOTE_POST_S: 'VOTE_POST_S',
         VOTE_POST_E: 'VOTE_POST_E',
+
+        GET_NEW_VOTE: 'GET_NEW_VOTE',
+        GET_NEW_VOTE_S: 'GET_NEW_VOTE_S',
     };
 
     state = {
         voteList:[],
     };
-
-
-
 
     loadVoteAjax(payLoad,minInterval) {
         const ats = VoteStore.ActionTypes;
@@ -39,7 +39,7 @@ export default class VoteStore extends BaseStore {
             success:function(resp){that.dispatch({type: ats.VOTE_LOAD_S, payLoad: resp})},
             minInterval:minInterval
         })
-        voteAjax.setLoop(true).request();
+        voteAjax.setLoop(true).setDataType('json').setCors(true).request();
     }
 
     postVote(voteId,optionId) {
@@ -53,11 +53,25 @@ export default class VoteStore extends BaseStore {
             , withCredentials: true
             , crossDomain: true
             , success: function (resp) {
-                that.dispatch({type: ats.VOTE_POST_S, payLoad: resp})
+                that.getNewVoteAjax(that)
             }
         })
     }
 
+    getNewVoteAjax(_this) {
+        const ats = VoteStore.ActionTypes;
+        _this.dispatch({type: ats.GET_NEW_VOTE});
+        var that=_this;
+        utils.ajax({
+            url: urlMap['getVote']()
+            , dataType: 'json'
+            , withCredentials: true
+            , crossDomain: true
+            , success: function (resp) {
+                that.dispatch({type: ats.GET_NEW_VOTE_S, payLoad: resp})
+            }
+        })
+    }
 
     reduce(action) {
         const type = action.type;
@@ -76,6 +90,10 @@ export default class VoteStore extends BaseStore {
                 return actionMethods.votePost_s(this.state, payLoad)
             case ats.VOTE_POST_E:
                 return actionMethods.votePost_e(this.state, payLoad)
+            case ats.GET_NEW_VOTE:
+                return actionMethods.getNewVote(this.state, payLoad)
+            case ats.GET_NEW_VOTE_S:
+                return actionMethods.getNewVote_s(this.state, payLoad)
             default:
                 console.warn(`type:${type} not found: use default`)
                 return this.state
@@ -94,7 +112,6 @@ const actionMethods = {
         }
     },
     loadVote_s(state, payLoad){
-        console.log(payLoad)
         return utils.State.setShallow(state, {
             isLoading: false,
             voteList: payLoad.results,
@@ -121,5 +138,16 @@ const actionMethods = {
             isLoading: false,
         })
     },
+    getNewVote(state, payLoad){
+        return utils.State.setShallow(state,{
+            isLoading:false,
+        })
+    },
+    getNewVote_s(state, payLoad){
+       return utils.State.setShallow(state,{
+            isLoading:false,
+            voteList: payLoad.results,
+        })
+    }
 }
 

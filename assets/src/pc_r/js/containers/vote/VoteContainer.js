@@ -100,20 +100,51 @@ class VoteContainer extends Component{
             var publishStatus=item.status;
 
             if(publishStatus=='published'){
-                //不显示百分比
-                var publishStatus='published'
-                var isDisabled=false;
-                var options=item.options.map(option=>{
-                    const per=this.countVote(option.count,count)
-                    return (
-                        <div className="option-item" key={option.id}>
-                            <input name={item.id} type="radio" data-id={option.id} value={option.name} />
-                            <label htmlFor={option.id}>{option.name}</label>
-                        </div>)
-                })
+                //还在publish的
+    
+                if(item.voted!=0){
+                    //投过票显示百分比
+                     var isDisabled=true;
+                    //总人数
+                    var count=0;
+                    item.options.map(option=>{
+                        return count+=option.count
+                    })
+                    var options=item.options.map(option=>{
+                        const per=this.countVote(option.count,count)
+
+                        if(option.id==item.voted){
+                            const checked=true
+                            var vInput=<input name={item.id} type="radio"  checked={checked}  data-id={option.id} value={option.name} />
+                        }else{
+    
+                            var vInput=<input name={item.id} type="radio"  disabled  data-id={option.id} value={option.name} />
+                        }
+                        return (
+                            <div className="option-item" key={option.id}>
+                                {vInput}
+                                <label htmlFor={option.id}>{option.name}</label>
+                                <div className="vote-percentage-container">
+                                    <div className="vote-percentage"><div style={{width:per+'%'}} className="vote-percentage-in" ></div></div>
+                                    <div className="vote-percentage-people"> {option.count+'('+per+'%)'}</div>
+                                </div>
+                            </div>)
+                    })
+                }else{
+                    //不显示百分比
+                    var isDisabled=false;
+                    var options=item.options.map(option=>{
+                        const per=this.countVote(option.count,count)
+                        return (
+                            <div className="option-item" key={option.id}>
+                                <input name={item.id} type="radio" data-id={option.id} value={option.name} />
+                                <label htmlFor={option.id}>{option.name}</label>
+                            </div>)
+                    })
+                }
+               
             }else{
                 //显示投票百分比
-                var publishStatus='closed'
                 var isDisabled=true;
                 //总人数
                 var count=0;
@@ -127,7 +158,7 @@ class VoteContainer extends Component{
                             <input name={item.id} type="radio"  disabled data-id={option.id} value={option.name} />
                             <label htmlFor={option.id}>{option.name}</label>
                             <div className="vote-percentage-container">
-                                <div className="vote-percentage"><div style={{width:per}} className="vote-percentage-in" ></div></div>
+                                <div className="vote-percentage"><div style={{width:per+'%'}} className="vote-percentage-in" ></div></div>
                                 <div className="vote-percentage-people"> {option.count+'('+per+'%)'}</div>
                             </div>
                         </div>)
@@ -146,7 +177,7 @@ class VoteContainer extends Component{
                         <div className="options">
                             {options}
                         </div>
-                        <button className={"vote-button "+publishStatus} disabled={isDisabled} data-id={item.id} onClick={this.postVote.bind(this)}>投票</button>
+                        <button className={"vote-button "+isDisabled} disabled={isDisabled} data-id={item.id} onClick={this.postVote.bind(this)}>投票</button>
                     </div>
                 </li>
             )
@@ -157,13 +188,13 @@ class VoteContainer extends Component{
                     {voteBtn}
                     <nav className="menu">
                         <div className="vote-title">投票区</div>
+                        <button className="close-button" onClick={this.closeClick.bind(this)} >Close Menu</button>
                         <div className="icon-list-container">
                         <div className="icon-list">
                             {repeatLi}
                         </div>
                         </div>
                     </nav>
-                    <button className="close-button" onClick={this.closeClick.bind(this)} >Close Menu</button>
                 </div>
             </div>
             

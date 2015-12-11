@@ -133,7 +133,7 @@ export default class CommentList extends Component {
                 } else {
                     var userWordContainer = (
                         <div className="user-word-container">
-                            <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight}} data-id={item.id}>
+                            <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight,'cursor':'pointer'}} data-id={item.id}>
                                 {item.content}
                             </div>
                             <div className="fold-button" onClick={this.handleClick.bind(this)}></div>
