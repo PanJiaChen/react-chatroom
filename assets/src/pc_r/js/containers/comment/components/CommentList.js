@@ -11,8 +11,7 @@ export default class CommentList extends Component {
     }
 
     state = {
-        foldedMap: {}
-
+        foldedMap: {},
     }
 
     constructor(props, context) {
@@ -24,14 +23,22 @@ export default class CommentList extends Component {
         const store = this.props.store;
         const state=store.getState();
         //滚动轴定位
-        const targetDiv=$('.comment-list')[0];
-        if(state.toLoacateBottom){
-            targetDiv.scrollTop=targetDiv.scrollHeight
-        }
+        this.toLoacate();
+
         //展开收起
         if (state.comments.length > 0) {
             var dom = ReactDOM.findDOMNode(this);
             this.showORhide(dom)
+        }
+    }
+
+    //滚动轴定位
+    toLoacate(){
+        const store = this.props.store;
+        const state=store.getState();
+        const targetDiv=$('.comment-list')[0];
+        if(state.toLoacateBottom){
+            targetDiv.scrollTop=targetDiv.scrollHeight+62
         }
     }
 
@@ -61,18 +68,15 @@ export default class CommentList extends Component {
 
     handleClick(e) {
         const contentDom = $(e.target).closest('.user-word-container').find('.user-word').get(0);
-        console.log(contentDom)
         const id = contentDom.getAttribute('data-id');
         console.log(id)
         const foldedMap = this.state.foldedMap;
 
         if (foldedMap[id] == 'show') {
             foldedMap[id] = 'hide'
-
             this.setState({foldedMap: foldedMap})
         } else {
             foldedMap[id] = 'show';
-
             this.setState({foldedMap: foldedMap})
         }
     }
@@ -83,6 +87,10 @@ export default class CommentList extends Component {
         store.loadPageAjax('fasle',state.down_id)
     }
 
+    clickNew(){
+        //滚动轴定位
+        this.toLoacate();
+    }
 
     render() {
         const store = this.props.store;
@@ -178,7 +186,7 @@ export default class CommentList extends Component {
                     {hasMoreComment}
                     {repeatLi}  
                 </ul>
-            <div className={newCommentClass}>new</div>
+                <div className={newCommentClass} onClick={this.clickNew.bind(this)}>new</div>
             </div>
         )
     }

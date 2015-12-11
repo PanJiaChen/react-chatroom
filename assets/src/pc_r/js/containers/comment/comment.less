@@ -1,7 +1,6 @@
 .comment-container {
     background-color: #fff;
-    padding: 15px 0 15px 15px;
-    margin-top: 20px;
+    padding: 10px 0 15px 15px;
     position: relative;
     .comment-topic {
         font-size: 16px;
@@ -40,6 +39,7 @@
         display: none;
         &.show {
             display: block;
+            cursor: pointer;
         }
     }
 }
@@ -104,14 +104,13 @@
                 color: #999;
             }
             .user-word {
-                font-size: 16px;
+                font-size: 14px;
                 line-height: 20px;
                 color: #333;
                 padding-top: 3px;
                 word-break: break-all;
                 overflow: hidden;
                 transition: all 0.5s ease;
-                cursor: pointer;
             }
         }
 
@@ -146,12 +145,13 @@
         width: 100%;
         color: #666;
         text-align: center;
-        line-height: 35px;
         background: #fff;
         margin: 0;
         border-radius: 4px;
         cursor: pointer;
         display: none;
+        font-size: 12px;
+        color: #999;
         &.show {
             display: block;
         }

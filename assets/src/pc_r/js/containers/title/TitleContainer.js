@@ -48,11 +48,11 @@ class TitleContainer extends Component{
             case "published":
                 return {ctx:"直播中",class:'publish'};
             case "deleted":
-                return {ctx:"直播中",class:'deleted'};
+                return {ctx:"已删除",class:'deleted'};
             case "draft":
                 return {ctx:"草稿",class:'draft'};
             case "terminated":
-                return {ctx:"结束",class:'terminated'};
+                return {ctx:"直播结束",class:'terminated'};
             default:
                 return {ctx:"请求中",class:'publish'}
         }

@@ -166,8 +166,12 @@ const actionMethods = {
         if(state.firstInit){
             state.toLoacateBottom=true;
             state.firstInit=false;
-            state.down_id=payLoad.comments[payLoad.comments.length-1].id;
-            state.up_id=payLoad.comments[0].id;
+            //评论为空时
+            if(payLoad.comments.length>0){
+                state.down_id=payLoad.comments[payLoad.comments.length-1].id;
+                state.up_id=payLoad.comments[0].id;
+            }
+            
             payLoad.comments.forEach(item=>{
                     state.comments.unshift(item)
             })
@@ -244,6 +248,7 @@ const actionMethods = {
                  const url=urlMap["getCommentsUp"](state.up_id)
                 _commentAjax.setUrl(url)
             };
+             state.toLoacateBottom=true;
        })
        
        return utils.State.setShallow(state,{

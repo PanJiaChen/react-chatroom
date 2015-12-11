@@ -63,13 +63,13 @@
 <script>
     var broadcast = new BroadcastApp({
         parentDom: document.getElementById('mountDom'),
-        chatId: 21,
-        apiBaseUrl: 'http://api.wallstcn.com/v2/',
-        // apiBaseUrl:'http://api.wscn.com/v2/',
+        chatId: 67,
+        // apiBaseUrl: 'http://api.wallstcn.com/v2/',
+        apiBaseUrl:'http://api.wscn.com/v2/',
         hostUrl: 'http://wscn.com/',
         minInterval: {
             info: 600 * 1000,//basic info的请求，60s轮询一次
-            comment: 8 * 1000,//评论，5s
+            comment: 600 * 1000,//评论，5s
             article: 900 * 1000,//资讯
             topic: 600 * 1000,//话题
             count: 600 * 1000,//参与人数

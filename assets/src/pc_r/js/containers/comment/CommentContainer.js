@@ -29,7 +29,7 @@ class CommentContainer extends Component {
          const commentReplyH=$('.comment-reply-container').outerHeight();
          // const titleH=$('.title-continer').outerHeight(); 
          // const topicH=$('.topic-container').outerHeight();
-         const height=_height-commentTopicH-commentReplyH-56-103-160;
+         const height=_height-commentTopicH-commentReplyH-56-103-133;
          this.setState({height: height});
     }
 

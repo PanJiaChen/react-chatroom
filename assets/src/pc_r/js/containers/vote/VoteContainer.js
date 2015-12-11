@@ -80,9 +80,7 @@ class VoteContainer extends Component{
         if (list.length <= 0) {
             return (
                 <div className='vote-empty-container'>
-                    <div className='vote-empty-img'>
-                    </div>
-                    暂无投票
+            
                 </div>
             )
         }

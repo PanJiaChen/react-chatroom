@@ -78,7 +78,10 @@ Utils.formatTimeTwo=function(time){
 }
 
 Utils.showLoading=function(target){
-    $('#js-loading').attr('class','loading-container show')
+    $('#js-loading').attr('class','loading-container show');
+    setTimeout(function(){
+        $('#js-loading').attr('class','loading-container hide');
+    },2000)
 }
 
 Utils.hideLoading=function(){

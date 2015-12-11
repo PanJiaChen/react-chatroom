@@ -15,7 +15,7 @@ export default class CommentReplay extends Component {
         var userDetail=this.props.userDetail;
 
         if(!userDetail.id){
-            var userAvatar=(<div id='js-user-avatar' className='user-avatar'><img src='' /></div>)
+            var userAvatar=(<div id='js-user-avatar' className='user-avatar'><img src='http://wscn.cdn.wallstreetcn.com/wscn/img/avatar-md.png' /></div>)
         }else{
             var userAvatar=(<div id='js-user-avatar' className='user-avatar has-login'><img src={userDetail.avatar} /></div>)
         }
@@ -28,13 +28,12 @@ export default class CommentReplay extends Component {
             </div>
         )
     }
-
     handleClick(event){
         const store = this.props.store;
         const avatarClass=$('#js-user-avatar').attr('class');
         const input=$('#js-comment-reply-textarea')
          
-         $('.comment-list')[0].scrollTop=$('.comment-list')[0].scrollHeight
+         $('.comment-list')[0].scrollTop=$('.comment-list')[0].scrollHeight+2000
         if(avatarClass=='user-avatar has-login'){
             console.log('卧槽'+$('.comment-list')[0].scrollHeight)
             var inputVal = input.val();

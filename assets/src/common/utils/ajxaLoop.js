@@ -8,7 +8,7 @@ export default class AjaxMgr {
     constructor(options = {}) {
         this.url = options.url;
         //this.data = options.data;
-        //this.dataType = options.dataType || 'jsonp'
+        this.dataType = options.dataType || 'jsonp'
         //this.ajaxOptins = options.ajaxOptins;
         this.options = options;
 
@@ -28,12 +28,16 @@ export default class AjaxMgr {
         this.url = url;
         return this;
     }
+    setDataType(dataType) {
+        this.dataType = dataType;
+        return this;
+    }
     request() {
         this.time = Date.now();
         var that=this;
         ajax({
             url: that.url
-            , dataType: 'jsonp'
+            , dataType: that.dataType
             ,success:function (e) {
                 that.success(e)
                 if (!that.isLoop)return;
