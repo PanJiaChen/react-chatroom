@@ -115,7 +115,7 @@ class VoteContainer extends Component{
 
                         if(option.id==item.voted){
                             const checked=true
-                            var vInput=<input name={item.id} type="radio"  checked={checked}  data-id={option.id} value={option.name} />
+                            var vInput=<input name={item.id} type="radio"  defaultChecked={checked}  data-id={option.id} value={option.name} />
                         }else{
     
                             var vInput=<input name={item.id} type="radio"  disabled  data-id={option.id} value={option.name} />
