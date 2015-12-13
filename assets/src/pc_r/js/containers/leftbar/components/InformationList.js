@@ -84,7 +84,7 @@ export default class LeftbarList extends Component {
 
         //判读是否有加载
         var loadBtnClass;
-        const limit=15;//每页的个数;
+        const limit=15;//第一页超过多少出现分页的个数;
         const informationListLength=list.length;
         if(state.hasLoadMoreBtn || informationListLength>=limit){
             loadBtnClass="load-more active"

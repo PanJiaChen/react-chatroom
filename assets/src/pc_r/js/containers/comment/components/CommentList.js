@@ -174,10 +174,16 @@ export default class CommentList extends Component {
              var newCommentClass='newComment'
         }
         //判读是否有更多页
+        const limit=24;//第一页超过多少出现分页的个数;
+        const informationListLength=list.length;
         if(state.hasMoreComment){
-          var hasMoreComment=(<div className='load-more show'  onClick={this.loadMore.bind(this)}>加载更多</div>)
+            if(informationListLength>=limit){
+                var hasMoreComment=(<div className='load-more show'  onClick={this.loadMore.bind(this)}>加载更多</div>)
+            }else{
+                var hasMoreComment=(<div className='load-more hide'>没有更多了~</div>)
+            }
         }else{
-           var hasMoreComment=(<div className='load-more show'>没有更多了~</div>)
+            var hasMoreComment=(<div className='load-more show'>没有更多了~</div>)
         }
 
         return (
