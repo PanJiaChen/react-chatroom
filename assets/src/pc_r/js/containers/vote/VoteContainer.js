@@ -137,7 +137,7 @@ class VoteContainer extends Component{
                         const per=this.countVote(option.count,count)
                         return (
                             <div className="option-item" key={option.id}>
-                                <input name={item.id} type="radio" data-id={option.id} value={option.name} />
+                                <input className='option-input' name={item.id} type="radio" data-id={option.id} value={option.name} />
                                 <label htmlFor={option.id}>{option.name}</label>
                             </div>)
                     })
