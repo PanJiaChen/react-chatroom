@@ -7,15 +7,12 @@ import Thumbnail from '../../../components/Thumbnail'
 export default class LeftbarList extends Component {
 
     static contextTypes={
-        commentLineHeight: React.PropTypes.number.isRequired,
-        commentMaxLines: React.PropTypes.number.isRequired,
         minInterval:React.PropTypes.object.isRequired
     }
 
-    static defaultProps = {
-        list: []
+    state = {
+        page:2
     }
-
 
     constructor(props, context) {
         super(props, context)
@@ -24,6 +21,13 @@ export default class LeftbarList extends Component {
     componentDidMount(){
         const store = this.props.store;
         store.loadArticleAjax('fasle',this.context.minInterval.article)
+    }
+
+    loadMore(){
+        const page=this.state.page;
+        const store = this.props.store;
+        store.loadPageAjax('fasle',page)
+        this.setState({page: page+1});
     }
 
     render() {
@@ -78,9 +82,20 @@ export default class LeftbarList extends Component {
             )
         })
 
+        //判读是否有加载
+        var loadBtnClass;
+        const limit=15;//每页的个数;
+        const informationListLength=list.length;
+        if(state.hasLoadMoreBtn || informationListLength>=limit){
+            loadBtnClass="load-more active"
+        }else{
+            loadBtnClass="load-more"
+        }
+
         return (
             <ul className='article-list'>
                {repeatLi}
+               <div className={loadBtnClass}  onClick={this.loadMore.bind(this)}>加载更多</div>
             </ul>
         )
     }

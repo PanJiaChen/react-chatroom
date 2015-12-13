@@ -88,12 +88,10 @@ const actionMethods = {
 
     loadTopic_s(state, payLoad){
         var nTopic=payLoad.results[0];
-        if((payLoad.results.length==0) ||(nTopic.id==state.newTopicId)   ){
-            console.log('不更新')
+        if((payLoad.results.length==0) || (nTopic.id==state.newTopicId) ){
             return state
         }else{
             if(state.newTopicId==''){
-                console.log('初始化')
                 state.newTopicId=nTopic.id;
                 return utils.State.setShallow(state, {
                     isLoading: false,
@@ -111,7 +109,6 @@ const actionMethods = {
                         state.detail.unshift(payLoad.results[i])
                     }
                 }
-                console.log('更新')
                 state.newTopicId=nTopic.id;
                 return utils.State.setShallow(state, {
                     isLoading: false,
@@ -167,7 +164,6 @@ const actionMethods = {
             hasLoadMoreBtn:true
         })
        }
-        
     },
 }
 

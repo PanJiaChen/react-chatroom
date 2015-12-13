@@ -19,17 +19,16 @@ function _getChatroom() {
     return HOST_URL + "chatrooms/" + ChatroomId;
 }
 
+//话题
 function _getRelaticeTopics(page) {
-    if(page){
-        page=page
-    }else{
-        page=1
-    }
-    return HOST_URL + 'chatrooms/' + ChatroomId + '/topics?limit=15&page='+page;
+    page==undefined?page=1:page=page;
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/topics?limit=20&page='+page;
 }
 
-function _getRelativeArticles() {
-    return HOST_URL + 'chatrooms/' + ChatroomId + '/articles';
+//资讯
+function _getRelativeArticles(page) {
+    page==undefined?page=1:page=page;
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/articles?limit=20&page='+page;
 }
 
 //参与人数

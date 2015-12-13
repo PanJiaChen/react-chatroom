@@ -19,7 +19,6 @@ export default class LeftbarList extends Component {
     }
 
     componentDidMount(){
-        console.log('话题')
         const store = this.props.store;
         store.loadTopicAjax('fasle',this.context.minInterval.topic)
     }
@@ -88,8 +87,10 @@ export default class LeftbarList extends Component {
         
         //判读是否有加载
         var loadBtnClass;
-        console.log('判断class'+state.hasLoadMoreBtn)
-        if(state.hasLoadMoreBtn){
+        const limit=15;//每页的个数;
+        const topicListLength=list.length;
+
+        if(state.hasLoadMoreBtn || topicListLength>=limit){
             loadBtnClass="load-more active"
         }else{
             loadBtnClass="load-more"

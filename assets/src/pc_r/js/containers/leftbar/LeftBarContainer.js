@@ -25,7 +25,7 @@ class LeftBarContainer extends Component{
     }
 
     state = {
-        tabSelect:'topics',
+        tabSelect:'informations',
         tabHeight:360,
     }
 
