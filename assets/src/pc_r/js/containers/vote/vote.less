@@ -92,6 +92,7 @@
                 padding-top: 2px;
                 & label {
                     padding-left: 6px;
+                    font-weight: normal;
                 }
             }
         }
@@ -476,6 +477,10 @@
   top: 20%;
   left: 20%;
 }
+.option-input:focus{
+    outline:none!important;
+    outline-offset:0px!important;
+}
 .option-input:checked::after {
   -webkit-animation: click-wave 0.65s;
   -moz-animation: click-wave 0.65s;
@@ -485,6 +490,7 @@
   display: block;
   position: relative;
   z-index: 100;
+  border:none;
 }
 .option-input.radio {
   border-radius: 50%;
