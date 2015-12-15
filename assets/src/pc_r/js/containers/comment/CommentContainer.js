@@ -24,15 +24,21 @@ class CommentContainer extends Component {
         const state = store.getState();
         store.loadCommentAjax('fasle',this.context.minInterval.comment,state.up_id)
         store.userValidateAjax('fasle');
+        
+    }
+
+    componentDidUpdate(){
         const _height=window.document.body.offsetHeight;
          const commentTopicH=$('.comment-topic').outerHeight();
          const commentReplyH=$('.comment-reply-container').outerHeight();
          // const titleH=$('.title-continer').outerHeight(); 
          // const topicH=$('.topic-container').outerHeight();
-         const height=_height-commentTopicH-commentReplyH-56-103-133;
-         this.setState({height: height});
+         const height=_height-commentTopicH-commentReplyH-this.props.titleHeight-this.props.topicHeight-115;
+         if(this.state.height!=height){
+            this.setState({height: height});
+         }
+         
     }
-
     render() {
         const store = this.props.store;
         const state = store.getState();

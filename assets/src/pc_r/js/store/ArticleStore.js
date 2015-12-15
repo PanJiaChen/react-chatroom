@@ -91,11 +91,9 @@ const actionMethods={
     loadRelativeArticles_s(state,payLoad){
         const nArticle=payLoad.results[0];
         if((payLoad.results.length==0) || (nArticle==state.newTopicId) ){
-            console.log('不更新')
             return state
         }else{
             if(state.newArticleId==''){
-                console.log('初始化')
                 state.newArticleId=nArticle.id;
                 return utils.State.setShallow(state, {
                     isLoading: false,
@@ -114,7 +112,6 @@ const actionMethods={
                         state.detail.unshift(payLoad.results[i])
                     }
                 }
-                console.log('更新')
                 state.newArticleId=nArticle.id;
                 return utils.State.setShallow(state, {
                     isLoading: false,

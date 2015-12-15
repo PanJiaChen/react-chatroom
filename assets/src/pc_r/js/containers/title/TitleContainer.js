@@ -22,13 +22,20 @@ class TitleContainer extends Component{
         store.loadCountAjax('false',this.context.minInterval.count)
     }
 
+    componentDidUpdate() {
+        const titleH=$('.title-container').outerHeight();
+        if(this.props.titleHeight!=titleH){
+            this.props.resize(titleH)
+        }
+    }
+
     render(){
         const store = this.props.store;
         const state = store.getState();
 
         var status=this.judgeStatus(state.title.status)
         return (
-            <div className='title-continer'>
+            <div className='title-container'>
                 <div className='title'>
                         {state.title.title}
                         <span className={'publish-status '+status.class} >

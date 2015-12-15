@@ -53,7 +53,9 @@ class ChatroomContainer extends Component {
     }
 
     state = {
-        bHeight:0
+        bHeight:0,
+        topicHeight:0,
+        titleHeight:0
     }
 
     getChildContext() {
@@ -83,12 +85,22 @@ class ChatroomContainer extends Component {
         const _height=window.document.body.offsetHeight;
         
         const _BHeight=_height-90;
-      
         this.setState({bHeight: _BHeight});
+        
     }
 
     componentWillUnmount() {
         document.body.removeChild(this.node);
+    }
+
+    resizeTitle(h){
+        var height=h
+        this.setState({titleHeight: height});
+    }
+
+    resizeTopic(h){
+        var height=h
+        this.setState({topicHeight: height});
     }
 
     render() {
@@ -98,7 +110,6 @@ class ChatroomContainer extends Component {
         if (detail.id) {
             var includeArr = [];
             var include = detail.include;
-            console.log(include )
             for (let pop in transformsMap) {
                 this.judgeInclude(include, pop, includeArr)
             }
@@ -115,9 +126,9 @@ class ChatroomContainer extends Component {
                 </div>
                 <div className="main-container" style={{'height':this.state.bHeight}}>
                     <VoteElement />
-                    <TitleElement />
-                    <SingalTopicElement />
-                    <CommentElement />
+                    <TitleElement resize={this.resizeTitle.bind(this)} titleHeight={this.state.titleHeight} />
+                    <SingalTopicElement resize={this.resizeTopic.bind(this)} topicHeight={this.state.topicHeight} />
+                    <CommentElement titleHeight={this.state.titleHeight} topicHeight={this.state.topicHeight} />
                 </div>
             </div>
         )

@@ -18,7 +18,7 @@ class TopicContainer extends Component {
     }
 
     componentDidMount() {
- 
+
     }
 
     componentDidUpdate() {
@@ -27,6 +27,10 @@ class TopicContainer extends Component {
         if (state.detail.length > 0) {
             var dom = ReactDOM .findDOMNode(this);
             this.showORhide(dom)
+        }
+        const topicH=$('.topic-container').outerHeight();
+        if(this.props.topicHeight!=topicH){
+            this.props.resize(topicH)
         }
     }
 
@@ -58,11 +62,9 @@ class TopicContainer extends Component {
 
         if (foldedMap[id] == 'show') {
             foldedMap[id] = 'hide'
-            console.log(foldedMap)
             this.setState({foldedMap: foldedMap})
         } else {
             foldedMap[id] = 'show';
-            console.log(foldedMap)
             this.setState({foldedMap: foldedMap})
         }
     }
