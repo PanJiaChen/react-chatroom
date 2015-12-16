@@ -23,7 +23,9 @@ export default class CommentList extends Component {
         const store = this.props.store;
         const state=store.getState();
         //滚动轴定位
-        this.toLoacate();
+        if(state.toLoacateBottom){
+            this.toLoacate();
+        }
 
         //展开收起
         if (state.comments.length > 0) {
@@ -37,9 +39,7 @@ export default class CommentList extends Component {
         const store = this.props.store;
         const state=store.getState();
         const targetDiv=$('.comment-list')[0];
-        if(state.toLoacateBottom){
-            targetDiv.scrollTop=targetDiv.scrollHeight+62
-        }
+        targetDiv.scrollTop=targetDiv.scrollHeight+62
     }
 
     showORhide(dom) {
@@ -86,9 +86,13 @@ export default class CommentList extends Component {
         store.loadPageAjax('fasle',state.down_id)
     }
 
-    clickNew(){
+    clickNew(e){
         //滚动轴定位
         this.toLoacate();
+        console.log(e.target)
+        // setTimeout(function(){
+            $(e.target).hide()
+        // },1000)
     }
 
     render() {
