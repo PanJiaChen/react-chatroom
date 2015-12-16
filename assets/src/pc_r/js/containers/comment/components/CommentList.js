@@ -69,7 +69,6 @@ export default class CommentList extends Component {
     handleClick(e) {
         const contentDom = $(e.target).closest('.user-word-container').find('.user-word').get(0);
         const id = contentDom.getAttribute('data-id');
-        console.log(id)
         const foldedMap = this.state.foldedMap;
 
         if (foldedMap[id] == 'show') {

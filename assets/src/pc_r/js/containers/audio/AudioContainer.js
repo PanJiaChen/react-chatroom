@@ -8,20 +8,20 @@ class AudioContainer extends Component {
     }
 
     state = {
-
+        
     }
 
     componentDidMount() {
         const store = this.props.store;
         store.loadStreamAjax('false')
+        console.log('草')
     }
     render() {
         const store = this.props.store;
         const state = store.getState();
-        if(state.results.length>0){
+        const hasInit=$('#audio-mount').hasClass('hasInit')
+        if(state.results.length>0 && !hasInit){
             var url=state.results[0].url['liveHls'];
-            
-            console.log('试试'+$('.audio-container').html())
                var srcPath =(
                     "http://wscn.cdn.wallstreetcn.com/wscn/js/swise-player/sewise.player.min.js?"+
                     "server=vod&"+
@@ -40,7 +40,7 @@ class AudioContainer extends Component {
                 script.type = "text/javascript";
                 script.src = srcPath ;
                 //用JQ的append方法动态添加脚本会造成脚本被执行两次，所以这里改为原生动态添加脚本的方式。
-                $("#audio-mount").get(0).appendChild(script);
+                $("#audio-mount").addClass('hasInit').get(0).appendChild(script);
         }
         return (
             <div id='audio-mount' className='audio-container'>

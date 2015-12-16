@@ -18,7 +18,8 @@ class VideoContainer extends Component {
     render() {
         const store = this.props.store;
         const state = store.getState();
-        if(state.results.length>0){
+        const hasInit=$('#audio-mount').hasClass('hasInit')
+        if(state.results.length>0 && !hasInit){
             var url=state.results[0].url['liveHls'];
                 var srcPath =(
                     "http://wscn.cdn.wallstreetcn.com/wscn/js/swise-player/sewise.player.min.js?"+
@@ -38,7 +39,7 @@ class VideoContainer extends Component {
                 script.type = "text/javascript";
                 script.src = srcPath ;
                 //用JQ的append方法动态添加脚本会造成脚本被执行两次，所以这里改为原生动态添加脚本的方式。
-                $("#video-mount").get(0).appendChild(script);
+                $("#video-mount").addClass('hasInit').get(0).appendChild(script);
         }
         return (
             <div id='video-mount' className='video-container'>

@@ -35,7 +35,6 @@ export default class CommentReplay extends Component {
          
          $('.comment-list')[0].scrollTop=$('.comment-list')[0].scrollHeight+2000
         if(avatarClass=='user-avatar has-login'){
-            console.log('卧槽'+$('.comment-list')[0].scrollHeight)
             var inputVal = input.val();
             store.replyCommentAjax('fasle',inputVal);
             input.val('');
