@@ -25,7 +25,7 @@ export default class ArticleStore extends BaseStore{
         isLoading:false,
         detail:[],
         newArticleId:'',
-        hasLoadMoreBtn:false
+        hasLoadMoreBtn:true
     };
 
     loadArticleAjax(payLoad,minInterval) {

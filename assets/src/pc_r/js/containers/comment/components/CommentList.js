@@ -95,7 +95,7 @@ export default class CommentList extends Component {
         const store = this.props.store;
         const state=store.getState();
         var list = this.props.listDetail;
-        if(list.length<=1){
+        if(list.length<1){
             return (
                 <div className='comment-list commentList-empty'>
                     <div className='commentList-empty-img'>

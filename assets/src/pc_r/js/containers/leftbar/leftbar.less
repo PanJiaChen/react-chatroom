@@ -90,15 +90,16 @@
             }
         }
         &:last-of-type {
-            .list-item:after {
+            border:none;
+            .list-item:before {
                 content: '';
-                width: 9px;
-                height: 100px;
-                background: #fff;
+                width: 1px;
+                height: 9px;
+                background: #e6e6e6;
                 display: inline-block;
                 position: absolute;
-                left: -5px;
-                top: 17px
+                left: 0px;
+                top: -4px
             }
         }
         .list-item {

@@ -14,7 +14,6 @@ class AudioContainer extends Component {
     componentDidMount() {
         const store = this.props.store;
         store.loadStreamAjax('false')
-        console.log('草')
     }
     render() {
         const store = this.props.store;

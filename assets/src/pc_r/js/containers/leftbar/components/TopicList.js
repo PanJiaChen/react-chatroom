@@ -90,8 +90,12 @@ export default class LeftbarList extends Component {
         const limit=15;//第一页超过多少出现分页的个数;
         const topicListLength=list.length;
 
-        if(state.hasLoadMoreBtn || topicListLength>=limit){
-            loadBtnClass="load-more active"
+        if(state.hasLoadMoreBtn){
+            if(topicListLength>=limit){
+                loadBtnClass="load-more active"
+            }else{
+                loadBtnClass="load-more"
+            }
         }else{
             loadBtnClass="load-more"
         }
