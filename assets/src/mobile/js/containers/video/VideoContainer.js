@@ -1,14 +1,14 @@
 import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
-import './audio.less'
+import './video.less'
 
-class AudioContainer extends Component {
+class VideoContainer extends Component {
     constructor(props, context) {
         super(props, context)
     }
 
     state = {
-        
+
     }
 
     componentDidMount() {
@@ -30,17 +30,17 @@ class AudioContainer extends Component {
                 //直播
                 var url=state.results[0].url['liveHls'];
             }
-           var srcPath =(
+            var srcPath =(
                 "http://wscn.cdn.wallstreetcn.com/wscn/js/swise-player/sewise.player.min.js?"+
                 "server==vod&"+
                 "type==m3u8&"+
-                "autostart==false"+
-                "&starttime==10&"+
+                "autostart==true"+
+                "&starttime==0&"+
                 "buffer==2&"+
                 "title==华尔街见闻&"+
                 "lang==en_US&"+
                 "claritybutton==disable&"+
-                "poster==http://wscn.cdn.wallstreetcn.com/wscn/img/logo&2x.png&"+
+                "poster==http://wscn.cdn.wallstreetcn.com/wscn/img/logo@2x.png&"+
                 "skin==vodTransparent&"+
                 "videourl=="+url
             )
@@ -48,10 +48,10 @@ class AudioContainer extends Component {
             script.type = "text/javascript";
             script.src = srcPath ;
             //用JQ的append方法动态添加脚本会造成脚本被执行两次，所以这里改为原生动态添加脚本的方式。
-            $("#audio-mount").addClass('hasInit').get(0).appendChild(script);
+            $("#video-mount").addClass('hasInit').get(0).appendChild(script);
         }
         return (
-            <div id='audio-mount' className='audio-container'>
+            <div id='video-mount' className='video-container'>
                 
             </div>
         )
@@ -59,4 +59,4 @@ class AudioContainer extends Component {
 
 }
 
-export default AudioContainer;
+export default VideoContainer;

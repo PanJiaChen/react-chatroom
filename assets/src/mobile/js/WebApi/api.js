@@ -15,7 +15,6 @@ function _setBaseUrl(url) {
 }
 
 function _setChatroomId(id) {
-    console.log('setId')
     ChatroomId = id;
 }
 function _getChatroom() {
@@ -39,6 +38,10 @@ function _getCount() {
     return HOST_URL + Get_Count;
 }
 
+//stream流媒体
+function _getStream() {
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/streams';
+}
 
 
 module.exports = {
@@ -48,5 +51,6 @@ module.exports = {
     getRelativeArticles: _getRelativeArticles,
     getRelaticeTopics: _getRelaticeTopics,
     getComments: _getComments,
-    getCount: _getCount
+    getCount: _getCount,
+    getStream:_getStream
 };

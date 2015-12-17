@@ -2,8 +2,7 @@ import {Component} from 'react'
 import ReactDOM from 'react-dom'
 import utils from '../common/utils/utils.js'
 import {enhanceWithStore} from 'react-zlux'
-import AudioContainer from './js/containers/audio/AudioContainer.js';
-import VedioContainer from './js/containers/vedio/VedioContainer.js';
+
 import TabContainer from './js/containers/tab/tabContainer.js';
 
 import ArticleContainer from './js/containers/articleSingal/articleSingalContainer.js';
@@ -11,12 +10,20 @@ import ArticleStore from './js/store/ArticleStore.js';
 const articleStore = global.informationStore;
 const ArticleElement = enhanceWithStore(ArticleContainer, articleStore);
 
+import VideoContainer from './js/containers/video/VideoContainer.js';
+import StreamStore from './js/store/StreamStore.js'
+const streamStore = new StreamStore();
+const VideoElement = enhanceWithStore(VideoContainer, streamStore);
+
+import AudioContainer from './js/containers/audio/AudioContainer.js';
+const AudioElement = enhanceWithStore(AudioContainer, streamStore);
+
 import './less/index.less'
 import './js/components/loading.less'
 
 const transformsMap = {
-    // audio: <AudioContainer />,
-    // vedio: <VedioContainer />,
+    audio: <AudioElement key='aduio'/>,
+    video: <VideoElement key='video' />,
     commentandarticle: <TabContainer key={'commentandarticle'} />,
     // article: <ArticleElement />
 }

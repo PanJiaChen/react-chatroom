@@ -48,7 +48,7 @@ export default class TopicList extends Component {
     }
 
     componentDidMount() {
-        console.log('topic列表mount')
+        
     }
 
 

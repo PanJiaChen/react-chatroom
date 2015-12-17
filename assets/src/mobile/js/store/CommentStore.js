@@ -68,7 +68,6 @@ export default class DiscussStore extends BaseStore {
             , withCredentials: true
             , crossOrigin: true
             , success: function (resp) {
-                console.log(resp)
                 that.dispatch({type: ats.COMMENT_REPLY_S, payLoad: resp})
             }
         })
@@ -151,7 +150,6 @@ const actionMethods = {
         })
     },
     replyComment_s(state, payLoad){
-       console.log(payLoad)
-    }
+          }
 }
 

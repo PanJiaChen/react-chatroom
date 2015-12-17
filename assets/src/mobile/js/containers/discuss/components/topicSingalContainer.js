@@ -55,17 +55,14 @@ class TopicContainer extends Component {
 
         if (foldedMap[id] == 'show') {
             foldedMap[id] = 'hide'
-            console.log(foldedMap)
             this.setState({foldedMap: foldedMap})
         } else {
             foldedMap[id] = 'show';
-            console.log(foldedMap)
             this.setState({foldedMap: foldedMap})
         }
     }
 
     showORhide(dom) {
-        console.log('我在showhide')
         const lineHeight = this.context.topicLineHeight;
         const maxLines = this.context.topicMaxLines;
         var max = lineHeight * maxLines;
@@ -88,7 +85,6 @@ class TopicContainer extends Component {
 
 
     render() {
-        console.log('我在render啊啊啊！')
         const store = this.props.store;
         const state = store.getState();
         if (state.detail.length <= 0) {

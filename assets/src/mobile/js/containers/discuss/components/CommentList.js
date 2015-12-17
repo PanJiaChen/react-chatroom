@@ -21,7 +21,6 @@ export default class CommentList extends Component {
     }
 
     componentDidMount() {
-        console.log('评论初始化')
         const store = this.props.store;
         store.loadCommentAjax('fasle',this.context.minInterval.comment)
     }
@@ -37,7 +36,6 @@ export default class CommentList extends Component {
 
     handleClick(e) {
         const contentDom = e.target.previousSibling;
-        console.log(contentDom)
         const id = contentDom.getAttribute('data-id');
         console.log(id)
         const foldedMap = this.state.foldedMap;

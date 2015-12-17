@@ -5,7 +5,24 @@ body {
       overflow: hidden;
    }
 }
+* {
+    box-sizing: border-box;
+}
+body,html {
+    padding: 0;
+    margin: 0 auto;
+    height: 100%;
+}
 
+.container{
+  height: 100%;
+}
+.ReactModalPortal{
+  overflow: hidden;
+}
+.ReactModal__Overlay--after-open{
+  z-index: 9999;
+}
 .react-container {
   font-family: 'Heiti SC', '华文黑体', '黑体', "Helvetica Neue";
   padding: 0;
