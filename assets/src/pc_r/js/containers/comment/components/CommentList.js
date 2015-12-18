@@ -12,6 +12,7 @@ export default class CommentList extends Component {
 
     state = {
         foldedMap: {},
+        isInit:true
     }
 
     constructor(props, context) {
@@ -23,7 +24,7 @@ export default class CommentList extends Component {
         const store = this.props.store;
         const state=store.getState();
         //滚动轴定位
-        if(state.toLoacateBottom){
+        if(state.toLoacateBottom && this.state.isInit){
             this.toLoacate();
         }
 
@@ -31,6 +32,10 @@ export default class CommentList extends Component {
         if (state.comments.length > 0) {
             var dom = ReactDOM.findDOMNode(this);
             this.showORhide(dom)
+            if(this.state.isInit){
+                this.setState({isInit: false});
+            }
+            
         }
     }
 

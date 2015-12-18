@@ -54,7 +54,7 @@ class ChatroomContainer extends Component {
 
     state = {
         bHeight:0,
-        topicHeight:0,
+        topicHeight:83,
         titleHeight:0
     }
 

@@ -14,7 +14,8 @@ class TopicContainer extends Component {
     }
 
     state = {
-        foldedMap: {}
+        foldedMap: {},
+        topicMaxHeight:103
     }
 
     componentDidMount() {
@@ -27,10 +28,6 @@ class TopicContainer extends Component {
         if (state.detail.length > 0) {
             var dom = ReactDOM .findDOMNode(this);
             this.showORhide(dom)
-        }
-        const topicH=$('.topic-container').outerHeight();
-        if(this.props.topicHeight!=topicH){
-            this.props.resize(topicH)
         }
     }
 
@@ -51,6 +48,7 @@ class TopicContainer extends Component {
                 idMap[id] = 'hide';
                 idMap[id+'lineHeight']=parseInt(style.height);
                 this.setState({foldedMap: idMap});
+                this.props.resize(this.state.topicMaxHeight)
             }
         }
     }
