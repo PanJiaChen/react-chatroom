@@ -77,29 +77,28 @@ class TopicContainer extends Component {
         if(!detail){
             return <div></div>
         }
+        var screenName;
+        detail.user["screenName"]?screenName=detail.user["screenName"]:screenName=detail.user["username"];
         const publishTime = utils.formatTime(detail.createdAt);
-        const username='[主持人]'+detail.user["username"];
+        const username='[主持人]'+screenName;
 
         const foldedMap = this.state.foldedMap;
         const id = detail.id;
+        const text=detail.text.replace("\n", "<br />","g");
         if (id in foldedMap) {
             if (foldedMap[id] == 'show') {
                 var lineHeight=foldedMap[id+'lineHeight']
                 var userWordContainer = (
                     <div className="user-word-container">
                         <div className="user-word" onClick={this.handleClick.bind(this)}  style={{'maxHeight':lineHeight,'overflow':'initial'}}
-                             data-id={detail.id}>
-                            {detail.text}
-                        </div>
+                             data-id={detail.id}  dangerouslySetInnerHTML={{__html: text}} />
                         <div className="fold-button folded" onClick={this.handleClick.bind(this)}></div>
                     </div>
                 )
             } else {
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight,'overflow':'hidden','cursor':'pointer'}} data-id={detail.id}>
-                            {detail.text}
-                        </div>
+                        <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight,'overflow':'hidden','cursor':'pointer'}} data-id={detail.id} dangerouslySetInnerHTML={{__html: text}} />
                         <div className="fold-button" onClick={this.handleClick.bind(this)}></div>
                     </div>
                 )
@@ -107,9 +106,7 @@ class TopicContainer extends Component {
         } else {
             var userWordContainer = (
                 <div className="user-word-container">
-                    <div className="user-word" data-id={detail.id}>
-                        {detail.text}
-                    </div>
+                    <div className="user-word" data-id={detail.id} dangerouslySetInnerHTML={{__html: text}} />
                 </div>
             )
         }

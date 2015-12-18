@@ -45,7 +45,7 @@ export default class LeftbarList extends Component {
         }
         var repeatLi = list.map(item=> {
             const publishTime = utils.formatTime(item.createdAt);
-            const content = item.text;
+            const content = item.text.replace("\n", "<br />","g");
 
             //缩略图
             var thumbnail;
@@ -77,7 +77,7 @@ export default class LeftbarList extends Component {
                                 <div className="username">{item.user.screenName?item.user.screenName:item.user.username}</div>
                                 <div className="timer">{publishTime}</div>
                             </div>
-                            <div className="list-content">{content}</div>
+                            <div className="list-content" dangerouslySetInnerHTML={{__html: content}} />
                             {thumbnail}
                        </div>                        
                     </div>

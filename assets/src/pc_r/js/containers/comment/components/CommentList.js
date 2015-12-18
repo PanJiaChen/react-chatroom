@@ -89,10 +89,7 @@ export default class CommentList extends Component {
     clickNew(e){
         //滚动轴定位
         this.toLoacate();
-        console.log(e.target)
-        // setTimeout(function(){
-            $(e.target).hide()
-        // },1000)
+        $(e.target).removeClass('show')
     }
 
     render() {

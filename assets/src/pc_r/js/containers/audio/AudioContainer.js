@@ -19,16 +19,21 @@ class AudioContainer extends Component {
         const store = this.props.store;
         const state = store.getState();
         const hasInit=$('#audio-mount').hasClass('hasInit')
+        var content
         if(state.results.length>0 && !hasInit){
             const end=state.results[0].disp['end'];
+            const start=state.results[0].disp['start'];
             const now=Date.parse(new Date())/1000;
+
             if(now>end){
                 //重播
                 var url=state.results[0].url['playbackHls'].split('?')[0];
                 url=url+'%3Fstart=0%26end=0'
-            }else{
+            }else if(now<end && now>start){
                 //直播
                 var url=state.results[0].url['liveHls'];
+            }else if(start>now){
+                return content=(<div className='not-start'>直播尚未开始请耐心等待~</div>)
             }
            var srcPath =(
                 "http://wscn.cdn.wallstreetcn.com/wscn/js/swise-player/sewise.player.min.js?"+
