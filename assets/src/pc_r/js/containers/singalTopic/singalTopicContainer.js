@@ -48,7 +48,7 @@ class TopicContainer extends Component {
                 idMap[id] = 'hide';
                 idMap[id+'lineHeight']=parseInt(style.height);
                 this.setState({foldedMap: idMap});
-                this.props.resize(this.state.topicMaxHeight)
+                this.props.resize('topicHeight',this.state.topicMaxHeight)
             }
         }
     }

@@ -25,7 +25,7 @@ class TitleContainer extends Component{
     componentDidUpdate() {
         const titleH=$('.title-container').outerHeight();
         if(this.props.titleHeight!=titleH){
-            this.props.resize(titleH)
+            this.props.resize('titleHeight',titleH)
         }
     }
 

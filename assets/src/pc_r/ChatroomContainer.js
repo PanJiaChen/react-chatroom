@@ -93,14 +93,11 @@ class ChatroomContainer extends Component {
         document.body.removeChild(this.node);
     }
 
-    resizeTitle(h){
+    resize(target,h){
         var height=h
-        this.setState({titleHeight: height});
-    }
-
-    resizeTopic(h){
-        var height=h
-        this.setState({topicHeight: height});
+        this.setState({
+            [`${target}`]: height
+        });
     }
 
     render() {
@@ -126,8 +123,8 @@ class ChatroomContainer extends Component {
                 </div>
                 <div className="main-container" style={{'height':this.state.bHeight}}>
                     <VoteElement />
-                    <TitleElement resize={this.resizeTitle.bind(this)} titleHeight={this.state.titleHeight} />
-                    <SingalTopicElement resize={this.resizeTopic.bind(this)} topicHeight={this.state.topicHeight} />
+                    <TitleElement resize={this.resize.bind(this)} titleHeight={this.state.titleHeight} />
+                    <SingalTopicElement resize={this.resize.bind(this)} topicHeight={this.state.topicHeight} />
                     <CommentElement titleHeight={this.state.titleHeight} topicHeight={this.state.topicHeight} />
                 </div>
             </div>
