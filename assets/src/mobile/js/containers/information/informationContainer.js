@@ -8,12 +8,6 @@ import InformationStore from '../../store/ArticleStore.js'
 const informationStore = new InformationStore();
 const InformationListElement = enhanceWithStore(InformationListContainer, informationStore);
 
-// {
-//     store:informationStore,
-//     getContainer:function(){
-//         return enhanceWithStore(container,this.store);
-//     }
-// }
 class InformationContainer extends Component {
     constructor(props, context) {
         super(props, context)

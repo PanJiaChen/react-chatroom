@@ -26,8 +26,8 @@ class TabContainer extends Component{
         return (
             <div className='tab-container'>
                 <div className='tab'>
-                        <div className={'tab-list '+this.judgeTabClass("discuss")} data-selected='true' data-ref='discuss'  onClick={this.handleClick.bind(this)}>讨论</div>
-                        <div className={'tab-list '+this.judgeTabClass("information")} data-ref='information'  onClick={this.handleClick.bind(this)}>资讯</div>
+                        <div className={'tab-list '+this.judgeTabClass("discuss")} data-selected='true' data-ref='discuss'  onClick={this.handleClick}>讨论</div>
+                        <div className={'tab-list '+this.judgeTabClass("information")} data-ref='information'  onClick={this.handleClick}>资讯</div>
                 </div>
                 <div className="tab-main">
                     <div className={'tab-main-tab '+this.judgeTabClass("discuss")}><DiscussContainer /></div>
@@ -37,7 +37,7 @@ class TabContainer extends Component{
         )
     }
 
-    handleClick(event){
+    handleClick =(event) => {
         var tabUrl=event.target.getAttribute('data-ref');
         this.setState({tabSelect: tabUrl});
     }

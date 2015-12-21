@@ -23,12 +23,11 @@ export default class InformationList extends Component {
         store.loadRelativeAjax('fasle',this.context.minInterval.article)
     }
 
-
     render() {
-
         const store = this.props.store;
         const state = store.getState();
         var list = state.articles;
+        //空状态
         if (list.length<=0) {
             return(
                 <div className='information-empty-container'>
@@ -38,6 +37,7 @@ export default class InformationList extends Component {
                 </div>
             )
         };
+        
         var repeatLi = list.map(item=> {
             var publishTime = utils.formatTime(item.createdAt);
             var content = item.title;

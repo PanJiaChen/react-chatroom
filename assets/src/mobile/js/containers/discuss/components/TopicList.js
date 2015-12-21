@@ -34,7 +34,6 @@ const customStyles = {
 export default class TopicList extends Component {
 
     static contextTypes={
-        
         minInterval:React.PropTypes.object.isRequired
     }
 
@@ -51,13 +50,11 @@ export default class TopicList extends Component {
         
     }
 
-
-
-    showModal() {
+    showModal=(e)=>{
         this.setState({'modalIsOpen': true});
     }
 
-    closeModal() {
+    closeModal=(e)=> {
        this.setState({'modalIsOpen': false});
     }
 
@@ -92,9 +89,9 @@ export default class TopicList extends Component {
         })
         return (
             <ul className='topic-list'>
-                <div className='forward_arrow' onClick={this.showModal.bind(this)} ></div>
+                <div className='forward_arrow' onClick={this.showModal} ></div>
                 <Modal isOpen={this.state.modalIsOpen}  style={customStyles} >
-                    <span onClick={this.closeModal.bind(this)} className="modal-close"></span>
+                    <span onClick={this.closeModal} className="modal-close"></span>
                     <div className='topic-list-container'>
                         <div className="title" >主持人话题区</div>
                         {repeatLi}

@@ -34,23 +34,22 @@ export default class CommentList extends Component {
         }
     }
 
-    handleClick(e) {
+    // 展开收起click
+    handleClick=(e)=> {
         const contentDom = e.target.previousSibling;
         const id = contentDom.getAttribute('data-id');
-        console.log(id)
         const foldedMap = this.state.foldedMap;
 
         if (foldedMap[id] == 'show') {
             foldedMap[id] = 'hide'
-            console.log('走一函数')
             this.setState({foldedMap: foldedMap})
         } else {
             foldedMap[id] = 'show';
-            console.log('走二函数')
             this.setState({foldedMap: foldedMap})
         }
     }
 
+    //展开收起
     showORhide(dom) {
         const lineHeight = this.context.commentLineHeight;
         const maxLines = this.context.commentMaxLines;
@@ -67,7 +66,8 @@ export default class CommentList extends Component {
                 } else {
                     var idMap = [];
                     idMap = this.state.foldedMap;
-                    idMap[id] = 'hide'
+                    idMap[id] = 'hide';
+                    idMap[id+'lineHeight']=parseInt(style.height);
                     this.setState({foldedMap: idMap});
                 }
             }
@@ -96,23 +96,25 @@ export default class CommentList extends Component {
             var publishTime = utils.formatTime(item.createdAt);
             const id = item.id;
             if (id in foldedMap) {
+                const contextLineHeight = this.context.commentLineHeight*this.context.commentMaxLines;
                 if (foldedMap[id] == 'show') {
-                var userWordContainer = (
-                    <div className="user-word-container">
-                        <div className="user-word" style={{'maxHeight':'initial','overflow':'initial'}}
-                             data-id={item.id}>
-                            {item.content}
+                    var lineHeight=foldedMap[id+'lineHeight']
+                    var userWordContainer = (
+                        <div className="user-word-container">
+                            <div className="user-word" style={{'maxHeight':lineHeight}}
+                                 data-id={item.id}>
+                                {item.content}
+                            </div>
+                            <div className="fold-button folded" onClick={this.handleClick}>收起</div>
                         </div>
-                        <div className="fold-button folded" onClick={this.handleClick.bind(this)}>收起</div>
-                    </div>
-                )
+                    )
             } else {
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" style={{'maxHeight':'36px','overflow':'hidden'}} data-id={item.id}>
+                        <div className="user-word" style={{'maxHeight':contextLineHeight}} data-id={item.id}>
                             {item.content}
                         </div>
-                        <div className="fold-button" onClick={this.handleClick.bind(this)}>展开</div>
+                        <div className="fold-button" onClick={this.handleClick}>展开</div>
                     </div>
                 )
             }   

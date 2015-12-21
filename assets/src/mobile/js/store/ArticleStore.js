@@ -3,7 +3,6 @@ import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
 import AjaxMgr from '../../../common/utils/ajxaLoop.js'
 
-
 const urlMap = {
     articles: Api.getRelativeArticles,
 }
@@ -19,7 +18,6 @@ export default class PostDetailStore extends BaseStore {
     };
 
     state = {
-        isLoading: false,
         articles: []
     };
 
@@ -32,7 +30,6 @@ export default class PostDetailStore extends BaseStore {
             url:urlMap["articles"](),
             success:function(resp){that.dispatch({type: ats.ARTICLES_LOAD_S, payLoad: resp.results})},
             minInterval:minInterval
-
         })
         articleAjax.setLoop(true).request();
     }
@@ -48,7 +45,6 @@ export default class PostDetailStore extends BaseStore {
                 return actionMethods.loadRelativeArticles_s(this.state, payLoad)
             case ats.ARTICLES_LOAD_E:
                 return actionMethods.loadRelativeArticles_e(this.state, payLoad)
-
             default:
                 console.warn(`type:${type} not found: use default`)
                 return this.state
@@ -58,15 +54,7 @@ export default class PostDetailStore extends BaseStore {
 
 const actionMethods = {
     loadRelativeArticles(state, payLoad){
-
-        if (state.isLoading) {
-            return state;
-        } else {
-            return utils.State.setShallow(state, {
-                isLoading: true,
-
-            })
-        }
+        return state;
     },
     loadRelativeArticles_s(state, payLoad){
         state.articles = [];
@@ -74,7 +62,6 @@ const actionMethods = {
             state.articles.push(item)
         })
         return utils.State.setShallow(state, {
-            isLoading: false,
             articles: state.articles
         })
     },

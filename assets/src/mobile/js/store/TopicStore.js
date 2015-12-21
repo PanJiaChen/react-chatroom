@@ -29,7 +29,6 @@ export default class TopicStore extends BaseStore {
             url:urlMap["topic"](),
             success:function(resp){that.dispatch({type: ats.TOPIC_LOAD_S, payLoad: resp})},
             minInterval:minInterval
-
         })
        topicAjax.setLoop(true).request();
     }
@@ -54,28 +53,15 @@ export default class TopicStore extends BaseStore {
 
 const actionMethods = {
     loadTopic(state, payLoad){
-        if (state.isLoading) {
-            return state;
-        } else {
-            return utils.State.setShallow(state, {
-                isLoading: true,
-            })
-        }
+        return state;
     },
     loadTopic_s(state, payLoad){
-        // console.log(state.detail==payLoad.results)
-        // if(state.detail==payLoad.results){
-        //     return state
-        // }
-        // console.log("load加载 "+payLoad.results)
         return utils.State.setShallow(state, {
-            isLoading: false,
             detail: payLoad.results
         })
     },
     loadTopic_e(state, payLoad){
         return utils.State.setShallow(state, {
-            isLoading: false,
             detail: 'fail'
         })
     }

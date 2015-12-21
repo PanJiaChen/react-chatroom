@@ -48,7 +48,7 @@ class TopicContainer extends Component {
     //     return state==nextProps.store.getState()  
     // }
 
-    handleClick(e) {
+    handleClick=(e)=> {
         const contentDom = e.target.parentNode.getElementsByClassName('user-word')[0]
         const id = contentDom.getAttribute('data-id');
         const foldedMap = this.state.foldedMap;
@@ -77,12 +77,12 @@ class TopicContainer extends Component {
             } else {
                 var idMap = [];
                 idMap = this.state.foldedMap;
-                idMap[id] = 'hide'
+                idMap[id] = 'hide';
+                idMap[id+'lineHeight']=parseInt(style.height);
                 this.setState({foldedMap: idMap});
             }
         }
     }
-
 
     render() {
         const store = this.props.store;
@@ -98,23 +98,25 @@ class TopicContainer extends Component {
         const id = detail.id
         var userWordContainer
         if (id in foldedMap) {
+            const contextLineHeight = this.context.topicLineHeight*this.context.topicMaxLines;
             if (foldedMap[id] == 'show') {
+                var lineHeight=foldedMap[id+'lineHeight']
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" style={{'maxHeight':'initial','overflow':'initial'}}
+                        <div className="user-word" style={{'maxHeight':lineHeight}}
                              data-id={detail.id}>
                             {detail.text}
                         </div>
-                        <div className="fold-button folded" onClick={this.handleClick.bind(this)}>收起</div>
+                        <div className="fold-button folded" onClick={this.handleClick}>收起</div>
                     </div>
                 )
             } else {
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" style={{'maxHeight':'36px','overflow':'hidden'}} data-id={detail.id}>
+                        <div className="user-word" style={{'maxHeight':contextLineHeight}} data-id={detail.id}>
                             {detail.text}
                         </div>
-                        <div className="fold-button" onClick={this.handleClick.bind(this)}>展开</div>
+                        <div className="fold-button" onClick={this.handleClick}>展开</div>
                     </div>
                 )
             }
