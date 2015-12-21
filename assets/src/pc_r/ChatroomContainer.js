@@ -3,31 +3,36 @@ import utils from '../common/utils/utils.js'
 import './less/index.less'
 import {enhanceWithStore} from 'react-zlux'
 
+//视频
 import VideoContainer from './js/containers/video/VideoContainer.js';
 import StreamStore from './js/store/StreamStore.js'
 const streamStore = new StreamStore();
 const VideoElement = enhanceWithStore(VideoContainer, streamStore);
-
+//音频
 import AudioContainer from './js/containers/audio/AudioContainer.js';
 const AudioElement = enhanceWithStore(AudioContainer, streamStore);
 
+//侧边栏
 import LeftbarContainer from './js/containers/leftbar/LeftBarContainer.js'
 
-
+//标题栏
 import TitleContainer from './js/containers/title/TitleContainer'
 import TitleStore from './js/store/TitleStore.js'
 const titleStore = new TitleStore();
 const TitleElement = enhanceWithStore(TitleContainer, titleStore);
 
+//投票
 import VoteContainer from './js/containers/vote/VoteContainer'
 import VoteStore from './js/store/VoteStore'
 const voteStore = new VoteStore();
 const VoteElement = enhanceWithStore(VoteContainer, voteStore);
 
+//单主持人话题
 import SingalTopicContainer from './js/containers/singalTopic/singalTopicContainer.js'
 const singalTopicStore=topicStore//全局变量
 const SingalTopicElement = enhanceWithStore(SingalTopicContainer, singalTopicStore);
 
+//评论
 import CommentContainer from './js/containers/comment/CommentContainer.js'
 import CommentStore from './js/store/CommentStore.js'
 const commentStore = new CommentStore();
@@ -35,6 +40,7 @@ const CommentElement = enhanceWithStore(CommentContainer, commentStore);
 global.commentStore = commentStore;
 
 import './less/index.less'
+//loading样式
 import './js/components/loading.less'
 
 const transformsMap = {
@@ -54,7 +60,7 @@ class ChatroomContainer extends Component {
 
     state = {
         bHeight:0,
-        topicHeight:83,
+        topicHeight:83,//topic最小默认高度
         titleHeight:0
     }
 
@@ -82,11 +88,11 @@ class ChatroomContainer extends Component {
     componentDidMount() {
         const store = this.props.store        
         store.loadChatroomAjax('fasle')
+
+        //计算响应式高度 90为页面nav定死高度
         const _height=window.document.body.offsetHeight;
-        
         const _BHeight=_height-90;
         this.setState({bHeight: _BHeight});
-        
     }
 
     componentWillUnmount() {

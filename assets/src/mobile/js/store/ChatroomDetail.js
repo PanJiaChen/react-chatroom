@@ -1,7 +1,7 @@
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
-
+//直播间详情store
 
 const urlMap = {
     detail: Api.getChatroom
@@ -23,8 +23,9 @@ export default class ChatroomDetailStore extends BaseStore {
     loadChatroomAjax(payLoad) {
         const ats = ChatroomDetailStore.ActionTypes;
         this.dispatch({type: ats.CHATROOM_LOAD});
-        utils.createLoaidng();
-        utils.showLoading();
+        
+        utils.createLoaidng(); //create Loaidng
+        utils.showLoading(); //show loaing
         var that = this;
         utils.ajax({
             url: Api.getChatroom()
@@ -38,7 +39,6 @@ export default class ChatroomDetailStore extends BaseStore {
         })
     }
 
-
     reduce(action) {
         const type = action.type;
         const payLoad = action.payLoad;
@@ -48,7 +48,6 @@ export default class ChatroomDetailStore extends BaseStore {
                 return actionMethods.loadChatroom(this.state, payLoad)
             case ats.CHATROOM_LOAD_S:
                 return actionMethods.loadChatroom_s(this.state, payLoad)
-
             default:
                 console.warn(`type:${type} not found: use default`)
                 return this.state
@@ -58,17 +57,10 @@ export default class ChatroomDetailStore extends BaseStore {
 
 const actionMethods = {
     loadChatroom(state, payLoad){
-        if (state.isLoading) {
-            return state;
-        } else {
-            return utils.State.setShallow(state, {
-                isLoading: true,
-            })
-        }
+        return state;
     },
     loadChatroom_s(state, payLoad){
         return utils.State.setShallow(state, {
-            isLoading: false,
             detail: payLoad
         })
     }

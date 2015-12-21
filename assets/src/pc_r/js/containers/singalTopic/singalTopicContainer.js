@@ -88,7 +88,7 @@ class TopicContainer extends Component {
                 var lineHeight=foldedMap[id+'lineHeight']
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" onClick={this.handleClick.bind(this)}  style={{'maxHeight':lineHeight,'overflow':'initial'}}
+                        <div className="user-word" onClick={this.handleClick.bind(this)}  style={{'maxHeight':lineHeight,'cursor':'pointer'}}
                              data-id={detail.id}  dangerouslySetInnerHTML={{__html: text}} />
                         <div className="fold-button folded" onClick={this.handleClick.bind(this)}></div>
                     </div>
@@ -96,7 +96,7 @@ class TopicContainer extends Component {
             } else {
                 var userWordContainer = (
                     <div className="user-word-container">
-                        <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight,'overflow':'hidden','cursor':'pointer'}} data-id={detail.id} dangerouslySetInnerHTML={{__html: text}} />
+                        <div className="user-word" onClick={this.handleClick.bind(this)} style={{'maxHeight':contextLineHeight,'cursor':'pointer'}} data-id={detail.id} dangerouslySetInnerHTML={{__html: text}} />
                         <div className="fold-button" onClick={this.handleClick.bind(this)}></div>
                     </div>
                 )

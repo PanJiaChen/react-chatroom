@@ -1,7 +1,7 @@
 import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
-
+//音视频对应的store
 
 const urlMap = {
     getStream: Api.getStream
@@ -20,9 +20,6 @@ export default class StreamStore extends BaseStore {
     state = {
        results:[]
     };
-
-
-
 
     loadStreamAjax(payLoad) {
         const ats = StreamStore.ActionTypes;
@@ -58,25 +55,16 @@ export default class StreamStore extends BaseStore {
 
 const actionMethods = {
     loadStream(state, payLoad){
-        if (state.isLoading) {
-            return state;
-        } else {
-            return utils.State.setShallow(state, {
-                isLoading: true,
-            })
-        }
+        return state;
     },
     loadStream_s(state, payLoad){
         return utils.State.setShallow(state, {
-            isLoading: false,
             results: payLoad.results
         })
     },
     loadStream_e(state, payLoad){
         return utils.State.setShallow(state, {
-            isLoading: false,
             detail: 'fail'
         })
     }
 }
-

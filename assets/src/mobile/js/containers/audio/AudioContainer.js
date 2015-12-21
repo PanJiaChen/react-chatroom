@@ -32,7 +32,7 @@ class AudioContainer extends Component {
                 //直播
                 var url=state.results[0].url['liveHls'];
             }else if(start>now){
-                
+                //直播未开始
                 return content=(<div className='not-start'>直播尚未开始请耐心等待~</div>)
             }
            var srcPath =(
@@ -60,7 +60,6 @@ class AudioContainer extends Component {
             </div>
         )
     }
-
 }
 
 export default AudioContainer;

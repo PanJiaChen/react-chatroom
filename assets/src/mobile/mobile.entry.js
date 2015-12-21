@@ -28,7 +28,7 @@ export default class BroadcastApp {
 
 BroadcastApp.minInterval = {
         info: 60 * 1000,//basic info的请求，60s轮询一次
-        comment: 60 * 1000,//评论，5s
+        comment: 60 * 1000,//评论，60s
         article: 90 * 1000,//资讯
         topic: 60 * 1000//话题
 }

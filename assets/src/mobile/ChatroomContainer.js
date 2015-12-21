@@ -3,18 +3,21 @@ import ReactDOM from 'react-dom'
 import utils from '../common/utils/utils.js'
 import {enhanceWithStore} from 'react-zlux'
 
+//tab
 import TabContainer from './js/containers/tab/tabContainer.js';
 
-import ArticleContainer from './js/containers/articleSingal/articleSingalContainer.js';
-import ArticleStore from './js/store/ArticleStore.js';
-const articleStore = global.informationStore;
-const ArticleElement = enhanceWithStore(ArticleContainer, articleStore);
+//单条主持人话题
+// import ArticleContainer from './js/containers/articleSingal/articleSingalContainer.js';
+// import ArticleStore from './js/store/ArticleStore.js';
+// const articleStore = global.informationStore;
+// const ArticleElement = enhanceWithStore(ArticleContainer, articleStore);
 
+//视频
 import VideoContainer from './js/containers/video/VideoContainer.js';
 import StreamStore from './js/store/StreamStore.js'
 const streamStore = new StreamStore();
 const VideoElement = enhanceWithStore(VideoContainer, streamStore);
-
+//音频
 import AudioContainer from './js/containers/audio/AudioContainer.js';
 const AudioElement = enhanceWithStore(AudioContainer, streamStore);
 
@@ -86,7 +89,6 @@ class ChatroomContainer extends Component {
                     <div className='wscn'></div>
                     <div className="header-num">{detail.numOfUsers}人参与</div>
                 </div>
-
                 {includeArr}
             </div>
         )
@@ -97,7 +99,6 @@ class ChatroomContainer extends Component {
             return include.push(transformsMap[str])
         }
     }
-
 }
 
 export default ChatroomContainer;

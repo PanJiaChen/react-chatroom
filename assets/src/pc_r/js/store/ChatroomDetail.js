@@ -2,7 +2,6 @@ import {BaseStore} from 'zlux'
 import utils from '../../../common/utils/utils.js'
 var Api = require('../WebApi/api.js');
 
-
 const urlMap = {
     detail: Api.getChatroom
 }
@@ -55,13 +54,7 @@ export default class ChatroomDetailStore extends BaseStore {
 
 const actionMethods = {
     loadChatroom(state, payLoad){
-        if (state.isLoading) {
-            return state;
-        } else {
-            return utils.State.setShallow(state, {
-                isLoading: true,
-            })
-        }
+        return state;
     },
     loadChatroom_s(state, payLoad){
         return utils.State.setShallow(state, {

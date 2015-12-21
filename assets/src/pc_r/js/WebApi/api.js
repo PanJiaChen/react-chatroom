@@ -21,14 +21,14 @@ function _getChatroom() {
 
 //话题
 function _getRelaticeTopics(page) {
-    page==undefined?page=1:page=page;
-    return HOST_URL + 'chatrooms/' + ChatroomId + '/topics?limit=20&page='+page;
+    page == undefined ? page = 1 : page = page;
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/topics?limit=20&page=' + page;
 }
 
 //资讯
 function _getRelativeArticles(page) {
-    page==undefined?page=1:page=page;
-    return HOST_URL + 'chatrooms/' + ChatroomId + '/articles?limit=20&page='+page;
+    page == undefined ? page = 1 : page = page;
+    return HOST_URL + 'chatrooms/' + ChatroomId + '/articles?limit=20&page=' + page;
 }
 
 //参与人数
@@ -38,21 +38,21 @@ function _getCount() {
 
 //评论列表 down_id
 function _getCommentsDown(down_id) {
-    return HOST_URL + 'comments?channel=chat&id='+ChatroomId+'&count=25&down_id='+down_id;
+    return HOST_URL + 'comments?channel=chat&id=' + ChatroomId + '&count=25&down_id=' + down_id;
 }
 
 //评论列表 up_id
 function _getCommentsUp(up_id) {
-    return HOST_URL + 'comments?channel=chat&id='+ChatroomId+'&count=25&up_id='+up_id;
+    return HOST_URL + 'comments?channel=chat&id=' + ChatroomId + '&count=25&up_id=' + up_id;
 }
 
 //评论
 function _replyComment() {
-    return WSCN_URL + 'thread/chat_'+ChatroomId+'/comments/save';
+    return WSCN_URL + 'thread/chat_' + ChatroomId + '/comments/save';
 }
 
 //登录信息
-var User_Login='me';
+var User_Login = 'me';
 function _getLoginDetail() {
     return WSCN_URL + User_Login;
 }
@@ -84,7 +84,7 @@ module.exports = {
     getCount: _getCount,
     replyComment: _replyComment,
     getLoginDetail: _getLoginDetail,
-    getStream:_getStream,
-    getVote:_getVote,
-    postVote:_postVote
+    getStream: _getStream,
+    getVote: _getVote,
+    postVote: _postVote
 };

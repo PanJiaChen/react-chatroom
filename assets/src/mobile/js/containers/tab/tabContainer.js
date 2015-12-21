@@ -2,9 +2,8 @@ import {Component} from 'react'
 import utils from '../../../../common/utils/utils.js'
 import './tab.less'
 
-import DiscussContainer from '../discuss/discussContainer.js'
-
-import InformationContainer from '../information/informationContainer.js'
+import DiscussContainer from '../discuss/discussContainer.js'  //讨论 discuss
+import InformationContainer from '../information/informationContainer.js' //资讯 information
 
 const tabChoices={
     discuss:<DiscussContainer />,
@@ -24,7 +23,6 @@ class TabContainer extends Component{
     }
 
     render(){
-        
         return (
             <div className='tab-container'>
                 <div className='tab'>

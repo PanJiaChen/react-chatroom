@@ -128,7 +128,7 @@ export default class CommentList extends Component {
                     var lineHeight=foldedMap[id+'lineHeight']
                     var userWordContainer = (
                         <div className="user-word-container">
-                            <div className="user-word" onClick={this.handleClick.bind(this)}  style={{'maxHeight':lineHeight}}
+                            <div className="user-word" onClick={this.handleClick.bind(this)}  style={{'maxHeight':lineHeight,'cursor':'pointer'}}
                                  data-id={item.id}>
                                 {item.content}
                             </div>

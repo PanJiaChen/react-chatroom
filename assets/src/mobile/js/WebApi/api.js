@@ -7,9 +7,6 @@ var ChatroomId;
 var Get_Count = 'chatrooms/' + ChatroomId + '/count';
 
 
-//登录信息
-var User_Login = 'me';
-
 function _setBaseUrl(url) {
     HOST_URL = url;
 }
@@ -33,7 +30,6 @@ function _getRelativeArticles() {
     return HOST_URL + 'chatrooms/' + ChatroomId + '/articles';
 }
 
-
 function _getCount() {
     return HOST_URL + Get_Count;
 }
@@ -43,7 +39,6 @@ function _getStream() {
     return HOST_URL + 'chatrooms/' + ChatroomId + '/streams';
 }
 
-
 module.exports = {
     setBaseUrl: _setBaseUrl,
     setChatroomId: _setChatroomId,
@@ -52,5 +47,5 @@ module.exports = {
     getRelaticeTopics: _getRelaticeTopics,
     getComments: _getComments,
     getCount: _getCount,
-    getStream:_getStream
+    getStream: _getStream
 };

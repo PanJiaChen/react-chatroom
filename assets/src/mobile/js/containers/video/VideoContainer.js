@@ -25,13 +25,13 @@ class VideoContainer extends Component {
             const now=Date.parse(new Date())/1000;
             const start=state.results[0].disp['start'];
             if(now>end){
-                //重播
+                //直播播=结束
                return content=(<div className='not-start'>视频已结束~~</div>)
             }else if(now<end && now>start){
                 //直播
                 var url=state.results[0].url['liveHls'];
             }else if(start>now){
-                
+                //直播未开始
                 return content=(<div className='not-start'>直播尚未开始请耐心等待~</div>)
             }
             var srcPath =(
@@ -56,11 +56,10 @@ class VideoContainer extends Component {
         }
         return (
             <div id='video-mount' className='video-container'>
-                
+                {content}
             </div>
         )
     }
-
 }
 
 export default VideoContainer;
