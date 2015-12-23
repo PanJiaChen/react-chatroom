@@ -19,6 +19,21 @@
         }
       }
     }
+    &:last-child {
+      border-left:none;
+      .list-item {
+        .timer:before {
+          content: '';
+          width: 1px;
+          height: 8px;
+          background: #ddd;
+          display: inline-block;
+          position: absolute;
+          left: 0px;
+          top: 0px
+        }
+      }
+    }
     .list-item {
       padding: 0 15px 30px;
       .list-content {

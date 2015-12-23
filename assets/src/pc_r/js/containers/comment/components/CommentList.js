@@ -154,6 +154,8 @@ export default class CommentList extends Component {
                     </div>
                 )
             }
+            var screenName;
+            item.user["screenName"]?screenName=item.user["screenName"]:screenName=item.user["username"];
             return (
                 <li key={item.id} className={commentCss}>
                     <div className="user-avatar" key={"avatar"}>
@@ -161,7 +163,7 @@ export default class CommentList extends Component {
                     </div>
                     <div className="user-content" key={"userContent"}>
                         <div className="user-detail">
-                            {item.user["name"]}
+                            {screenName}
                         </div>
                         <div className="user-time">
                             {publishTime}

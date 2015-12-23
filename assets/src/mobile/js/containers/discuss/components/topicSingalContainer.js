@@ -144,6 +144,8 @@ class TopicContainer extends Component {
                 </div>
             )
         }
+        var screenName;
+        detail.user["screenName"]?screenName=detail.user["screenName"]:screenName=detail.user["username"];
         return (
             <div className='topic-container'>
                 <div className='list-item-container '>
@@ -153,7 +155,7 @@ class TopicContainer extends Component {
                     <div className="user-content">
                         <div className='chat-meta clearfix'>
                             <div className="user-detail">
-                                {detail.user["username"]}
+                                {screenName}
                             </div>
                             <div className="user-time">
                                 {publishTime}
