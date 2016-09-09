@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React App</title>
+</head>
+<body>
+<div id="root"></div>
+<script src="static/vendor/<%= htmlWebpackPlugin.options.vendor_dll %>"></script>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
+
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
+
+  To begin the development, run `npm start` in this folder.
+  To create a production bundle, use `npm run build`.
+-->
+</body>
+<script>
+    var MarketComponents = new MarketComponents({
+        parentDom: document.getElementById('root'),
+        options: {
+            symbols: [
+                "XAUUSD",
+                "UKOil",
+                "000001",
+                "EURUSD",
+                "USDJPY",
+            ],
+            priceMinInterval:2000,
+            baseApi: "http://139.196.188.130:8086/",
+            priceApi: "real?en_prod_code=",
+            priceApiField: "&fields=prod_name,last_px,px_change,px_change_rate",
+            klineApi: "kline?prod_code=",
+            klineApiField: "&candle_period=1&data_count=80&end_time=0&fields=close_px",
+        }
+    }).init();
+</script>
+</html>

@@ -1,0 +1,63 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+$symbolNameColor: #333;
+$priceColor: #999;
+$upColor: #F44242;
+$downColor: #22C761;
+
+.market-component-container {
+  position: relative;
+  border: 1px solid #E6E6E6;
+  background-color: #fff;
+  display: inline-block;
+  @include clearfix;
+  box-sizing: border-box;
+  .market-item-container {
+    padding: 10px 16px;
+    float: left;
+    width: 170px;
+    height: 80px;
+    border-left: 1px solid #F0F1F5;
+  }
+}
+
+.market-quotecard-container {
+  @include clearfix;
+  .market-quotecard-left {
+    float: left;
+  }
+  .market-quotecard-right {
+    float: right;
+  }
+  .symbol-name {
+    font-size: 12px;
+    color: $symbolNameColor;
+    line-height: 12px;
+  }
+  .last-price {
+    font-size: 12px;
+    color: $priceColor;
+    padding-top: 6px;
+  }
+  .change, .change-rate {
+    &.up {
+      color: $upColor;
+    }
+    &.down {
+      color: $downColor;
+    }
+  }
+  .change{
+    font-size:18px;
+  }
+  .change-rate {
+    padding-top: 6px;
+    font-size:12px;
+  }
+}
